@@ -8,9 +8,12 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      aplicacion [WinRAR](https://www.win-rar.com/open-zip-file.html?&L=0) para extraer los datos de la imagen. 
      Tome en cuenta que esta version es la 6.1 y pueden existir actualizaciones, para obtener mas información sobre los sistemas operativos disponibles para Raspberry Pi, visita [El sitio oficial 
      de Raspberry Pi](https://www.raspberrypi.com/software/operating-systems/).
-     Inserte uan micro-usb de almenos 8 GB de espacio en almacenamiento, para su posterior formateo con la aplicacion [SD Card Formatter](https://www.sdcard.org/downloads/formatter/), como recomendacion. Una vez formateada la tarjeta de memoria y extraida la imagen del software de descargara [Win32 Disk Imager](https://sourceforge.net/projects/win32diskimager/)
+     Inserte uan micro-usb de almenos 8 GB de espacio en almacenamiento, para su posterior formateo con la aplicacion [SD Card Formatter](https://www.sdcard.org/downloads/formatter/), como recomendacion. Una vez formateada la tarjeta de memoria y extraida la imagen del software de descargara el **Install Raspberry Pi OS using Raspberry Pi Imager** contenido en [el sitio oficial 
+     de Raspberry Pi](https://www.raspberrypi.com/software/). la cual nos serivira para intalar la imagen en la miro-usb.
      # Instalar la biblioteca RAK811 Python
      Paso 1 : En primer lugar, deberás conectar tu Raspberry Pi al Wi-Fi. En la terminal escriba el siguiente comando:
-
-sudo raspi-config
-Seleccione la opción 2 " Opciones de red ", luego N2 " Wi-Fi ", luego siga las instrucciones para ingresar sus credenciales de Wi-Fi y conectarse a Wi-Fi para acceder a Inter     
+             </body>
+             </html>
+             
+             sudo raspi-config
+     Seleccione la opción 2 " Opciones de red ", luego N2 " Wi-Fi ", luego siga las instrucciones para ingresar sus credenciales de Wi-Fi y conectarse a Wi-Fi para acceder a Inter     
