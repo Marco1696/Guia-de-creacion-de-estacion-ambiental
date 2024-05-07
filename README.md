@@ -4,9 +4,11 @@ Esta guia esta dirijida a toda aquella persona que tenga la necesidad de impleme
 Esta guia describe 2 formas de configurar la respberry pi, la cual se explica como se llego desde la descarga de la imagen del software de raspian hasta el desarrollo y puesta en marcha de los programas funcionales de python y la segunda forma explica como agregar y modificar una archivo quemado prevamiente en una micro-usb el cual contiene todos los archivos del paso 1.
    - https://learn.pi-supply.com/make/getting-started-with-the-raspberry-pi-lora-node-phat/
      # Descargar-e-instalar-imagen-del-sistema-raspian
-     La imagen *Raspberry Pi OS (Legacy) Lite* sera la ultilizada por su bajo consumo de recusos,ademas de que en esta proyecto solo utilizaremos la consola de este sistema.
-     - https://downloads.raspberrypi.com/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-lite.img.xz?_gl=1*1ywdkpf*_ga*MzQ2MTQ5NjU2LjE3MDc4NDI4Nzg.*_ga_22FD70LWDS*MTcxNTEwNzQ2OC40LjEuMTcxNTEwNzUwMi4wLjAuMA..
-     Tome en cuenta que esta version es la 6.1 y pueden existir actualizaciones en la pagina oficial de # *Raspberry-Pi.md*
+     <a href="https://downloads.raspberrypi.com/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-lite.img.xz 
+     _gl=1*1ywdkpf*_ga*MzQ2MTQ5NjU2LjE3MDc4NDI4Nzg.*_ga_22FD70LWDS*MTcxNTEwNzQ2OC40LjEuMTcxNTEwNzUwMi4wLjAuMA.." download>
+     <button>Descargar</button>
+      </a> la imagen **Raspberry Pi OS (Legacy) Lite ver.6.1** sera la ultilizada como software de la estacion ambiental la cual estara en un formato **.zip**, se recomienda la utilizacion de la aplicacion [WinRAR](https://www.win-rar.com/open-zip-file.html?&L=0) para extraer los datos de la imagen. 
+     Tome en cuenta que esta version es la 6.1 y pueden existir actualizaciones, para obtener mas información sobre los sistemas operativos disponibles para Raspberry Pi, visita [El sitio oficial de Raspberry Pi](https://www.raspberrypi.com/software/operating-systems/).
      # Instalar la biblioteca RAK811 Python
 Paso 1 : descargue y actualice la imagen más reciente del sistema operativo Raspbian en su tarjeta micro SD. Puede descargar la imagen más reciente desde aquí:  https://www.raspberrypi.org/downloads/raspbian/
 
