@@ -16,4 +16,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              </html>
              
              sudo raspi-config
-     Seleccione la opción 2 " Opciones de red ", luego N2 " Wi-Fi ", luego siga las instrucciones para ingresar sus credenciales de Wi-Fi y conectarse a Wi-Fi para acceder a Inter     
+     Seleccione la opción **System Options**, luego **Wireless LAN**, luego siga las instrucciones para ingresar sus credenciales de Wi-Fi y conectarse a Wi-Fi para acceder a Internet.
+     ![Imagen 1](https://drive.google.com/file/d/1IF-DGD9hQYs05vKgys4PXvhpaxEa5R3A/view?usp=sharing)
+          
+![WhatsApp Image 2024-05-07 at 3 13 44 PM (1)](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1cea8f29-9151-44ef-aa92-d2b1b4c07757)
