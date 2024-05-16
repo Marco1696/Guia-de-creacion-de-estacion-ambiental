@@ -77,7 +77,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </body>
      </html>
 
-     **Paso 3 :** Escriba el siguiente comandoen la raspberry pi zero:
+     **Paso 3 :** Escriba el siguiente comando en la raspberry pi zero:
      </body>
              </html>
              
@@ -110,8 +110,71 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              </html>
              
              sudo pip3 install rak811
-   # Creacion de credenciales de seguridad y coneccion de ABP.
-Escribimos el siguiente comando:
+   # Creacion de credenciales de seguridad y coneccion de ABP."""ABP Template."""
+**Paso 1 :** Escriba el siguiente comando:
+</body>
+         </html>
+             
+         sudo nano Dev_Addr.py 
+La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+</body>
+         </html>
+
+         import secrets
+         import binascii
+         
+         def generate_deveui():
+         manufacturer_prefix = "00FF"  # Prefijo del fabricante (ejemplo se puende modificar las 2 ultimas letras)
+         random_suffix = secrets.token_hex(3) 
+         deveui = manufacturer_prefix + random_suffix
+         return deveui.upper()
+
+         # Genera un DevEUI
+         deveui = generate_deveui()
+         print("DevEUI:", deveui)
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este programa de Python se ejecutara para conocer el Device address que se accinara a nuestro dispositivo y sevira para la conexion ABP con el gateway y la aplicacion de Chirpstack.
+**Paso 2 :** Escriba el siguiente comando:
+</body>
+         </html>
+             
+         sudo nano nwkey.py
+La parte de **nwkey** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+</body>
+         </html>
+             
+         import secrets
+         import binascii
+         
+         def generate_network_key(length):
+         # Genera una cadena de bytes aleatorios para la clave de red
+         network_key_bytes = secrets.token_bytes(length)
+         return binascii.hexlify(network_key_bytes).decode('utf-8').upper()
+         
+         # Genera una clave de red de 128 bits (16 bytes)
+         network_key = generate_network_key(16)
+         print("Network Key:", network_key)
+Guardar y salir con **CTRL+O** y **CTRL+X**. Consecutivamente escriba el siguiente comando:
+</body>
+         </html>
+             
+         sudo nano applkey.py
+La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+</body>
+         </html>
+             
+         import secrets
+         import binascii
+
+         def generate_application_key(length):
+         # Genera una cadena de bytes aleatorios para la clave de aplicación
+         app_key_bytes = secrets.token_bytes(length)
+         return binascii.hexlify(app_key_bytes).decode('utf-8').upper()
+         
+         # Genera una clave de aplicación de 128 bits (16 bytes)
+         application_key = generate_application_key(16)
+         print("Application Key:", application_key)
+Guardar y salir con **CTRL+O** y **CTRL+X**. Una vez culminado este ultimoc codigo ejecutamos los codigos de Python, procurando copiar los datos que arrojaran estos codigos.
+**Paso 3 :** Escribimos el siguiente comando:
 </body>
          </html>
              
@@ -139,6 +202,30 @@ La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es sol
          first.
          """
          APPS_KEY = ''
+Los datos obtenidos en el **paso 2** se agregaran entre las comillas '' (ejemplo: en la parte de DEV_ADDR ='0X0ff9def0e'). Guardar y salir con **CTRL+O** y **CTRL+X**.
+**Paso 4 :** Obtener el el Device EUI. Escriba en el siguiente comando:
+</body>
+         </html>
+             
+         sudo nano Dev_EUI.py
+La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+</body>
+         </html>
+
+         import secrets
+         import binascii
+         
+         def generate_random_hex(length):
+         # Genera una cadena de bytes aleatorios y luego la convierte a hexadecimal
+         random_bytes = secrets.token_bytes(length // 2)
+         random_hex = binascii.hexlify(random_bytes).decode('utf-8')
+         return random_hex.upper()
+         
+         # Genera un identificador único de 16 caracteres hexadecimales
+         eui16 = generate_random_hex(16)
+         print("EUI de 16 dígitos:", eui16)
+Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev_EUI el cual sera necesario para conectar el dispositivo en la plataforma de Chirpstack.
+         
 
          
 
