@@ -60,7 +60,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </body>
      </html>
      
-     Una vez hecho esto seleccionar **SSH** y activarlo para poder conectarte inalambricamente, del mismo modo activar el **SPI** y **I2C**, una vez hecho esto reinicia la raspberry pi para que se puedan efectuar los cambios anteriormente realizados.
+     Una vez hecho esto seleccionar **SSH** y activarlo para poder conectarte inalambricamente, del mismo modo activar el **SPI** y **I2C**.
      <!DOCTYPE html>
      <html>
         <head>
@@ -87,6 +87,63 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              </html>
 
              dtoverlay=pi3-miniuart-bt
+     ![WhatsApp Image 2024-05-16 at 1 06 10 PM](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/cc18955f-f3c9-4b33-b03a-6d1be35ef3f4)
+     Guardar y salir con **CTRL+O** y **CTRL+X**. Reinicie su Raspberry Pi para que todos los cambios surtan efecto.
+     
+     **Paso 4 :** Se instalara el programa de Python 3. Escriba el sigiente comando:
+     </body>
+             </html>
+             
+             sudo apt update
+     </body>
+             </html>
+             
+             sudo apt upgrade
+     </body>
+             </html>
+             
+             sudo apt install python3-pip
+
+     **Paso 5 :** Ahora instalemos la biblioteca Python RAK811. Escriba los siguientes comandos:
+
+     </body>
+             </html>
+             
+             sudo pip3 install rak811
+   # Creacion de credenciales de seguridad y coneccion de ABP.
+Escribimos el siguiente comando:
+</body>
+         </html>
+             
+         sudo nano ttn_secrets.py 
+La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+</body>
+         </html>
+         
+         """ABP Template."""
+         """Device address.
+         The device address must be in big-endian format, so most-significant-byte 
+         first.
+         For Chirpsatck issued addresses the first byte should be 0x26
+         """
+         DEV_ADDR = '0x0'
+         
+         """Network Session Key.
+         The device address must be in big-endian format, so most-significant-byte
+         first.
+         """
+         NWKS_KEY = ''
+         
+         """App Session Key.
+         The device address must be in big-endian format, so most-significant-byte
+         first.
+         """
+         APPS_KEY = ''
+
+         
+
+     
+
      
 
              
