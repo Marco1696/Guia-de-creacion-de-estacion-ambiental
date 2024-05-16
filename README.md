@@ -38,7 +38,9 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </body>
      </html>
      La imagen muestra el recuadro en donde se escribira el nombre de la red wifi a conectarse, una vez realizado se dezplegara un segundo cuadro en donde se colocara la contraseña de esa red.
-   **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puedes volver al inicio de las configuraciones y seleccionar **Interface Options**, posteriormente seleccionar **Serial Port** y luego seleccionar **No** y luego **Yes** como se muestra en las iguientes imagenes. 
+     
+     **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puedes volver al inicio de las configuraciones y seleccionar **Interface Options**, 
+     posteriormente seleccionar **Serial Port** y luego seleccionar **No** y luego **Yes** como se muestra en las iguientes imagenes. 
      <!DOCTYPE html>
      <html>
         <head>
@@ -57,7 +59,8 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </table>
      </body>
      </html>
-   Una vez hecho esto seleccionar SSH y activarlo para poder conectarte inalambricamente, del mismo modo activar el SPI y I2C corespondientemente en la raspberry pi zero, una vez hecho esto reinicia la raspberry pi para que se puedan efectuar los cambios anteriormente realizados.
+     
+     Una vez hecho esto seleccionar **SSH** y activarlo para poder conectarte inalambricamente, del mismo modo activar el **SPI** y **I2C**, una vez hecho esto reinicia la raspberry pi para que se puedan efectuar los cambios anteriormente realizados.
      <!DOCTYPE html>
      <html>
         <head>
@@ -73,4 +76,18 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </table>
      </body>
      </html>
+
+     **Paso 3 :** Escriba el siguiente comandoen la raspberry pi zero:
+     </body>
+             </html>
+             
+             sudo nano /boot/config.txt
+     Desplácese hacia abajo del codigo y agregue la siguiente línea:
+      </body>
+             </html>
+
+             dtoverlay=pi3-miniuart-bt
+     
+
+             
    
