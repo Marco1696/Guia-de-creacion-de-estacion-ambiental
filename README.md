@@ -110,7 +110,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              </html>
              
              sudo pip3 install rak811
-   # Creacion de credenciales de seguridad y coneccion de ABP."""ABP Template."""
+   # Creacion de credenciales de seguridad y coneccion de ABP.
 **Paso 1 :** Escriba el siguiente comando:
 </body>
          </html>
@@ -225,7 +225,120 @@ La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un
          eui16 = generate_random_hex(16)
          print("EUI de 16 dígitos:", eui16)
 Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev_EUI el cual sera necesario para conectar el dispositivo en la plataforma de Chirpstack.
+# Creacion de codigos de sensores utilizados en la estacion de monitoreo.
+   # Sensor BME 280.
+   # Sensor SCD 40.
+   # Sensor SEN 55.
+   # Sensores Alphasense.
+   # Codigo de para mandar datos a Chirpstack.
+# Instalar chirpstack y The Thingsboard en docker o cualquier otro sistema operativo.
+En la pagina oficial de [Chirpstack](https://www.chirpstack.io/docs/getting-started/docker.html) se describen los pasos para instalar el chirpstack en tu servidor segun el software que maneje. Una vez instalado se tiene que abrir una terminal de programacion o coloquialmente conocida como cmd. Escriba el siguiente comando:
+</body>
+         </html>
+             
+         cd chirpstack-docker
+Si se encuentra instalado en Docker, posteriormente escriba en siguiente comando:
+</body>
+         </html>
+             
+         sudo nano docker-compose.yml
+En ese codigo se tiene que modificar los siguientes acpectos 
+</body>
+         </html>
          
+         version: "3"
+         
+         services:
+         chirpstack:
+         image: chirpstack/chirpstack:4
+         command: -c /etc/chirpstack
+         restart: unless-stopped
+         volumes:
+         - ./configuration/chirpstack:/etc/chirpstack
+         - ./lorawan-devices:/opt/lorawan-devices
+         depends_on:
+         - postgres
+         - mosquitto
+         - redis
+         environment:
+         - MQTT_BROKER_HOST=mosquitto
+         - REDIS_HOST=redis
+         - POSTGRESQL_HOST=postgres
+         ports:
+         - 80:8080
+         
+         thingsboard:
+         image: thingsboard/tb-postgres
+         volumes:
+         - thingsboarddata:/data
+         ports:
+         - 9090:9090
+         
+         chirpstack-gateway-bridge:
+         image: chirpstack/chirpstack-gateway-bridge:4
+         restart: unless-stopped
+         ports:
+           - 1699:1700/udp
+         volumes:
+           - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+         environment:
+           - INTEGRATION__MQTT__EVENT_TOPIC_TEMPLATE=us915_1/gateway/{{ .GatewayID }}/event/{{ .EventType }}
+           - INTEGRATION__MQTT__STATE_TOPIC_TEMPLATE=us915_1/gateway/{{ .GatewayID }}/state/{{ .StateType }}
+           - INTEGRATION__MQTT__COMMAND_TOPIC_TEMPLATE=us915_1/gateway/{{ .GatewayID }}/command/#
+         depends_on:
+           - mosquitto
+         
+         chirpstack-gateway-bridge-basicstation:
+         image: chirpstack/chirpstack-gateway-bridge:4
+         restart: unless-stopped
+         command: -c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-us915_1.toml
+         ports:
+           - 3001:3001
+         volumes: 
+           - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+         depends_on:
+           - mosquitto
+           
+         chirpstack-rest-api:
+         image: chirpstack/chirpstack-rest-api:4
+         restart: unless-stopped
+         command: --server chirpstack:80 --bind 0.0.0.0:81 --insecure
+         ports:
+           - 8000:8001
+         depends_on:
+           - chirpstack
+         
+         postgres:
+         image: postgres:14-alpine
+         restart: unless-stopped
+         volumes:
+           - ./configuration/postgresql/initdb:/docker-entrypoint-initdb.d
+           - postgresqldata:/var/lib/postgresql/data
+         environment:
+           - POSTGRES_PASSWORD=root
+           
+         redis:
+         image: redis:7-alpine 
+         restart: unless-stopped
+         command: redis-server --save 300 1 --save 60 100 --appendonly no
+         volumes:
+           - redisdata:/data
+         
+         mosquitto:
+         image: eclipse-mosquitto:2
+         restart: unless-stopped
+         ports:
+           - 1884:1883
+         volumes: 
+           - ./configuration/mosquitto/config/:/mosquitto/config/
+         
+         volumes:
+         postgresqldata:
+         redisdata:
+         thingsboarddata:
+Posteriormente de los ajustes al codigo guarde y salga con **CTRL+O** y **CTRL+X**. 
+
+
 
          
 
