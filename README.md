@@ -336,7 +336,14 @@ En ese codigo se tiene que modificar los siguientes acpectos
          postgresqldata:
          redisdata:
          thingsboarddata:
-Posteriormente de los ajustes al codigo guarde y salga con **CTRL+O** y **CTRL+X**. 
+Posteriormente de los ajustes al codigo guarde y salga con **CTRL+O** y **CTRL+X**. Ejecute el anterior codigo con este comando en la consola:
+</body>
+         </html>
+             
+        sudo docker-compose up
+Una vez ejecutado se podra acceder a la aplicacion web,con la IP que se acciona al servidor o donde se tenga instalado el docker.
+# Configuracion del gateway Laird Sentrius.
+
 
 
 
