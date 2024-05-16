@@ -33,11 +33,44 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </tr>
         <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1cea8f29-9151-44ef-aa92-d2b1b4c07757"/></td>
         <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/62076d59-8e6b-44a5-8a2a-07a76aa58e51"/></td>
-     <tr> 
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/60445c5c-113b-4a44-a221-eff2285dbe8d"/></td>
      </tr>
      </table>
      </body>
      </html>
      La imagen muestra el recuadro en donde se escribira el nombre de la red wifi a conectarse, una vez realizado se dezplegara un segundo cuadro en donde se colocara la contraseña de esa red.
-   **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puede volver al inicio de las configuraciones y selacionar interfaz options, una vez dentro del cuadro seleccionar serial port y luego seleccionar " No " y luego " Sí ". Una vez hecho esto seleccionar SSH para poder conectarte inalambricamente, ademas de activar el SPI y I2C corespondientemente en la raspberry pi zero, una vez hecho esto reinicia la raspberry pi para p
+   **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puedes volver al inicio de las configuraciones y seleccionar **Interface Options**, posteriormente seleccionar **Serial Port** y luego seleccionar **No** y luego **Yes** como se muestra en las iguientes imagenes. 
+     <!DOCTYPE html>
+     <html>
+        <head>
+           <meta charset="UTF-8">
+        </head>
+        <body>
+     <table>
+     </thead>
+     <tr>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1c74d453-083c-4438-81f5-25b7acc888a0"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/dfe8da6e-a15a-4c30-99f7-e8d060e3b312"/></td>
+     </tr>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/9ff7ad69-9749-4374-b6c5-ebaa5991cce2"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/2cc4c211-b01f-4d3a-8c0c-6c40f6e1909d"/></td>
+     </tr>
+     </table>
+     </body>
+     </html>
+   Una vez hecho esto seleccionar SSH y activarlo para poder conectarte inalambricamente, del mismo modo activar el SPI y I2C corespondientemente en la raspberry pi zero, una vez hecho esto reinicia la raspberry pi para que se puedan efectuar los cambios anteriormente realizados.
+     <!DOCTYPE html>
+     <html>
+        <head>
+           <meta charset="UTF-8">
+        </head>
+        <body>
+     <table>
+     </thead>
+     <tr> 
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/978f5aea-cd27-462c-99a3-78354a53c1d8"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/711cf1bf-784d-49a5-bdbd-5d244eca8c8c"/></td>
+     </tr>
+     </table>
+     </body>
+     </html>
+   
