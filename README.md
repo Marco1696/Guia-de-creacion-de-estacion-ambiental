@@ -108,6 +108,15 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              </html>
              
          sudo apt install python3-pip
+     
+      </body>
+             </html>
+             
+         sudo pip3 install --upgrade pip
+     </body>
+             </html>
+             
+         sudo pip3 install adafruit-blinka 
 
      **Paso 5 :** Ahora instalemos la biblioteca Python RAK811. Escriba los siguientes comandos:
 
@@ -131,10 +140,10 @@ La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo u
     import binascii
          
     def generate_deveui():
-    manufacturer_prefix = "00FF"  # Prefijo del fabricante (ejemplo se puende modificar las 2 ultimas letras)
-    random_suffix = secrets.token_hex(3) 
-    deveui = manufacturer_prefix + random_suffix
-    return deveui.upper()
+        manufacturer_prefix = "00FF"  # Prefijo del fabricante (ejemplo se puende modificar las 2 ultimas letras)
+        random_suffix = secrets.token_hex(3) 
+        deveui = manufacturer_prefix + random_suffix
+        return deveui.upper()
 
     # Genera un DevEUI
     deveui = generate_deveui()
@@ -155,9 +164,9 @@ La parte de **nwkey** se puede modificar por cualquier nombre, esto es solo un e
     import binascii
          
     def generate_network_key(length):
-    # Genera una cadena de bytes aleatorios para la clave de red
-    network_key_bytes = secrets.token_bytes(length)
-    return binascii.hexlify(network_key_bytes).decode('utf-8').upper()
+        # Genera una cadena de bytes aleatorios para la clave de red
+        network_key_bytes = secrets.token_bytes(length)
+        return binascii.hexlify(network_key_bytes).decode('utf-8').upper()
          
     # Genera una clave de red de 128 bits (16 bytes)
     network_key = generate_network_key(16)
@@ -177,9 +186,9 @@ La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un
     import binascii
 
     def generate_application_key(length):
-    # Genera una cadena de bytes aleatorios para la clave de aplicación
-    app_key_bytes = secrets.token_bytes(length)
-    return binascii.hexlify(app_key_bytes).decode('utf-8').upper()
+        # Genera una cadena de bytes aleatorios para la clave de aplicación
+        app_key_bytes = secrets.token_bytes(length)
+        return binascii.hexlify(app_key_bytes).decode('utf-8').upper()
          
     # Genera una clave de aplicación de 128 bits (16 bytes)
     application_key = generate_application_key(16)
@@ -202,7 +211,7 @@ La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es sol
     first.
     For Chirpsatck issued addresses the first byte should be 0x26
     """
-    DEV_ADDR = '0x0'
+    DEV_ADDR = '0x'
          
     """Network Session Key.
     The device address must be in big-endian format, so most-significant-byte
@@ -216,7 +225,7 @@ La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es sol
     """
     APPS_KEY = ''
     
-Los datos obtenidos en el **paso 2** se agregaran entre las comillas '' (ejemplo: en la parte de DEV_ADDR ='0X0ff9def0e'). Guardar y salir con **CTRL+O** y **CTRL+X**.
+Los datos obtenidos en el **paso 2** se agregaran entre las comillas '' (ejemplo: en la parte de DEV_ADDR ='0X00ff9def0e'). Guardar y salir con **CTRL+O** y **CTRL+X**.
 **Paso 4 :** Obtener el el Device EUI. Escriba en el siguiente comando:
 </body>
          </html>
@@ -231,10 +240,10 @@ La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un
     import binascii
          
     def generate_random_hex(length):
-    # Genera una cadena de bytes aleatorios y luego la convierte a hexadecimal
-    random_bytes = secrets.token_bytes(length // 2)
-    random_hex = binascii.hexlify(random_bytes).decode('utf-8')
-    return random_hex.upper()
+        # Genera una cadena de bytes aleatorios y luego la convierte a hexadecimal
+        random_bytes = secrets.token_bytes(length // 2)
+        random_hex = binascii.hexlify(random_bytes).decode('utf-8')
+        return random_hex.upper()
          
     # Genera un identificador único de 16 caracteres hexadecimales
     eui16 = generate_random_hex(16)
@@ -242,11 +251,467 @@ La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un
     
 Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev_EUI el cual sera necesario para conectar el dispositivo en la plataforma de Chirpstack.
 # Creacion de codigos de sensores utilizados en la estacion de monitoreo.
-   # Sensor BME 280.
-   # Sensor SCD 40.
-   # Sensor SEN 55.
+
    # Sensores Alphasense.
+   Escriba en el siguiente comando:
+   </body>
+         </html>
+             
+    sudo nano loraysensores.py
+    
+   La parte de **loraysensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+   </body>
+         </html>
+
+    from random import randint
+    from sys import exit
+    from time import sleep
+    import board
+    import busio
+    import adafruit_ads1x15.ads1115 as ADS
+    from adafruit_ads1x15.analog_in import AnalogIn
+    from rak811.rak811 import Mode, Rak811
+    from ttn_secrets import APPS_KEY, DEV_ADDR, NWKS_KEY
+    
+    # Initialize the I2C interface
+    i2c = busio.I2C(board.SCL, board.SDA)
+    # Create an ADS1115 object
+    ads1 = ADS.ADS1115(i2c, address=0x48)
+    ads2 = ADS.ADS1115(i2c, address=0x49)
+    
+    # Define the analog input channels
+    ads1_channel0 = AnalogIn(ads1, ADS.P0)
+    ads1_channel1 = AnalogIn(ads1, ADS.P1)
+    ads1_channel2 = AnalogIn(ads1, ADS.P2)
+    ads1_channel3 = AnalogIn(ads1, ADS.P3)
+    
+    ads2_channel0 = AnalogIn(ads2, ADS.P0)
+    ads2_channel1 = AnalogIn(ads2, ADS.P1)
+    ads2_channel2 = AnalogIn(ads2, ADS.P2)
+    ads2_channel3 = AnalogIn(ads2, ADS.P3)
+    
+    lora = Rak811()
+    
+    # Most of the setup should happen only once...
+    
+    lora.hard_reset()
+    lora.mode = Mode.LoRaWan
+    lora.band = 'US915'
+    lora.set_config(dev_addr=DEV_ADDR,
+                    apps_key=APPS_KEY,
+                    nwks_key=NWKS_KEY)
+
+                    
+    lora.join_abp()
+    # Note that DR is different from SF and depends on the region
+    # See: https://docs.exploratory.engineering/lora/dr_sf/
+    # Set Data Rate to 5 which is SF7/125kHz for EU868
+    lora.dr = 2
+    
+    # Read analog inputs
+    ads1_values = [ads1_channel0.value, ads1_channel1.value, ads1_channel2.value, ads1_channel3.value]
+    ads2_values = [ads2_channel0.value, ads2_channel1.value, ads2_channel2.value, ads2_channel3.value]
+    
+    # Convert values to strings
+    ads1_str = " ".join(map(str, ads1_values))
+    ads2_str = " ".join(map(str, ads2_values))
+    
+    print('Paquete enviado')
+    lora.send('1.1' + 'ADS1: ' + ads1_str + '| ADS2: ' + ads2_str, confirm=False)
+    lora.close()
+    exit(0)
+    
+   Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython ads1x15**. Escriba el siguiente comando:
+   </body>
+         </html>
+              
+    sudo pip3 install adafruit-circuitpython-ads1x15
+    
+   # Sensor BME 280.
+   Escriba en el siguiente comando:
+   </body>
+         </html>
+             
+    sudo nano lorabme.py
+    
+   La parte de **lorabme** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+   </body>
+         </html>
+    import board
+    import time
+    from adafruit_bme280 import basic as adafruit_bme280
+    from random import randint
+    from sys import exit
+    from time import sleep
+    
+    from rak811.rak811 import Mode, Rak811
+    from ttn_secrets import APPS_KEY, DEV_ADDR, NWKS_KEY
+    
+    # Setup LoRa
+    lora = Rak811()
+    lora.hard_reset()
+    lora.mode = Mode.LoRaWan
+    lora.band = 'US915'
+    lora.set_config(dev_addr=DEV_ADDR,
+                    apps_key=APPS_KEY,
+                    nwks_key=NWKS_KEY)
+    lora.join_abp() 
+    lora.dr = 2
+    
+    # Setup BME280 sensor
+    i2c = board.I2C()   # uses board.SCL and board.SDA
+    bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, address=0x76)
+    bme280.sea_level_pressure = 1013.25
+    
+    
+    
+    # Read BME280 sensor data
+    identifier = "1.2"
+    temperature = "{:.2f}".format(bme280.temperature)
+    humidity = "{:.2f}".format(bme280.relative_humidity)
+    pressure = "{:.2f}".format(bme280.pressure)
+    altitude = "{:.2f}".format(bme280.altitude)
+    
+    # Format data as bytes
+    data_to_send = ','.join([identifier, temperature, humidity, pressure, altitude])
+    data_bytes = bytes(data_to_send, 'utf-8')
+    
+    # Send data via LoRaWAN
+    print('Paquete enviado:', data_to_send)
+    lora.send(data_bytes, confirm=False)
+    
+    lora.close()
+    exit(0)
+    
+   Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython bme280**. Escriba el siguiente comando:
+   </body>
+         </html>
+              
+    sudo pip3 install adafruit-circuitpython-bme280
+    
+   # Sensor SCD 40.
+   Escriba en el siguiente comando:
+   </body>
+         </html>
+             
+    sudo nano lorascd40.py
+    
+   La parte de **lorascd40** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+   </body>
+         </html>
+         
+    import time
+    import board
+    import adafruit_scd4x
+    from datetime import datetime
+    
+    from rak811.rak811 import Mode, Rak811
+    from ttn_secrets import APPS_KEY, DEV_ADDR, NWKS_KEY
+    
+    # Configurar LoRaWAN
+    lora = Rak811()
+    lora.hard_reset()
+    lora.mode = Mode.LoRaWan
+    lora.band = 'US915'
+    lora.set_config(dev_addr=DEV_ADDR, 
+                    apps_key=APPS_KEY, 
+                    nwks_key=NWKS_KEY)
+    lora.join_abp()
+    lora.dr = 2
+    
+    # Configurar sensor SCD4X
+    i2c = board.I2C()
+    scd4x = adafruit_scd4x.SCD4X(i2c)
+    scd4x.start_periodic_measurement()
+    
+    #Identificador del sensor
+    identifier = "1.3"
+    
+    # Función para enviar datos a través de LoRaWAN
+    def enviar_datos_lorawan(identifier, co2, temperatura, humedad):
+        datos_csv = "{},{},{},{}".format(identifier, co2, temperatura, humedad)
+        lora.send(datos_csv, confirm=False)
+        print("Datos enviados exitosamente por LoRaWAN:", datos_csv)
+        
+    try:
+        muestras_realizadas = 1
+        while muestras_realizadas < 2:
+            if scd4x.data_ready:
+                co2 = round(scd4x.CO2, 2)
+                temperatura = round(scd4x.temperature, 2)
+                humedad = round(scd4x.relative_humidity, 2)
+                
+                # Imprimir los valores de las mediciones del sensor
+                print("CO2:", co2, "ppm")
+                print("Temperatura:", temperatura, "*C")
+                print("Humedad:", humedad, "%")
+                
+                # Enviar solo los valores de las mediciones a través de LoRaWAN
+                enviar_datos_lorawan(identifier, co2, temperatura, humedad)
+                
+                muestras_realizadas += 1
+                if muestras_realizadas == 2:
+                    break
+                    
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print('Interrupción de teclado, finalizando...')
+    finally:
+        scd4x.stop_periodic_measurement()
+        lora.close()
+
+   Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython scd4x**. Escriba el siguiente comando:
+   </body>
+         </html>
+              
+    sudo pip3 install adafruit-circuitpython-scd4x
+    
+   # Sensor SEN 55.
+   Escriba en el siguiente comando:
+   </body>
+         </html>
+             
+    sudo nano lorasen55.py
+    
+   La parte de **lorasen55** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+   </body>
+         </html>
+
+    import time
+    from sensirion_i2c_driver import I2cConnection, LinuxI2cTransceiver
+    from sensirion_i2c_sen5x import Sen5xI2cDevice
+    from rak811.rak811 import Mode, Rak811
+    from ttn_secrets import APPS_KEY, DEV_ADDR, NWKS_KEY
+
+    
+    def initialize_lora():
+        lora = Rak811()
+        lora.hard_reset()
+        while True:
+            try:
+                lora.mode = Mode.LoRaWan
+                lora.band = 'US915'
+                lora.set_config(dev_addr=DEV_ADDR,
+                                apps_key=APPS_KEY,
+                                nwks_key=NWKS_KEY)
+                lora.join_abp()
+                lora.dr = 2
+                return lora
+            except Exception as e:
+                print("Error iniciando LoRaWAN:", e)
+                print("Reintentando...")
+                time.sleep(10)  # Retry after 10 seconds
+                
+    def send_data_lorawan(lora, data):
+        try:
+            lora.send(data, confirm=False)
+            print("Paquete enviado")
+        except Exception as e:
+            print("Error enviando datos por LoRaWAN:", e)
+            
+    def read_sensor_values(device):
+        # Start measurement
+        device.start_measurement()
+        
+        # Lists to store measured values
+        pm1_0_values = []
+        pm2_5_values = []
+        pm4_0_values = []
+        pm10_0_values = []
+        humidity_values = []
+        temperature_values = []
+        
+        for _ in range(10):
+            # Wait until next result is available
+            print("\nEsperando nuevos datos...")
+            while device.read_data_ready() is False:
+                time.sleep(0.1)
+                 
+            # Read measured values -> clears the "data ready" flag
+            values = device.read_measured_values()
+             
+            # Store measured values
+            pm1_0_values.append(values.mass_concentration_1p0.physical)
+            pm2_5_values.append(values.mass_concentration_2p5.physical)
+            pm4_0_values.append(values.mass_concentration_4p0.physical)
+            pm10_0_values.append(values.mass_concentration_10p0.physical)
+            humidity_values.append(values.ambient_humidity.percent_rh)
+            temperature_values.append(values.ambient_temperature.degrees_celsius)
+            
+            # Print current measured values
+            print("Concentración de masa PM 1.0:   {:.1f} µg/m^3".format(values.mass_concentration_1p0.physical))
+            print("Concentración de masa PM 2.5:   {:.1f} µg/m^3".format(values.mass_concentration_2p5.physical))
+            print("Concentración de masa PM 4.0:   {:.1f} µg/m^3".format(values.mass_concentration_4p0.physical))
+            print("Concentración de masa PM 10.0:  {:.1f} µg/m^3".format(values.mass_concentration_10p0.physical))
+            print("Humedad Ambiental:           {:.2f} %RH".format(values.ambient_humidity.percent_rh))
+            print("Temperatura Ambiental:        {:.2f} °C".format(values.ambient_temperature.degrees_celsius))
+            
+            # Read device status
+            status = device.read_device_status()
+            print("Estatus del dispositivo: {}\n".format(status))
+            
+        # Stop measurement
+        device.stop_measurement()
+        print("Medición detenida.")
+        
+        # Calculate average values
+        avg_pm1_0 = sum(pm1_0_values) / len(pm1_0_values)
+        avg_pm2_5 = sum(pm2_5_values) / len(pm2_5_values)
+        avg_pm4_0 = sum(pm4_0_values) / len(pm4_0_values)
+        avg_pm10_0 = sum(pm10_0_values) / len(pm10_0_values)
+        avg_humidity = sum(humidity_values) / len(humidity_values)
+        avg_temperature = sum(temperature_values) / len(temperature_values)
+        
+        # Format the data as CSV string
+        csv_data = "{:.2f},{:.2f},{:.2f},{:.2f},{:.2f},{:.2f}".format(
+            avg_pm1_0, avg_pm2_5, avg_pm4_0, avg_pm10_0, avg_humidity, avg_temperature
+        )
+        
+        return csv_data
+        
+    try:
+        lora = initialize_lora()
+        
+        # Initialize I2C transceiver
+        i2c_transceiver = LinuxI2cTransceiver('/dev/i2c-1')
+        device = Sen5xI2cDevice(I2cConnection(i2c_transceiver))
+        
+        # Read sensor values
+        csv_data = read_sensor_values(device)
+        # Print and send data via LoRaWAN
+        print("Mandando datos vía LoRaWAN...")
+        print("Datos (CSV format):", csv_data)
+        send_data_lorawan(lora, '1.4, ' + csv_data)
+        
+    finally:
+        lora.close()
+        i2c_transceiver.close()
+   Para poder ejecutar el codigo es necesario descargar las librerias de **Sensirion i2c driver y Sensirion i2c sen5x**. Escriba el siguiente comando:
+   </body>
+      </html>
+              
+    sudo pip3 install sensirion-i2c-driver
+   </body>
+      </html>
+              
+    sudo pip3 install sensirion-i2c-sen5x
+   
    # Codigo de para mandar datos a Chirpstack.
+   La funcion basica del siguiente codigo es enviar datos recabados por los sensores a la plataforma de chirpstack atraves de LoRaWan. Escriba en el siguiente comando:
+   </body>
+         </html>
+             
+    sudo nano Conjuto_de_sensores.py
+    
+   La parte de **Conjuto_de_sensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo: 
+   </body>
+         </html>
+    import subprocess
+    import time
+    import sys
+    
+    try:
+        while True:
+            try:
+                print('Iniciando nuevo ciclo de mediciones')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('---------------------------------------------')
+                # Ejecutar ADS1115
+                print('Iniciando sensores Alphasense')
+                subprocess.run(["python3", "loraysensores.py"])
+                print('Alphasense, muestra exitosa')
+                print('______________________________________________')
+                print('  ')
+                # Ejecutar bme280
+                print('Iniciando sensor bme280')
+                subprocess.run(["python3", "lorabme.py"])
+                print('bme280, muestra exitosa')
+                print('______________________________________________')
+                print('  ')
+                # Ejecutar scd40
+                print('Iniciando sensor scd40')
+                subprocess.run(["python3", "lorascd40.py"])
+                print('scd40, muestra exitosa')
+                print('______________________________________________')
+                print('  ')
+                # Ejecutar sen55
+                print('Iniciando sensor sen55')
+                subprocess.run(["python3", "lorasen55.py"])
+                print('sen55, muestra exitosa')
+                print('______________________________________________')
+                print('  ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('---------------------------------------------')
+                print('Terminando ciclo de mediciones')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+                print('            ')
+            except Exception as e:
+                print("Error durante la ejecución del script:", e)
+                
+            #time.sleep(60)
+            
+    except KeyboardInterrupt:
+        print("Programa interrumpido por el usuario.")
+        sys.exit(0)     
+
+   # Crear un servicio de pytho3 en la raspberry pi zero w para que se ejcute automaticamente el codigo pra mandar datos a Chirpstack
+   Escriba en el siguiente comando:
+   </body>
+         </html>
+             
+    sudo nano /etc/systemd/system/mi_script.service
+   La parte de **Conjuto_de_sensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo: 
+   </body>
+         </html>
+    [Unit]
+    Description=Mi script de inicio
+    After=network.target
+    
+    [Service]
+    ExecStart=python3 /home/modulolorapizerow/Conjuto_de_sensores.py
+    WorkingDirectory=/home/modulolorapizerow/
+    StandardOutput=inherit
+    StandardError=inherit
+    Restart=always
+    User=modulolorapizerow
+    
+    [Install]
+    WantedBy=multi-user.target
+    
+   Modificar la **Description** si se requiere, ademas de **/home/modulolorapizerow/Conjuto_de_sensores.py** por la ubicacion del codigo que envia los datos de los sensores, en **WorkingDirectory** modifica **/modulolorapizerow/** por tu usuario de raspberry pi zero w que hayas colocado ademas de **User**. Guarda y cierra la consola con **CTRL+O** y **CTRL+X**.
+   Para que el servicio pueda ejecutarse es necesario escribir los siguientes comandos:
+   </body>
+         </html>
+             
+    sudo systemctl daemon-reload
+   </body>
+         </html>
+             
+    sudo systemctl enable mi_script
+   </body>
+         </html>
+             
+    sudo systemctl start mi_script
+   </body>
+         </html>
+             
+    sudo systemctl status mi_script
+   Cierra la consola con **CTRL+Z y Enter** 
+    
 # Instalar chirpstack y The Thingsboard en docker o cualquier otro sistema operativo.
 En la pagina oficial de [Chirpstack](https://www.chirpstack.io/docs/getting-started/docker.html) se describen los pasos para instalar el chirpstack en tu servidor segun el software que maneje. Una vez instalado se tiene que abrir una terminal de programacion o coloquialmente conocida como cmd. Escriba el siguiente comando:
 </body>
