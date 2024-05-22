@@ -1,5 +1,5 @@
 # Guia de creacion de estacion ambiental
-Esta guia esta dirijida a toda aquella persona que tenga la necesidad de implementar una estacion de monitoreo ambientral con el motro de raspian en una raspberry pi zero w , con el modulolo LoRaWan y su red, ademas de la plataforma de chirpstack y the thingsboard. Se establecen enlaces y graficos para su mejor entendimeineto de los sensores. 
+Esta guia esta dirijida a toda aquella persona que tenga la necesidad de implementar una estacion de monitoreo ambiental con los siguientes elementos **motor de raspian** de una raspberry pi zero w , **modulo LoRaWan**, ademas de la plataforma de **chirpstack y the thingsboard**. Se establecen enlaces y graficos para su el analisis de datos y un mejor entendimeineto de las condiciones ambientales. 
    # Configuracion de controlador raspberry pi zero w
 Esta guia describe 2 formas de configurar la respberry pi, la cual se explica como se llego desde la descarga de la imagen del software de raspian hasta el desarrollo y puesta en marcha de los programas funcionales de python y la segunda forma explica como agregar y modificar una archivo quemado prevamiente en una micro-usb el cual contiene todos los archivos del paso 1.
    - https://learn.pi-supply.com/make/getting-started-with-the-raspberry-pi-lora-node-phat/
@@ -194,7 +194,7 @@ La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un
     application_key = generate_application_key(16)
     print("Application Key:", application_key) 
    
-Guardar y salir con **CTRL+O** y **CTRL+X**. Una vez culminado este ultimoc codigo ejecutamos los codigos de Python, procurando copiar los datos que arrojaran estos codigos.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Una vez culminado este ultimo codigo ejecutamos los codigos de Python, procurando copiar los datos que arrojaran estos codigos.
 **Paso 3 :** Escribimos el siguiente comando:
 </body>
          </html>
@@ -211,21 +211,21 @@ La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es sol
     first.
     For Chirpsatck issued addresses the first byte should be 0x26
     """
-    DEV_ADDR = '0x'
+    DEV_ADDR = '0x26011BDA'  # Reemplaza con la dirección real del dispositivo
          
     """Network Session Key.
     The device address must be in big-endian format, so most-significant-byte
     first.
     """
-    NWKS_KEY = ''
+    NWKS_KEY = '00112233445566778899AABBCCDDEEFF'  # Reemplaza con el app_key obtenido
          
     """App Session Key.
     The device address must be in big-endian format, so most-significant-byte
     first.
     """
-    APPS_KEY = ''
+    APPS_KEY = 'FFEEDDCCBBAA99887766554433221100'  # Reemplaza con el app_key obtenido
     
-Los datos obtenidos en el **paso 2** se agregaran entre las comillas '' (ejemplo: en la parte de DEV_ADDR ='0X00ff9def0e'). Guardar y salir con **CTRL+O** y **CTRL+X**.
+Reemplazo los datos obtenidos en el **paso 2**. Guardar y salir con **CTRL+O** y **CTRL+X**.
 **Paso 4 :** Obtener el el Device EUI. Escriba en el siguiente comando:
 </body>
          </html>
@@ -249,7 +249,7 @@ La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un
     eui16 = generate_random_hex(16)
     print("EUI de 16 dígitos:", eui16)
     
-Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev_EUI el cual sera necesario para conectar el dispositivo en la plataforma de Chirpstack.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev_EUI el cual sera el identificador del dispositivo en la red LoRaWAN el cual se conectara el con la plataforma de Chirpstack.
 # Creacion de codigos de sensores utilizados en la estacion de monitoreo.
 
    # Sensores Alphasense.
