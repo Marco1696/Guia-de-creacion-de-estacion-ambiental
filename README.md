@@ -838,7 +838,7 @@ Se desplegara un scritp que se tiene que modificar para su mejor funcionalidad. 
     redisdata:
 
     
-**Paso1 :** Modifica el codigo segun los siguientes parrafos. Escribe el siguiente parrafo debajo de **ports: - 8080:8080**.
+**Paso 1 :** Modifica el codigo segun los siguientes parrafos. Escribe el siguiente parrafo debajo de **ports: - 8080:8080**.
 </body>
          </html>
          
@@ -849,9 +849,13 @@ Se desplegara un scritp que se tiene que modificar para su mejor funcionalidad. 
     ports:
       - 9090:9090
 Este parrafo instalara the thingsboard en el docker y otrogara un puerto de acceso a la pagina principal de la aplicacion.
+
 **Paso 2 :** Identifica a **chirpstack-gateway-bridge:** en el cual en su estructura contiene a * environment:*, modifica los 3 parrafos que incluyen **eu868** por las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
+
 **Paso 3 :** En el script identidica la siguiente linea **c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml**, modificar **eu868** or las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915_1**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
+
 **Paso 4 :** Desplazate al finale del script y abajo de **redisdata:** escribe **thingsboarddata:**, esto con la dinalidad de crear una carpata de guardado de datos y configuraciones que realizen el la aplicacion de the thingsboard.
+
 **Paso 5 :** Identifica el los **ports:** en el sript, en el primer **ports: - 8080:8080**, modifica el primer *8080* por **80** debera de quedar haci **ports: - 80:8080**. Para el segundo **ports: - 1700:1700/udp** modifica *1700* por **1699** debera visualizarse de la siguiente manera **ports: - 1699:1700/udp**. Como tercer **ports: - 1883:1883** modifica el primer *1883* por **1884** debera visualizarse de la siguiente manera **ports: - 1884:1883**. Tenga en cuenta los puertos dispibles a utilizar en su dispositivo, en caso de lo contrario que no esten disponibles modifique los puertos segun su criterio.
 Concluidas las modificaciones guarde y salga con **CTRL+O** y **CTRL+X**. Ejemplo del script modificado y ajustado a la region us915.
 
