@@ -713,19 +713,149 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
    Cierra la consola con **CTRL+Z y Enter** 
     
 # Instalar chirpstack y The Thingsboard en docker o cualquier otro sistema operativo.
-En la pagina oficial de [Chirpstack](https://www.chirpstack.io/docs/getting-started/docker.html) se describen los pasos para instalar el chirpstack en tu servidor segun el software que maneje. Una vez instalado se tiene que abrir una terminal de programacion o coloquialmente conocida como cmd. Escriba el siguiente comando:
+En la pagina oficial de [Chirpstack](https://www.chirpstack.io/docs/getting-started/docker.html) se describen los pasos para instalar el chirpstack en tu servidor segun el software que maneje. Una vez instalado se tiene que abrir una terminal de programacion o coloquialmente conocida como cmd. Para la instalacion es necesario un sistema operativo que soporte el contenerdor de docker y temer conocimiento del puerto IP del equipo en donde se instalara el docker.
+Escriba el siguiente comando para tener la IP del dispositivo linux o en su defecto de windows:
+
+**Linux :**
+</body>
+         </html>
+         
+    ifconfig
+Se deplegara informacion sobre las ip registradas, la direccion que se tiene que buscar es **eno1: inet *192.000.00.999***.
+
+**Windows :**
+</body>
+         </html>
+         
+    ipconfig
+Se deplegara informacion sobre las ip registradas, la direccion que se tiene que buscar es **Direccion IPv4 *192.000.00.999***.
+
+**Instalar la libreria de chirpstack docker en linux**
+Escriba el siguiente comando en la consola de linux:
+</body>
+         </html>
+         
+    git clone https://github.com/chirpstack/chirpstack-docker.git
+    
+Una vez instalada la libreria en la consola escriba el siguiente comando:    
 </body>
          </html>
              
     cd chirpstack-docker
    
-Si se encuentra instalado en Docker, posteriormente escriba en siguiente comando:
+Posteriormente escriba en siguiente comando:
 </body>
          </html>
              
     sudo nano docker-compose.yml
       
-En ese codigo se tiene que modificar los siguientes acpectos 
+Se desplegara un scritp que se tiene que modificar para su mejor funcionalidad. Ejemplo del scrip modificado. 
+**Script de docker original**
+</body>
+         </html>
+         
+    version: "3"
+    
+    services:
+    chirpstack:
+    image: chirpstack/chirpstack:4
+    command: -c /etc/chirpstack
+    restart: unless-stopped
+    volumes:
+      - ./configuration/chirpstack:/etc/chirpstack
+      - ./lorawan-devices:/opt/lorawan-devices
+    depends_on:
+      - postgres
+      - mosquitto
+      - redis
+    environment:
+      - MQTT_BROKER_HOST=mosquitto
+      - REDIS_HOST=redis
+      - POSTGRESQL_HOST=postgres
+    ports:
+      - 8080:8080
+      
+    chirpstack-gateway-bridge:
+    image: chirpstack/chirpstack-gateway-bridge:4
+    restart: unless-stopped
+    ports:
+      - 1700:1700/udp
+    volumes:
+      - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+    environment:
+      - INTEGRATION__MQTT__EVENT_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}
+      - INTEGRATION__MQTT__STATE_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/state/{{ .StateType }}
+      - INTEGRATION__MQTT__COMMAND_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/command/#
+    depends_on:
+      - mosquitto
+      
+    chirpstack-gateway-bridge-basicstation:
+    image: chirpstack/chirpstack-gateway-bridge:4
+    restart: unless-stopped
+    command: -c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml
+    ports:
+      - 3001:3001
+    volumes:
+      - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+    depends_on:
+      - mosquitto
+      
+    chirpstack-rest-api:
+    image: chirpstack/chirpstack-rest-api:4
+    restart: unless-stopped
+    command: --server chirpstack:8080 --bind 0.0.0.0:8090 --insecure
+    ports:
+      - 8090:8090
+    depends_on:
+      - chirpstack
+      
+    postgres:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    volumes:
+      - ./configuration/postgresql/initdb:/docker-entrypoint-initdb.d
+      - postgresqldata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      
+    redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --save 300 1 --save 60 100 --appendonly no
+    volumes:
+      - redisdata:/data
+   
+    mosquitto:
+    image: eclipse-mosquitto:2
+    restart: unless-stopped
+    ports:
+      - 1883:1883
+    volumes: 
+      - ./configuration/mosquitto/config/:/mosquitto/config/
+      
+    volumes:
+    postgresqldata:
+    redisdata:
+
+    
+**Paso1 :** Modifica el codigo segun los siguientes parrafos. Escribe el siguiente parrafo debajo de **ports: - 8080:8080**.
+</body>
+         </html>
+         
+    thingsboard:
+    image: thingsboard/tb-postgres
+    volumes:
+      - thingsboarddata:/data
+    ports:
+      - 9090:9090
+Este parrafo instalara the thingsboard en el docker y otrogara un puerto de acceso a la pagina principal de la aplicacion.
+**Paso 2 :** Identifica a **chirpstack-gateway-bridge:** en el cual en su estructura contiene a * environment:*, modifica los 3 parrafos que incluyen **eu868** por las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
+**Paso 3 :** En el script identidica la siguiente linea **c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml**, modificar **eu868** or las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915_1**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
+**Paso 4 :** Desplazate al finale del script y abajo de **redisdata:** escribe **thingsboarddata:**, esto con la dinalidad de crear una carpata de guardado de datos y configuraciones que realizen el la aplicacion de the thingsboard.
+**Paso 5 :** Identifica el los **ports:** en el sript, en el primer **ports: - 8080:8080**, modifica el primer *8080* por **80** debera de quedar haci **ports: - 80:8080**. Para el segundo **ports: - 1700:1700/udp** modifica *1700* por **1699** debera visualizarse de la siguiente manera **ports: - 1699:1700/udp**. Como tercer **ports: - 1883:1883** modifica el primer *1883* por **1884** debera visualizarse de la siguiente manera **ports: - 1884:1883**. Tenga en cuenta los puertos dispibles a utilizar en su dispositivo, en caso de lo contrario que no esten disponibles modifique los puertos segun su criterio.
+Concluidas las modificaciones guarde y salga con **CTRL+O** y **CTRL+X**. Ejemplo del script modificado y ajustado a la region us915.
+
+**Version modificada**
 </body>
          </html>
          
@@ -749,13 +879,13 @@ En ese codigo se tiene que modificar los siguientes acpectos
       - POSTGRESQL_HOST=postgres
     ports:
       - 80:8080
-         
+
     thingsboard:
     image: thingsboard/tb-postgres
     volumes:
       - thingsboarddata:/data
     ports:
-      - 9090:9090
+      - 9090:9090     
          
     chirpstack-gateway-bridge:
     image: chirpstack/chirpstack-gateway-bridge:4
@@ -768,7 +898,7 @@ En ese codigo se tiene que modificar los siguientes acpectos
       - INTEGRATION__MQTT__EVENT_TOPIC_TEMPLATE=us915_1/gateway/{{ .GatewayID }}/event/{{ .EventType }}
       - INTEGRATION__MQTT__STATE_TOPIC_TEMPLATE=us915_1/gateway/{{ .GatewayID }}/state/{{ .StateType }}
       - INTEGRATION__MQTT__COMMAND_TOPIC_TEMPLATE=us915_1/gateway/{{ .GatewayID }}/command/#
-    depends_on:
+    depends_on: 
       - mosquitto
          
     chirpstack-gateway-bridge-basicstation:
@@ -785,9 +915,9 @@ En ese codigo se tiene que modificar los siguientes acpectos
     chirpstack-rest-api:
     image: chirpstack/chirpstack-rest-api:4
     restart: unless-stopped
-    command: --server chirpstack:80 --bind 0.0.0.0:81 --insecure
+    command: --server chirpstack:8080 --bind 0.0.0.0:8090 --insecure
     ports:
-      - 8000:8001
+      - 8090:8090
     depends_on:
       - chirpstack
          
@@ -819,14 +949,14 @@ En ese codigo se tiene que modificar los siguientes acpectos
     postgresqldata:
     redisdata:
     thingsboarddata:
-    
-Posteriormente de los ajustes al codigo guarde y salga con **CTRL+O** y **CTRL+X**. Ejecute el anterior codigo con este comando en la consola:
+ 
+Ejecute el anterior script con este comando en la consola:
 </body>
          </html>
              
     sudo docker-compose up
     
-Una vez ejecutado se podra acceder a la aplicacion web,con la IP que se acciona al servidor o donde se tenga instalado el docker.
+Una vez ejecutado se podra acceder a la aplicacion web,con la IP que tenga su dispositivo con los puertos que coresponden a cada aplicacion. Para thingsboar el puerto es 9090 y para chirpstack el puerto es 80. Ejemplo **192.000.00.999:9090**
 # Configuracion del gateway Laird Sentrius.
 
 
