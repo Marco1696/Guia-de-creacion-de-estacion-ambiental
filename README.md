@@ -962,6 +962,83 @@ Ejecute el anterior script con este comando en la consola:
     
 Una vez ejecutado se podra acceder a la aplicacion web,con la IP que tenga su dispositivo con los puertos que coresponden a cada aplicacion. Para thingsboar el puerto es 9090 y para chirpstack el puerto es 80. Ejemplo **192.000.00.999:9090**
 # Configuracion del gateway Laird Sentrius.
+La configuaracion del gateway Laird Sentrius fue obtenida de la pagina oficial de [ezurio](https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only), en donde se encontrara la documentacion del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30),misma que sirve para configurar el gateway. En caso de que nose pueda configurar el gateway de la siguiente manera consutal la guia del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30).   
+**Paso 1 :** Conectar el gateway a la corriente y a un puerto de internat estable. Consecutivamente obtener la informacion de las direcciones contenidad de que se encuentran en el reverso del gateway o la caja del mismo. (Ejemplo)
+![sentrius direccion](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/24c2694b-67a5-4397-9999-be4b9d1b2983) 
+**Paso 2 :** Resetear el gataway de fabrica, presionanod primero el biton marcado como numero 2 en la imagen y consequitivamente el boton 3 durante 5 segundo una vez hecho esto se encenderan todas las luces del gateway y se ressteara. 
+![Captura desde 2024-06-04 12-29-22](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/bbfa84ca-eedf-4aea-9fad-ab48b8bffc85)
+**Paso 3 :** Acceder al gateway por wifi o conexion fisica de cable ethernet.
+   
+   **Opcion 1 :** Acceder por wifi: Dejar presionado el boton de **User botton** en gateway durante 7 segundos, posteriormente conectarse desde su pc a la red WiFi: rg1xx2945D0. Para poder acceder a la pagina principar de gateway es necesario verificar los ultimos 6 digitos del Ethernet MAC ID los cuales tendras que modificar en el URL https://rg1xx**2945D0**.local. Modificado el URL copialo y pegalo en el buscador de tu preferencia. Para acceder 
+   El usiario es :
+   </body>
+            </html>
+
+    sentrius
+
+   La contraseña es :
+   </body>
+            </html>
+   
+    RG1xx   
+
+   **Opcion 2 :** Acceder por conexion fisica de cable ethernet:  conectar un cable ethernet al gateway en el espacio 5 **Ethernet conector**, posteriormente conectarlo aun router a que tambien estara concetada la pc mediante conexon fisica. Para poder acceder a la pagina principar de gateway es necesario verificar los ultimos 6 digitos del Ethernet MAC ID los cuales tendras que modificar en el URL https://rg1xx**2945D0**.local. Modificado el URL copialo y pegalo en el buscador de tu preferencia. Para acceder 
+   El usiario es :
+   </body>
+            </html>
+
+    sentrius
+
+   La contraseña es :
+   </body>
+            </html>
+   
+    RG1xx   
+**Paso 3 :** Una vez dentro del gateway configura la conexion wifi a la red de tu preferencia, no olvides que tendras que conectar tu pc a esa red para acceder al gateway con la misma URL. (Ejemplo) 
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/c4dde515-826f-431a-b458-fdf5f764d852"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1112e33a-5869-4296-9812-7fc42db1e490"/></td>
+</tr>
+</table>
+</body>
+</html>
+
+**Paso 4 :** Configura la red loRAWAN, en donde nos ubicaremos en la parte de **lora**, en esa seccion nos dirigiremos a **Forwarder** y ahi seleccionaremos el modo **semtech UDP Forwarder**, dentro del de este modo modificaremos el **Network server address** con la [direccion ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L715)
+de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremos los **Port Up** y **Port Down** con los puertos que se registraron en esta la [linea 898](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L898), en la parte de port Up el primer numero que aparece y en la parte de port down el segundo numero. (Ejemplo)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/c4dde515-826f-431a-b458-fdf5f764d852"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1112e33a-5869-4296-9812-7fc42db1e490"/></td>
+</tr>
+</table>
+</body>
+</html>
+
+**Paso 5 :** Plotear la red lora para comprovar su funcionalidad: Dirigirse a al apartado **Traffic** y presionar el recuadro **Poll Traffic**, se debera de empezar a visualizar informacion sobre mensajes que recibe el gateway sin que esten registrados en el mismo. (Ejemplo)
+
+# Configuracion de la plataforma de Chirpctack.
+
+
+
 
 
 
