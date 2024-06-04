@@ -1026,14 +1026,14 @@ de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremo
 <table>
 </thead>
 <tr>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/c4dde515-826f-431a-b458-fdf5f764d852"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1112e33a-5869-4296-9812-7fc42db1e490"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/19063068-f180-40cb-ab88-d89edae9d770"/></td>
 </tr>
 </table>
 </body>
 </html>
 
 **Paso 5 :** Plotear la red lora para comprovar su funcionalidad: Dirigirse a al apartado **Traffic** y presionar el recuadro **Poll Traffic**, se debera de empezar a visualizar informacion sobre mensajes que recibe el gateway sin que esten registrados en el mismo. (Ejemplo)
+![WhatsApp Image 2024-05-16 at 3 27 48 PM (2)](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/580e379d-92ae-4fc7-9819-52e06b10e272)
 
 # Configuracion de la plataforma de Chirpctack.
 Acceder a la pagina de **Chirpstack** con la direccion [ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L715) de la pc en conjunto con el puerto que se accino a chirpstack en el [scritp](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L885) o el que se haya accinado en tu caso. (Ejemplo) **192.000.00.999:80**
@@ -1041,7 +1041,11 @@ Una vez en la pagina nos aparecera la siguiente imagen:
 ![Captura desde 2024-06-04 14-57-41](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/4bb5f169-7b1e-4d70-b8e9-a8e1984aa4d2)
 
 El usuario y la contraseña por defaul el **admin**.
+Una vez dentro de la plataforma aparecesala siguiente imagen 
+![Captura desde 2024-06-04 15-22-06](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/35816c20-fc9a-418d-83a9-fa7a4a1f9b2f)
 
+Para configurar la platafroma se seguiran los siguientes pasos:
+**Paso 1 :** Crear un **Device Profiles**, para eso tenemos que ubicarnos en la pestaña del mismo nombre, una vez ahi nos dirijiramos a add device profile. 
 
 
 
