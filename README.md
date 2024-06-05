@@ -1013,7 +1013,7 @@ La configuaracion del gateway Laird Sentrius fue obtenida de la pagina oficial d
 </body>
 </html>
 
-**Paso 4 :** Configura la red loRAWAN, en donde nos ubicaremos en la parte de **lora**, en esa seccion nos dirigiremos a **Forwarder** y ahi seleccionaremos el modo **semtech UDP Forwarder**, dentro del de este modo modificaremos el **Network server address** con la [direccion ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#configuracion-del-gateway-laird-sentrius)
+**Paso 4 :** Configura la red loRAWAN, en donde nos ubicaremos en la parte de **lora**, en esa seccion nos dirigiremos a **Forwarder** y ahi seleccionaremos el modo **semtech UDP Forwarder**, dentro del de este modo modificaremos el **Network server address** con la [direccion ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Instalar-chirpstack-y-The-Thingsboard-en-docker-o-cualquier-otro-sistema-operativo)
 de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremos los **Port Up** y **Port Down** con los puertos que se registraron en esta la [linea 898](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md?plain=1#898), en la parte de port Up el primer numero que aparece y en la parte de port down el segundo numero. (Ejemplo)
 <!DOCTYPE html>
 <html>
@@ -1056,17 +1056,196 @@ Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configu
 ![Captura desde 2024-06-05 10-53-14](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/e1a03956-4d54-47b2-a8cb-59066f17093e)
 
 *Configuracion ABP :* Dependiendo de la reguion en que se encuentre, la configuracion de los radios variara, consulte la cartpeta de [Chirstack](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/tree/main/chirpstack), donde se pueden visualizar las reguiones por abreviatura y obtener esta configuraciones. (Ejemplo).
-![Captura desde 2024-06-05 10-54-01](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/f88abb5f-6cc8-4210-9930-34c3780cf6f2)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/f88abb5f-6cc8-4210-9930-34c3780cf6f2"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/936e8b51-0e93-42e0-ac95-8514f8198712"/></td>
+</tr>
+</table>
+</body>
+</html>
 
+Consecutivamente despues de culminado esta configuracion, pasamos a la pestaña de Class-B, deja por defaul esa pestaña y dirigete a Class-C, enciende esta clase y en el recuadro de **Class-C confirmed downlink timeout (seconds)** colocamos 5 para que cada 5 segundos de descarge los datos del dispositivo. (Ejemplo) 
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/3ddd1695-1cf8-4069-b269-f6831a947fe3"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/25ccdd68-5332-47af-b4e8-6723bacd99ab"/></td>
+</tr>
+</table>
+</body>
+</html>
 
+Ahora dirigete a la pestaña de Codec, aqui es importante conocer el cifrado de mensaje que se etsa manejando, ademas de los bytes por mensaje que llegan y muy importante que estos datos no varen en cifras numerias, en palabras mas sencillas si el tipo de digito que maneja todo el mensaje es 29.98, asegurate que no la configuracion del cofigo este configurada solamente para eso y no no vare en numeros de 3 cifras, te presento un ejemplo del codigo urilizado en lenguaje de javaScript para descifrar los mensajes enviados por los sensores utilizados.
+</body>
+         </html>
+         
+    function decodeUplink(input) {
+    // Parse bytes from the input
+    const bytes = input.bytes;
+    
+    // Decode the identifier (assuming it's already in text format)
+    const identifier = String.fromCharCode(bytes[0], bytes[1], bytes[2]);
+    
+    // Variable para almacenar los datos decodificados
+    let decodedData;
+    
+    // Variable para almacenar la fuente de los datos
+    let dataSource;
+    
+    // Verificar el identificador y aplicar el proceso correspondiente
+    if (identifier === "1.2") {
+      // Proceso para el identificador BME
+      const temperature = parseFloat(String.fromCharCode(bytes[4], bytes[5], bytes[6], bytes[7], bytes[8]));
+      const humidity = parseFloat(String.fromCharCode(bytes[10], bytes[11], bytes[12], bytes[13], bytes[14]));
+      const pressure = parseFloat(String.fromCharCode(bytes[16], bytes[17], bytes[18], bytes[19], bytes[20], bytes[21]));
+      const altitude = parseFloat(String.fromCharCode(bytes[23], bytes[24], bytes[25], bytes[26], bytes[27], bytes[28], bytes[29]));
+      
+    decodedData = {
+      identifier: identifier + " BME", 
+      temperatureBME: temperature,
+      humidityBME: humidity,
+      pressure: pressure,
+      altitude: altitude
+    };
+    dataSource = "Sensor BME";
+    } else if (identifier === "1.1") {
+      // Proceso para el identificador de sensores alphasense
+      const SO2 = parseFloat(String.fromCharCode(bytes[9], bytes[10], bytes[11], bytes[12]));
+      const O3 = parseFloat(String.fromCharCode(bytes[14], bytes[15], bytes[16], bytes[17]));
+      const NO2 = parseFloat(String.fromCharCode(bytes[19], bytes[20], bytes[21], bytes[22]));
+      const CO = parseFloat(String.fromCharCode(bytes[24], bytes[25], bytes[26], bytes[27]));
+      const SO2_2 = parseFloat(String.fromCharCode(bytes[36], bytes[37], bytes[38], bytes[39]));
+      const O3_2 = parseFloat(String.fromCharCode(bytes[41], bytes[42], bytes[43], bytes[44]));
+      const NO2_2 = parseFloat(String.fromCharCode(bytes[46], bytes[47], bytes[48], bytes[49]));
+      const CO_2 = parseFloat(String.fromCharCode(bytes[51], bytes[52], bytes[53], bytes[54]));
+      
+    decodedData = {
+      identifier: identifier + " Alphasense",
+      SO2: SO2,
+      O3: O3,
+      NO2: NO2,
+      CO: CO,
+      SO2_2: SO2_2,
+      O3_2: O3_2,
+      NO2_2: NO2_2,
+      CO_2: CO_2
+    };
+    dataSource = "Sensor Alphasense";
+    } else if (identifier === "1.4") {
+      // Proceso para el identificador de sensor de particulas PM 2.5 y PM 10
+      const PM1_0 = parseFloat(String.fromCharCode(bytes[5], bytes[6], bytes[7], bytes[8], bytes[9]));
+      const PM2_5 = parseFloat(String.fromCharCode(bytes[11], bytes[12], bytes[13], bytes[14], bytes[15]));
+      const PM4_0 = parseFloat(String.fromCharCode(bytes[17], bytes[18], bytes[19], bytes[20], bytes[21]));
+      const PM10_0 = parseFloat(String.fromCharCode(bytes[23], bytes[24], bytes[25], bytes[26], bytes[27]));
+      const humidity = parseFloat(String.fromCharCode(bytes[29], bytes[30], bytes[31], bytes[32], bytes[33]));
+      const temperature = parseFloat(String.fromCharCode(bytes[35], bytes[36], bytes[37], bytes[38], bytes[39]));
 
+    decodedData = {
+      identifier: identifier + " SEN55",
+      PM1_0: PM1_0,
+      PM2_5: PM2_5,
+      PM4_0: PM4_0,
+      PM10_0: PM10_0,
+      humidityALPHA: humidity,
+      temperatureALPHA: temperature
+    };
+    dataSource = "Sensor de Particulas PM";
+    } else if (identifier === "1.3") {
+      // Proceso para el identificador de sensor de dioxido de carbono CO2
+      const CO2 = parseFloat(String.fromCharCode(bytes[4], bytes[5], bytes[6]));
+      const temperature = parseFloat(String.fromCharCode(bytes[8], bytes[9], bytes[10], bytes[11], bytes[12]));
+      const humidity = parseFloat(String.fromCharCode(bytes[14], bytes[15], bytes[16], bytes[17], bytes[18]))
+      
+    decodedData = {
+      identifier: identifier + " SCD40",
+      CO2: CO2,
+      temperaturePM: temperature,
+      humidityPM: humidity
+    };
+    dataSource = "Sensor de CO2";
+    } else {
+    // Si el identificador no coincide con ninguno de los esperados, se establecen valores predeterminados
+    decodedData = {
+      identifier: "Desconocido",
+      message: "Identificador no reconocido"
+    };
+    dataSource = "Desconocido";
+    }
 
+    // Devolver un objeto con la clave 'data'
+    return { data: decodedData };
+    }
+    
+    function encodeDownlink(input) {
+    return {
+    bytes: [225, 230, 255, 0]
+    };
+    }
 
+Este codigo solo es una manera de decifrar los datos del mensaje lora que mando un dispositivo atravez de una red lora y que fue recibido por esa plataforma. El codigo comprende la utilizacion de un identificador para resalizar un decifrado en especifico segun el tipo de sensor y el payload que se este decifrando, en este caso si no conoces aun la infomacion de estos se recomienda que lo dejes por defaul y continues a la pestraña de Mesurements en la cual de daran de alta los identificadores para cada valor a analizar, esta parte tiene distintos distintivos para analizar y graficar, en el siguiente ejemplo se tomo a concideracion el Gauge debido que sirve para graficar elementos como temperatura y unidades de ese estilo.
+![Captura desde 2024-06-05 11-36-08](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/8f1fb8b0-3290-4b54-9ff3-351cef7ab332)
+Delas demas pestañas que aparecen se dejan por defaul, almenos que se tenga que interactuar con esas opciones, se solicitaria rebizar la documentacion ofical de [Chirpstack](https://www.chirpstack.io/docs/).
+Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
+**Paso 3 :** Dirigete a la pestaña de gateways y presiona **Add Gateway**, coloca el nombre de tu preferencia al gateway y una pequeña descripcion, ademas de escribir el Dev EUI del gateway que se encuenntra en [En la informacion de gateway](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#configuracion-del-gateway-laird-sentrius). (Ejemplo).
+![Captura desde 2024-06-05 11-49-17](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/a5fddb00-65fc-4ce5-be4b-5588ee792009)
+Una vez configurado de clic en Sumit para guardar y cargar los cambios realizados.
+**Paso 4 :** Dirigete a la pestaña de applications y presiona **Add Application**, configura con el nombre de tu preferecia y añade una descripcion, da clic en **Sumit** para guardar y cargar los cambios, se deplegara otra pagina, presiona **Add Device**, configura con el nombre de tu preferecia, añade una descripcion, escribe tu Device EUI (EUI64) del [dispositivo a conectar](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Creacion-de-credenciales-de-seguridad-y-coneccion-de-ABP.) al igual que tu Join EUI (EUI64) si cuentas con el, en caso de no tenerlo deja en blanco el espacio. Seleciona el *Device profile* que creaste con anterioridad y activa el *Disable frame-counter validation* esto con la finalidad de poder recibir mensajes de diferentes sensores a la vez. (Ejemplo).
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/ecd3a721-6669-49e9-ad23-ec7bcb442abf"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/3f66ce93-efe6-44ee-a0c6-8bcd2abfb17c"/></td>
+</tr>
+</table>
+</body>
+</html>
 
+**Paso 5 :** Dentro de **Devices** dirigete a la pestaña de **Activation** ahi agraga el **Device address**, **Network session key** y **Application session key** que obtuviste de tu [raspberry](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Creacion-de-credenciales-de-seguridad-y-coneccion-de-ABP.), ademas agrega un 1 en **Uplink frame-counter** esto para que al momento de reactivar el device descarge solo una lectura de la informacion del dispositivo, por ultimo preciona **(Re)active Device** para guardar y cargar las configuraciones. Si fue correcta la activacion en la parate de event te aparecera el payload del sensor conectado. (Ejemplo).
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/7e54947a-5e43-4d2c-a68a-d4f1b282d2b6"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/4a529d19-7618-4656-9ea0-60c4bd3fda89"/></td>
+</tr>
+</table>
+</body>
+</html>
 
-
-
-
+# Configuracion de la plataforma de The Thingsboard.
 
          
 
