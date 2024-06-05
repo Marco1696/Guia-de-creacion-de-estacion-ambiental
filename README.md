@@ -1246,8 +1246,18 @@ Una vez configurado de clic en Sumit para guardar y cargar los cambios realizado
 </html>
 
 # Configuracion de la plataforma de The Thingsboard.
+Para acceder a la plataforma de Thingsboard es necesario escribir en tu navegaror la direccion de la ip en donde se instalo la aplicacion mas el puerto, que en este caso fue **9090**. Como es la primera vez en que accedes a la plataforma las credenciales por defaul son:
+- **System Administrator**: sysadmin@thingsboard.org / sysadmin
+- **Tenant Administrator**: tenant@thingsboard.org / tenant
+- **Customer User**: customer@thingsboard.org / customer
+Cualquier de esas te otorga acceso a la pagina principal de la aplicacion. (Ejemplo)
+![Captura desde 2024-06-05 12-27-57](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/5effefae-7e0f-4a9e-9e4d-0b694874bed8)
 
-         
+Una vez dentro de la aplicacion sigue los paso que se te decriben ahi ![Captura desde 2024-06-05 12-38-04](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/d990dd20-ed40-4dae-86d6-b03679dec774).
+No olvides tambien configurar en el apartado de configuraciones el **Device connectivity**. Activa la opcion de HTTP, coloca la direccion de la ip de tu pc, junto con el puesto de thingsboard **9090**.
+
+
+
 
      
 
