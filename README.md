@@ -1045,7 +1045,18 @@ Una vez dentro de la plataforma aparecesala siguiente imagen
 ![Captura desde 2024-06-04 15-22-06](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/35816c20-fc9a-418d-83a9-fa7a4a1f9b2f)
 
 Para configurar la platafroma se seguiran los siguientes pasos:
-**Paso 1 :** Crear un **Device Profiles**, para eso tenemos que ubicarnos en la pestaña del mismo nombre, una vez ahi nos dirijiramos a add device profile. 
+**Paso 1 :** Crear un Tenanst o cliente del Network server. Dirijete a la parte de Tenants, consecutivamente da clic en Add Tenant. Dentro del recuadro que aparece podras colocara el nombre de cliente de tu preferecia, ademas de poner una breve descripcion y configurar el perfil del gateway, ya sea publico, privado o aceptar muchos gateways. (Ejemplo).
+![Captura desde 2024-06-05 10-45-18](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/ac91aea2-22be-426c-8d9f-fcb6e2bff7ac)
+Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
+**Paso 2 :** Crear un **Device Profiles**, para eso tenemos que ubicarnos en la pestaña del mismo nombre, una vez ahi nos dirijiramos a add device profile. La configuracion dependera de la reguion, el nombre que se le quiera otorgar al device profile, la cadena de reglas, version de mac y algoritmos a utilizar. (Ejemplo).
+![Captura desde 2024-06-05 10-48-38](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/27915ca3-3b91-476d-9465-a298d1ec1382)
+Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configuracion existen 2 formas de conectra con la aplicacion los dispocitivos, ya sea por OTA o por ABP. 
+
+*Conexion por OTA :* solo se dejara encendido sin hacer ningun cambio a la configuracion. (Ejemplo).
+![Captura desde 2024-06-05 10-53-14](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/e1a03956-4d54-47b2-a8cb-59066f17093e)
+
+*Configuracion ABP :* Dependiendo de la reguion en que se encuentre, la configuracion de los radios variara, consulte la cartpeta 
+
 
 
 
