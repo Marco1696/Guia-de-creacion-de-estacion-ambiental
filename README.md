@@ -1055,7 +1055,10 @@ Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configu
 *Conexion por OTA :* solo se dejara encendido sin hacer ningun cambio a la configuracion. (Ejemplo).
 ![Captura desde 2024-06-05 10-53-14](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/e1a03956-4d54-47b2-a8cb-59066f17093e)
 
-*Configuracion ABP :* Dependiendo de la reguion en que se encuentre, la configuracion de los radios variara, consulte la cartpeta 
+*Configuracion ABP :* Dependiendo de la reguion en que se encuentre, la configuracion de los radios variara, consulte la cartpeta de [Chirstack](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/tree/main/chirpstack), donde se pueden visualizar las reguiones por abreviatura y obtener esta configuraciones. (Ejemplo).
+![Captura desde 2024-06-05 10-54-01](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/f88abb5f-6cc8-4210-9930-34c3780cf6f2)
+
+
 
 
 
