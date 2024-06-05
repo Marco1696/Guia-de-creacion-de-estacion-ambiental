@@ -1254,7 +1254,11 @@ Cualquier de esas te otorga acceso a la pagina principal de la aplicacion. (Ejem
 ![Captura desde 2024-06-05 12-27-57](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/5effefae-7e0f-4a9e-9e4d-0b694874bed8)
 
 Una vez dentro de la aplicacion sigue los paso que se te decriben ahi ![Captura desde 2024-06-05 12-38-04](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/d990dd20-ed40-4dae-86d6-b03679dec774).
-No olvides tambien configurar en el apartado de configuraciones el **Device connectivity**. Activa la opcion de HTTP, coloca la direccion de la ip de tu pc, junto con el puesto de thingsboard **9090**.
+No olvides tambien configurar en el apartado de configuraciones el **Device connectivity**. Activa la opcion de HTTP, coloca la direccion de la ip de tu pc, junto con el puesto de thingsboard **9090**. Guarda los cambios y sigue los paso para activar tu administrador de propietarios.
+
+**Configuracion del administrador de propietarios :** Inicia tu secion de propietario segun los pasos del primer contacto con the thingsboard y suigue las indicaciones que te maraca este recuadro en la aplicacion ![Captura desde 2024-06-05 12-47-46](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/033ef2ff-1936-413b-9eb3-654cd4ca7d6f).
+En el primer punto se abarcara la creacion y la conexcion del dispositivo con la integracion de chirpstack. Inicia la creacion del **Dispositivo** segun el cuadro antes mencionado, cuando llegues a la Prueba de conectividad del dispositivo, copia solo la direccion URL en este caso como ejemplo **http://192.000.00.9999:9090/api/v1/d3v6z0vE3OIHOSz4dN6g/telemetry** en vez de todo el comando que se muesta ahi. Ahora pegue este url en la parte de Chipstack de applications y en la pestaña de integrations 
+
 
 
 
