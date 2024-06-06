@@ -40,6 +40,8 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </html>
      La imagen muestra el recuadro en donde se escribira el nombre de la red wifi a conectarse, una vez realizado se dezplegara un segundo cuadro en donde se colocara la contraseña de esa red.
      
+     ![Descripción de la imagen 1](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura%20desde%202024-06-05%2011-10-40.png)
+
      **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puedes volver al inicio de las configuraciones y seleccionar **Interface Options**, 
      posteriormente seleccionar **Serial Port** y luego seleccionar **No** y luego **Yes** como se muestra en las iguientes imagenes. 
      <!DOCTYPE html>
