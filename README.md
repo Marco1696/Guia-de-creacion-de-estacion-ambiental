@@ -10,6 +10,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      de Raspberry Pi](https://www.raspberrypi.com/software/operating-systems/).
      Inserte uan micro-usb de almenos 8 GB de espacio en almacenamiento, para su posterior formateo con la aplicacion [SD Card Formatter](https://www.sdcard.org/downloads/formatter/), como recomendacion. Una vez formateada la tarjeta de memoria y extraida la imagen del software de descargara el **Install Raspberry Pi OS using Raspberry Pi Imager** contenido en [el sitio oficial 
      de Raspberry Pi](https://www.raspberrypi.com/software/). la cual nos serivira para intalar la imagen en la miro-usb.
+     
      # Instalar la biblioteca RAK811 Python
      **Paso 1 :** En primer lugar, deberás conectar tu Raspberry Pi al Wi-Fi. En la terminal escriba el siguiente comando:
       </body>
@@ -18,6 +19,8 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
          sudo raspi-config
     
      Seleccione la opción **System Options**, luego **Wireless LAN**, luego siga las instrucciones para ingresar sus credenciales de Wi-Fi y conectarse a Wi-Fi para acceder a Internet.
+
+  
      <!DOCTYPE html>
      <html>
         <head>
@@ -29,7 +32,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      <table>
      </thead>
      <tr>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/4d702a48-e214-4d85-bbd4-e71a74a255b9"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/4d702a48-e214-4d85-bbd4-e71a74a255b9"Instalar la biblioteca RAK811 Python""/></td>
         <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1f56131c-8b4e-403d-a593-da4980ac102f"/></td>
      </tr>
         <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1cea8f29-9151-44ef-aa92-d2b1b4c07757"/></td>
@@ -40,7 +43,11 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </html>
      La imagen muestra el recuadro en donde se escribira el nombre de la red wifi a conectarse, una vez realizado se dezplegara un segundo cuadro en donde se colocara la contraseña de esa red.
      
-     ![Descripción de la imagen 1](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura%20desde%202024-06-05%2011-10-40.png)
+     <img src="./img/logo.png?raw=true" width="100" height="100">
+     
+     ## gateway
+     
+     [![Descripción de la imagen 1](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura%20desde%202024-06-05%2011-10-40.png)]
      
      **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puedes volver al inicio de las configuraciones y seleccionar **Interface Options**, 
      posteriormente seleccionar **Serial Port** y luego seleccionar **No** y luego **Yes** como se muestra en las iguientes imagenes. 
