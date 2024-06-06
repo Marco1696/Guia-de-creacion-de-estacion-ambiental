@@ -32,11 +32,11 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      <table>
      </thead>
      <tr>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp%20Image%202024-05-16%20at%2012.31.55%20PM.jpeg"/></td>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1f56131c-8b4e-403d-a593-da4980ac102f"/></td>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp%20Image%202024-05-16%20at%2012.31.55%20PM.jpeg"/></td>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1f56131c-8b4e-403d-a593-da4980ac102f"/></td>
      </tr>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1cea8f29-9151-44ef-aa92-d2b1b4c07757"/></td>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/62076d59-8e6b-44a5-8a2a-07a76aa58e51"/></td>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1cea8f29-9151-44ef-aa92-d2b1b4c07757"/></td>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/62076d59-8e6b-44a5-8a2a-07a76aa58e51"/></td>
      </tr>
      </table>
      </body>
