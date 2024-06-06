@@ -19,7 +19,6 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
          sudo raspi-config
     
      Seleccione la opción **System Options**, luego **Wireless LAN**, luego siga las instrucciones para ingresar sus credenciales de Wi-Fi y conectarse a Wi-Fi para acceder a Internet.
-
   
      <!DOCTYPE html>
      <html>
@@ -33,19 +32,15 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </thead>
      <tr>
         <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp%20Image%202024-05-16%20at%2012.31.55%20PM.jpeg"/></td>
-        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1f56131c-8b4e-403d-a593-da4980ac102f"/></td>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-07 at 3.13.44 PM.jpeg"/></td>
      </tr>
-        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1cea8f29-9151-44ef-aa92-d2b1b4c07757"/></td>
-        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/62076d59-8e6b-44a5-8a2a-07a76aa58e51"/></td>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-07 at 3.13.44 PM (1).jpeg"/></td>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 12.18.30 PM.jpeg"/></td>
      </tr>
      </table>
      </body>
      </html>
      La imagen muestra el recuadro en donde se escribira el nombre de la red wifi a conectarse, una vez realizado se dezplegara un segundo cuadro en donde se colocara la contraseña de esa red.
-
-     <div align="center">
-     <img width="900px" src="./images/WhatsApp Image 2024-05-16 at 12.31.55 PM.jpeg"></img>
-     </div>
      
      **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puedes volver al inicio de las configuraciones y seleccionar **Interface Options**, 
      posteriormente seleccionar **Serial Port** y luego seleccionar **No** y luego **Yes** como se muestra en las iguientes imagenes. 
@@ -58,11 +53,11 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      <table>
      </thead>
      <tr>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1c74d453-083c-4438-81f5-25b7acc888a0"/></td>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/dfe8da6e-a15a-4c30-99f7-e8d060e3b312"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 12.37.48 PM.jpeg"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 12.41.38 PM.jpeg"/></td>
      </tr>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/9ff7ad69-9749-4374-b6c5-ebaa5991cce2"/></td>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/2cc4c211-b01f-4d3a-8c0c-6c40f6e1909d"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 12.41.38 PM (1).jpeg"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 12.41.39 PM.jpeg"/></td>
      </tr>
      </table>
      </body>
@@ -78,8 +73,8 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      <table>
      </thead>
      <tr> 
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/978f5aea-cd27-462c-99a3-78354a53c1d8"/></td>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/711cf1bf-784d-49a5-bdbd-5d244eca8c8c"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 12.41.39 PM (1).jpeg"/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 12.41.40 PM.jpeg"/></td>
      </tr>
      </table>
      </body>
@@ -97,7 +92,23 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              
          dtoverlay=pi3-miniuart-bt
         
-     ![WhatsApp Image 2024-05-16 at 1 06 10 PM](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/cc18955f-f3c9-4b33-b03a-6d1be35ef3f4)
+     <!DOCTYPE html>
+     <html>
+        <head>
+           <meta charset="UTF-8">
+           
+        </head>
+        <body>
+        
+     <table>
+     </thead>
+     <tr>
+        <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 1.06.10 PM.jpeg"/></td>
+     </tr>
+     </table>
+     </body>
+     </html>
+     
      Guardar y salir con **CTRL+O** y **CTRL+X**. Reinicie su Raspberry Pi para que todos los cambios surtan efecto.
      
      **Paso 4 :** Se instalara el programa de Python 3. Escriba el sigiente comando:
@@ -971,9 +982,42 @@ Una vez ejecutado se podra acceder a la aplicacion web,con la IP que tenga su di
 # Configuracion del gateway Laird Sentrius.
 La configuaracion del gateway Laird Sentrius fue obtenida de la pagina oficial de [ezurio](https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only), en donde se encontrara la documentacion del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30),misma que sirve para configurar el gateway. En caso de que nose pueda configurar el gateway de la siguiente manera consutal la guia del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30).   
 **Paso 1 :** Conectar el gateway a la corriente y a un puerto de internat estable. Consecutivamente obtener la informacion de las direcciones contenidad de que se encuentran en el reverso del gateway o la caja del mismo. (Ejemplo)
-![sentrius direccion](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/24c2694b-67a5-4397-9999-be4b9d1b2983) 
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-31-04.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 **Paso 2 :** Resetear el gataway de fabrica, presionanod primero el biton marcado como numero 2 en la imagen y consequitivamente el boton 3 durante 5 segundo una vez hecho esto se encenderan todas las luces del gateway y se ressteara. 
-![Captura desde 2024-06-04 12-29-22](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/bbfa84ca-eedf-4aea-9fad-ab48b8bffc85)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-30-14.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 **Paso 3 :** Acceder al gateway por wifi o conexion fisica de cable ethernet.
    
    **Opcion 1 :** Acceder por wifi: Dejar presionado el boton de **User botton** en gateway durante 7 segundos, posteriormente conectarse desde su pc a la red WiFi: rg1xx2945D0. Para poder acceder a la pagina principar de gateway es necesario verificar los ultimos 6 digitos del Ethernet MAC ID los cuales tendras que modificar en el URL https://rg1xx**2945D0**.local. Modificado el URL copialo y pegalo en el buscador de tu preferencia. Para acceder 
@@ -1013,8 +1057,8 @@ La configuaracion del gateway Laird Sentrius fue obtenida de la pagina oficial d
 <table>
 </thead>
 <tr>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/c4dde515-826f-431a-b458-fdf5f764d852"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1112e33a-5869-4296-9812-7fc42db1e490"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 3.28.34 PM.jpeg"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 3.28.34 PM (1).jpeg"/></td>
 </tr>
 </table>
 </body>
@@ -1033,34 +1077,126 @@ de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremo
 <table>
 </thead>
 <tr>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/19063068-f180-40cb-ab88-d89edae9d770"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 3.27.48 PM.jpeg"/></td>
 </tr>
 </table>
 </body>
 </html>
 
 **Paso 5 :** Plotear la red lora para comprovar su funcionalidad: Dirigirse a al apartado **Traffic** y presionar el recuadro **Poll Traffic**, se debera de empezar a visualizar informacion sobre mensajes que recibe el gateway sin que esten registrados en el mismo. (Ejemplo)
-![WhatsApp Image 2024-05-16 at 3 27 48 PM (2)](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/580e379d-92ae-4fc7-9819-52e06b10e272)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-05-16 at 3.27.48 PM (1).jpeg"/></td>
+</tr>
+</table>
+</body>
+</html>
 
 # Configuracion de la plataforma de Chirpctack.
 Acceder a la pagina de **Chirpstack** con la direccion [ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L715) de la pc en conjunto con el puerto que se accino a chirpstack en el [scritp](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L885) o el que se haya accinado en tu caso. (Ejemplo) **192.000.00.999:80**
 Una vez en la pagina nos aparecera la siguiente imagen:
-![Captura desde 2024-06-04 14-57-41](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/4bb5f169-7b1e-4d70-b8e9-a8e1984aa4d2)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-32-31.png"/></td>
+</tr>
+</table>
+</body>
+</html>
 
 El usuario y la contraseña por defaul el **admin**.
 Una vez dentro de la plataforma aparecesala siguiente imagen 
-![Captura desde 2024-06-04 15-22-06](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/35816c20-fc9a-418d-83a9-fa7a4a1f9b2f)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-33-42.png"/></td>
+</tr>
+</table>
+</body>
+</html>
 
 Para configurar la platafroma se seguiran los siguientes pasos:
 **Paso 1 :** Crear un Tenanst o cliente del Network server. Dirijete a la parte de Tenants, consecutivamente da clic en Add Tenant. Dentro del recuadro que aparece podras colocara el nombre de cliente de tu preferecia, ademas de poner una breve descripcion y configurar el perfil del gateway, ya sea publico, privado o aceptar muchos gateways. (Ejemplo).
-![Captura desde 2024-06-05 10-45-18](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/ac91aea2-22be-426c-8d9f-fcb6e2bff7ac)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-34-37.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
 **Paso 2 :** Crear un **Device Profiles**, para eso tenemos que ubicarnos en la pestaña del mismo nombre, una vez ahi nos dirijiramos a add device profile. La configuracion dependera de la reguion, el nombre que se le quiera otorgar al device profile, la cadena de reglas, version de mac y algoritmos a utilizar. (Ejemplo).
-![Captura desde 2024-06-05 10-48-38](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/27915ca3-3b91-476d-9465-a298d1ec1382)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-35-28.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configuracion existen 2 formas de conectra con la aplicacion los dispocitivos, ya sea por OTA o por ABP. 
 
 *Conexion por OTA :* solo se dejara encendido sin hacer ningun cambio a la configuracion. (Ejemplo).
-![Captura desde 2024-06-05 10-53-14](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/e1a03956-4d54-47b2-a8cb-59066f17093e)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-36-26.png"/></td>
+</tr>
+</table>
+</body>
+</html>
 
 *Configuracion ABP :* Dependiendo de la reguion en que se encuentre, la configuracion de los radios variara, consulte la cartpeta de [Chirstack](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/tree/main/chirpstack), donde se pueden visualizar las reguiones por abreviatura y obtener esta configuraciones. (Ejemplo).
 <!DOCTYPE html>
@@ -1074,8 +1210,8 @@ Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configu
 <table>
 </thead>
 <tr>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/f88abb5f-6cc8-4210-9930-34c3780cf6f2"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/936e8b51-0e93-42e0-ac95-8514f8198712"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 10-39-29.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-06 13-41-40.png"/></td>
 </tr>
 </table>
 </body>
@@ -1093,8 +1229,8 @@ Consecutivamente despues de culminado esta configuracion, pasamos a la pestaña 
 <table>
 </thead>
 <tr>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/3ddd1695-1cf8-4069-b269-f6831a947fe3"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/25ccdd68-5332-47af-b4e8-6723bacd99ab"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 11-10-40.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 11-10-46.png"/></td>
 </tr>
 </table>
 </body>
@@ -1208,11 +1344,43 @@ Ahora dirigete a la pestaña de Codec, aqui es importante conocer el cifrado de 
     }
 
 Este codigo solo es una manera de decifrar los datos del mensaje lora que mando un dispositivo atravez de una red lora y que fue recibido por esa plataforma. El codigo comprende la utilizacion de un identificador para resalizar un decifrado en especifico segun el tipo de sensor y el payload que se este decifrando, en este caso si no conoces aun la infomacion de estos se recomienda que lo dejes por defaul y continues a la pestraña de Mesurements en la cual de daran de alta los identificadores para cada valor a analizar, esta parte tiene distintos distintivos para analizar y graficar, en el siguiente ejemplo se tomo a concideracion el Gauge debido que sirve para graficar elementos como temperatura y unidades de ese estilo.
-![Captura desde 2024-06-05 11-36-08](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/8f1fb8b0-3290-4b54-9ff3-351cef7ab332)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 11-36-08.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 Delas demas pestañas que aparecen se dejan por defaul, almenos que se tenga que interactuar con esas opciones, se solicitaria rebizar la documentacion ofical de [Chirpstack](https://www.chirpstack.io/docs/).
 Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
 **Paso 3 :** Dirigete a la pestaña de gateways y presiona **Add Gateway**, coloca el nombre de tu preferencia al gateway y una pequeña descripcion, ademas de escribir el Dev EUI del gateway que se encuenntra en [En la informacion de gateway](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#configuracion-del-gateway-laird-sentrius). (Ejemplo).
-![Captura desde 2024-06-05 11-49-17](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/a5fddb00-65fc-4ce5-be4b-5588ee792009)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 11-49-17.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 Una vez configurado de clic en Sumit para guardar y cargar los cambios realizados.
 **Paso 4 :** Dirigete a la pestaña de applications y presiona **Add Application**, configura con el nombre de tu preferecia y añade una descripcion, da clic en **Sumit** para guardar y cargar los cambios, se deplegara otra pagina, presiona **Add Device**, configura con el nombre de tu preferecia, añade una descripcion, escribe tu Device EUI (EUI64) del [dispositivo a conectar](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Creacion-de-credenciales-de-seguridad-y-coneccion-de-ABP.) al igual que tu Join EUI (EUI64) si cuentas con el, en caso de no tenerlo deja en blanco el espacio. Seleciona el *Device profile* que creaste con anterioridad y activa el *Disable frame-counter validation* esto con la finalidad de poder recibir mensajes de diferentes sensores a la vez. (Ejemplo).
 <!DOCTYPE html>
@@ -1226,8 +1394,8 @@ Una vez configurado de clic en Sumit para guardar y cargar los cambios realizado
 <table>
 </thead>
 <tr>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/ecd3a721-6669-49e9-ad23-ec7bcb442abf"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/3f66ce93-efe6-44ee-a0c6-8bcd2abfb17c"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 11-52-46.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 12-08-26.png"/></td>
 </tr>
 </table>
 </body>
@@ -1245,8 +1413,8 @@ Una vez configurado de clic en Sumit para guardar y cargar los cambios realizado
 <table>
 </thead>
 <tr>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/7e54947a-5e43-4d2c-a68a-d4f1b282d2b6"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/4a529d19-7618-4656-9ea0-60c4bd3fda89"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 11-56-00.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 12-21-50.png"/></td>
 </tr>
 </table>
 </body>
@@ -1258,12 +1426,61 @@ Para acceder a la plataforma de Thingsboard es necesario escribir en tu navegaro
 - **Tenant Administrator**: tenant@thingsboard.org / tenant
 - **Customer User**: customer@thingsboard.org / customer
 Cualquier de esas te otorga acceso a la pagina principal de la aplicacion. (Ejemplo)
-![Captura desde 2024-06-05 12-27-57](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/5effefae-7e0f-4a9e-9e4d-0b694874bed8)
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 12-27-57.png"/></td>
+</tr>
+</table>
+</body>
+</html>
 
-Una vez dentro de la aplicacion sigue los paso que se te decriben ahi ![Captura desde 2024-06-05 12-38-04](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/d990dd20-ed40-4dae-86d6-b03679dec774).
+Una vez dentro de la aplicacion sigue los paso que se te decriben ahi 
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 12-38-04.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 No olvides tambien configurar en el apartado de configuraciones el **Device connectivity**. Activa la opcion de HTTP, coloca la direccion de la ip de tu pc, junto con el puesto de thingsboard **9090**. Guarda los cambios y sigue los paso para activar tu administrador de propietarios.
 
-**Configuracion del administrador de propietarios :** Inicia tu secion de propietario segun los pasos del primer contacto con the thingsboard y suigue las indicaciones que te maraca este recuadro en la aplicacion ![Captura desde 2024-06-05 12-47-46](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/033ef2ff-1936-413b-9eb3-654cd4ca7d6f).
+**Configuracion del administrador de propietarios :** Inicia tu secion de propietario segun los pasos del primer contacto con the thingsboard y suigue las indicaciones que te maraca este recuadro en la aplicacion 
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 12-47-46.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
 En el primer punto se abarcara la creacion y la conexcion del dispositivo con la integracion de chirpstack. Inicia la creacion del **Dispositivo** segun el cuadro antes mencionado, cuando llegues a la Prueba de conectividad del dispositivo, copia solo la direccion URL en este caso como ejemplo **http://192.000.00.9999:9090/api/v1/d3v6z0vE3OIHOSz4dN6g/telemetry** en vez de todo el comando que se muesta ahi. Ahora pegue este url en la parte de Chipstack de applications y en la pestaña de integrations 
 
 
