@@ -32,7 +32,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      <table>
      </thead>
      <tr>
-        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/4d702a48-e214-4d85-bbd4-e71a74a255b9"Instalar la biblioteca RAK811 Python""/></td>
+        <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp%20Image%202024-05-16%20at%2012.31.55%20PM.jpeg"/></td>
         <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1f56131c-8b4e-403d-a593-da4980ac102f"/></td>
      </tr>
         <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/assets/168860607/1cea8f29-9151-44ef-aa92-d2b1b4c07757"/></td>
