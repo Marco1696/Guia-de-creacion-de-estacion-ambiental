@@ -1493,18 +1493,140 @@ En el primer punto se abarcara la creacion y la conexcion del dispositivo con la
 <table>
 </thead>
 <tr>
-   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 12-47-46.png"/></td>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-06-57.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-04-27.png"/></td>
 </tr>
 </table>
 </body>
 </html>
 
-Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
-Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der etsdo del dispositivos de apagado a encendido, presionar doble clic en el dispositivo e ubicarse en la pestaña de telemetry, si se realizo biene ele proceso de integracion se podra visualizar datos de lso sensores como la direccion eui, un object adonde se contendra nuestros datos y una data que etsara incriptada.
+Una vez configurado de clic en Sumit para guardar y cargar los cambios realizados.
+Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der estado del dispositivos de inactivo a encendido, presionar doble clic en el dispositivo e ubicarse en la pestaña de telemetry, si se realizo bien el proceso de integracion se podra visualizar datos de lso sensores como la direccion eui, un object adonde se contendra nuestros datos y una data que estara incriptada.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-08-31.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-19-33.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
   # Configuracion del Motor de reglas de ThingsBoard
+  Este paso es importante debido a que la telemetria enviada desde chirpstack solo se puede observar en una cadena de datos separada por comas como este ejemplo **Object:{"humidityBME":27.6,"temperatureBME":23.65,"altitude":2182.29,"identifier":"1.2 BME","pressure":777.16}**, esto representa una problematica al momento de querer graficar solamente una cosa. Para que en el The Thingsboard se muestre cada valor por separado es necesario editir la cadena de reglas que esta por defaul, crear una nueva o importar alguna ya hecha que nos pueda servir para esta problematica.
+  Si es que se esta terabajndo en el mismo proyecto o un similar se recomienda descargar e importar el archivo de tipo JSON [Separador de telemetria](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/separador_de_telemetria.json) el cual brindara la funcionalidad de separar la telemetria para su graficacion correspondiente.
+  En caso de que tengas los mismos problemas pero tus datos son difernetes los siguientes pasos de como configurar la cadena de reglas te serviran para el mejor entendimiento de Thingsboard.
+**Paso 1 :** Crear una nueva cadena de reglas, otorgarle nombre y enceder el debug, lo ultimo te servira para ver la actividad y la informacion que va ingresando a la cadena de reglas.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/"/></td>
+</tr>
+</table>
+</body>
+</html>
 
+**Paso 2 :** Ingresa a la cadena de reglas que creaste y seleciona el filtro de message type filter, agregale un nombre, en la parte de *Select message types* solo deja a **Post Telemetry**, enciende el modo debug, una vez hecho esto da clic en agregar y arrastra el mouse desde el ultimo punto de input hasta el primer punto del filtro para unirlos. Estes filtro ademas de ver la actividad de los mensajes que llegas a la aplicacion puede solo visualizar los mansajes de la telemetria ya interpretada por the Thingsboard.    
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-08-31.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-19-33.png"/></td>
+</tr>
+</table>
+</body>
+</html>
 
+**Paso 3 :** Agrega al esquema el filto de script, agregale nobre y activa la funcion de debug, en la parte de agregar algun codigo en TBEL o Javascript, seleciona javascript y copia y modifica el siuiente codigo segun tus requerimientos 
+ </body>
+            </html>
 
+    return msg.object && msg.object.identifier && msg.object.identifier === '1.3 SCD40';
+
+Por la configuracion de los mensajes y para ser mas practica la identificacion de los sensores y sus respectivos datos que arrojan los identificadores son fundamentales desde el codigo del sensor, haci en este momento el codigo hace refenrencia a tomar el msg.object del mensaje original, analizar solo el msg.object.identifier y buscar coincidencias para encontrar el msg.object.identifier === '1.3 SCD40', ahora si utilizas los identificadores o sensores con distinta informacion te recomiendo que utilices este filtro, en caso de que solamente se un sensor descarta este filtro de tu esquema final.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-08-31.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-19-33.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
+**Paso 4 :** Dirigete a los nodos de tranformacion y agrega el de script, nombralo y activa el modo debug, en la parte de agregar algun codigo en TBEL o Javascript, seleciona javascript y copia y modifica el siuiente codigo segun tus requerimientos. 
+</body>
+            </html>
+
+    // Extraer los valores del mensaje original
+    var temperaturePM = msg.object.temperaturePM;
+    var humidityPM = msg.object.humidityPM;
+    var CO2 = msg.object.CO2;
+    var identifier = msg.object.identifier;
+    
+    // Crear un nuevo mensaje con las claves y valores extraídos
+    var newMsg = {
+        temperaturePM: temperaturePM,
+        humidityPM: humidityPM,
+        CO2: CO2,
+        identifier: identifier
+    };
+    
+    // Retornar el nuevo mensaje en el formato correcto
+    return { msg: newMsg, metadata: metadata, msgType: msgType };
+
+La funcion del codigo anterior es simple, primero extrae los valores del mensaje original en este caso de temperatura, humedad, CO2 y el identificador con sus respectivos valores, despues las agrupa en un nuevo mensaje y que se ha creado y por ultimo retorna el nuevo mensaje en un formato legible para thingsboard con los datos requeridos.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-08-31.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-19-33.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
+**Paso 5 :** Por ultimo agramos un nodo de accion llamado *Save timeseries*, lo nombramos y activamos el modo debug, lo dejamaremos por defaul y agregaremos el nodo, este nodo nos servira para guradar la telemetria en alguna base da datos que se este utilizando.
 
      
 
