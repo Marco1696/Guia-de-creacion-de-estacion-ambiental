@@ -1481,8 +1481,27 @@ No olvides tambien configurar en el apartado de configuraciones el **Device conn
 </body>
 </html>
 
-En el primer punto se abarcara la creacion y la conexcion del dispositivo con la integracion de chirpstack. Inicia la creacion del **Dispositivo** segun el cuadro antes mencionado, cuando llegues a la Prueba de conectividad del dispositivo, copia solo la direccion URL en este caso como ejemplo **http://192.000.00.9999:9090/api/v1/d3v6z0vE3OIHOSz4dN6g/telemetry** en vez de todo el comando que se muesta ahi. Ahora pegue este url en la parte de Chipstack de applications y en la pestaña de integrations 
+En el primer punto se abarcara la creacion y la conexcion del dispositivo con la integracion de chirpstack. Inicia la creacion del **Dispositivo** segun el cuadro antes mencionado, cuando llegues a la Prueba de conectividad del dispositivo, copia solo la direccion URL en este caso como ejemplo **http://192.000.00.9999:9090/api/v1/d3v6z0vE3OIHOSz4dN6g/telemetry** en vez de todo el comando que se muesta ahi. Ahora pegue este url en la parte de Chipstack de applications, pestaña de integrations y recuadro de HTTP como se muestra en al imagen.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-05 12-47-46.png"/></td>
+</tr>
+</table>
+</body>
+</html>
 
+Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
+Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der etsdo del dispositivos de apagado a encendido, presionar doble clic en el dispositivo e ubicarse en la pestaña de telemetry, si se realizo biene ele proceso de integracion se podra visualizar datos de lso sensores como la direccion eui, un object adonde se contendra nuestros datos y una data que etsara incriptada.
+  # Configuracion del Motor de reglas de ThingsBoard
 
 
 
