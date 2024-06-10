@@ -1,0 +1,330 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": ""
+    },
+    "name": "separador de telemetria",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 1,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1257,
+          "layoutY": 61
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "sensor scd 40",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "defaultTTL": 0,
+          "skipLatestPersistence": false,
+          "useServerTs": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 297,
+          "layoutY": 143
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeFilterNode",
+        "name": "Switch Object Type",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "messageTypes": [
+            "POST_TELEMETRY_REQUEST"
+          ]
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 921,
+          "layoutY": 48
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "trnaformador",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "// Extraer los valores del mensaje original\nvar temperaturePM = msg.object.temperaturePM;\nvar humidityPM = msg.object.humidityPM;\nvar CO2 = msg.object.CO2;\nvar identifier = msg.object.identifier;\n\n// Crear un nuevo mensaje con las claves y valores extraídos\nvar newMsg = {\n    temperaturePM: temperaturePM,\n    humidityPM: humidityPM,\n    CO2: CO2,\n    identifier: identifier\n};\n\n// Retornar el nuevo mensaje en el formato correcto\nreturn { msg: newMsg, metadata: metadata, msgType: msgType };",
+          "tbelScript": "return {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 597,
+          "layoutY": 149
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "sensor bme280",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "return msg.object && msg.object.identifier && msg.object.identifier === '1.2 BME';",
+          "tbelScript": "return typeof msg.object === 'object' && msg.object.pressure !== undefined && msg.object.temperature !== undefined && msg.object.humidity !== undefined;\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 596,
+          "layoutY": 248
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "sensores alphasense",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "return msg.object && msg.object.identifier && msg.object.identifier === '1.1 Alphasense';",
+          "tbelScript": "return msg.temperature > 20;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 597,
+          "layoutY": 336
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "senseon sen55",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "return msg.object && msg.object.identifier && msg.object.identifier === '1.4 SEN55';",
+          "tbelScript": "return msg.temperature > 20;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 927,
+          "layoutY": 148
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "transformador",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "TBEL",
+          "jsScript": "return {msg: msg, metadata: metadata, msgType: msgType};",
+          "tbelScript": "// Extraer los valores del mensaje original\nvar temperatureBME = msg.object.temperatureBME;\nvar humidityBME = msg.object.humidityBME;\nvar pressure = msg.object.pressure;\nvar identifier = msg.object.identifier;\n\n// Crear un nuevo mensaje con las claves y valores extraídos\nvar newMsg = {\n    temperatureBME: temperatureBME,\n    humidityBME: humidityBME,\n    pressure: pressure,\n    identifier: identifier\n};\n\n// Retornar el nuevo mensaje en el formato correcto\nreturn { msg: newMsg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 898,
+          "layoutY": 251
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "transformador",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "// Extraer los valores del mensaje original\nvar CO = msg.object.CO;\nvar CO_2 = msg.object.CO_2;\nvar SO2 = msg.object.SO2;\nvar SO2_2 = msg.object.SO2_2;\nvar NO2 = msg.object.NO2;\nvar NO2_2 = msg.object.NO2_2;\nvar O3 = msg.object.O3;\nvar O3_2 = msg.object.O3_2;\nvar identifier = msg.object.identifier;\n\n// Crear un nuevo mensaje con las claves y valores extraídos\nvar newMsg = {\n    CO: CO,\n    CO_2: CO_2,\n    SO2: SO2,\n    SO2_2: SO2_2,\n    NO2: NO2,\n    NO2_2: NO2_2,\n    O3: O3,\n    O3_2: O3_2,\n    identifier: identifier\n};\n\n// Retornar el nuevo mensaje en el formato correcto\nreturn { msg: newMsg, metadata: metadata, msgType: msgType };",
+          "tbelScript": "¡"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 960,
+          "layoutY": 330
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "transformador",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "// Extraer los valores del mensaje original\nvar PM1_0 = msg.object.PM1_0;\nvar PM2_5 = msg.object.PM2_5;\nvar PM4_0 = msg.object.PM4_0;\nvar PM10_0 = msg.object.PM10_0;\nvar temperatureALPHA = msg.object.temperatureALPHA;\nvar humidityALPHA = msg.object.humidityALPHA;\nvar identifier = msg.object.identifier;\n\n// Crear un nuevo mensaje con las claves y valores extraídos\nvar newMsg = {\n    PM1_0: PM1_0,\n    PM2_5: PM2_5,\n    PM4_0: PM4_0,\n    PM10_0: PM10_0,\n    temperatureALPHA: temperatureALPHA,\n    humidityALPHA: humidityALPHA,\n    identifier: identifier\n};\n\n// Retornar el nuevo mensaje en el formato correcto\nreturn { msg: newMsg, metadata: metadata, msgType: msgType };",
+          "tbelScript": "return {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1268,
+          "layoutY": 135
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "sensor bme280",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "defaultTTL": 0,
+          "skipLatestPersistence": false,
+          "useServerTs": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1285,
+          "layoutY": 233
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "sensor alphasense",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "defaultTTL": 0,
+          "skipLatestPersistence": false,
+          "useServerTs": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1309,
+          "layoutY": 324
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "sensor sen55",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "defaultTTL": 0,
+          "skipLatestPersistence": false,
+          "useServerTs": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 600,
+          "layoutY": 47
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Sensor scd40",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "return msg.object && msg.object.identifier && msg.object.identifier === '1.3 SCD40';\n",
+          "tbelScript": "return msg.temperature > 20;"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 1,
+        "toIndex": 3,
+        "type": "True"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 4,
+        "type": "True"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 5,
+        "type": "True"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 12,
+        "type": "True"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 0,
+        "type": "Failure"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 6,
+        "type": "True"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 7,
+        "type": "True"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 8,
+        "type": "True"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 9,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 10,
+        "type": "Failure"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 10,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 11,
+        "type": "Failure"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 11,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 2,
+        "type": "True"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}
