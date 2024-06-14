@@ -1520,10 +1520,11 @@ Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der
 </body>
 </html>
 
-  # Configuracion del Motor de reglas de ThingsBoard
-  Este paso es importante debido a que la telemetria enviada desde chirpstack solo se puede observar en una cadena de datos separada por comas como este ejemplo **Object:{"humidityBME":27.6,"temperatureBME":23.65,"altitude":2182.29,"identifier":"1.2 BME","pressure":777.16}**, esto representa una problematica al momento de querer graficar solamente una cosa. Para que en el The Thingsboard se muestre cada valor por separado es necesario editir la cadena de reglas que esta por defaul, crear una nueva o importar alguna ya hecha que nos pueda servir para esta problematica.
+# Configuracion del Motor de reglas de ThingsBoard
+Este paso es importante debido a que la telemetria enviada desde chirpstack solo se puede observar en una cadena de datos separada por comas como este ejemplo **Object:{"humidityBME":27.6,"temperatureBME":23.65,"altitude":2182.29,"identifier":"1.2 BME","pressure":777.16}**, esto representa una problematica al momento de querer graficar solamente una cosa. Para que en el The Thingsboard se muestre cada valor por separado es necesario editir la cadena de reglas que esta por defaul, crear una nueva o importar alguna ya hecha que nos pueda servir para esta problematica.
   Si es que se esta terabajndo en el mismo proyecto o un similar se recomienda descargar e importar el archivo de tipo JSON [Separador de telemetria](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/separador_de_telemetria.json) el cual brindara la funcionalidad de separar la telemetria para su graficacion correspondiente.
   En caso de que tengas los mismos problemas pero tus datos son difernetes los siguientes pasos de como configurar la cadena de reglas te serviran para el mejor entendimiento de Thingsboard.
+
 **Paso 1 :** Crear una nueva cadena de reglas, otorgarle nombre y enceder el debug, lo ultimo te servira para ver la actividad y la informacion que va ingresando a la cadena de reglas.
 <!DOCTYPE html>
 <html>
@@ -1536,7 +1537,7 @@ Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der
 <table>
 </thead>
 <tr>
-   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/"/></td>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-47-22.png"/></td>
 </tr>
 </table>
 </body>
@@ -1554,8 +1555,8 @@ Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der
 <table>
 </thead>
 <tr>
-   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-08-31.png"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-19-33.png"/></td>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-54-56.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-33-22.png"/></td>
 </tr>
 </table>
 </body>
@@ -1579,8 +1580,8 @@ Por la configuracion de los mensajes y para ser mas practica la identificacion d
 <table>
 </thead>
 <tr>
-   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-08-31.png"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-19-33.png"/></td>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 15-10-21.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-33-51.png"/></td>
 </tr>
 </table>
 </body>
@@ -1619,18 +1620,159 @@ La funcion del codigo anterior es simple, primero extrae los valores del mensaje
 <table>
 </thead>
 <tr>
-   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-08-31.png"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-10 14-19-33.png"/></td>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-27-03.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-34-16.png"/></td>
 </tr>
 </table>
 </body>
 </html>
 
 **Paso 5 :** Por ultimo agramos un nodo de accion llamado *Save timeseries*, lo nombramos y activamos el modo debug, lo dejamaremos por defaul y agregaremos el nodo, este nodo nos servira para guradar la telemetria en alguna base da datos que se este utilizando.
-
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-41-52.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-34-35.png"/></td>
+</tr>
+</table>
+</body>
+</html>
      
+ Una vez configurada la cadena de reglas se tiene que configurar un nuevo perfil de dispositivo para que la cadena de reglas se pueda aplicar y algunas otras configuraciones se puedan aplicar a los dispositivos a conectar y a crear.
 
-     
+ # Configuracion del perfiles de dispositivo.
+ La configuracion y creacion de un perfil de dispositivo simplifica pasos cuando se quieren agregar varios dispositivos con que otorgan informacion similar o que tienen la misma estructura en su configuracion. En este segmento se describira la configuracion de los perfiles y como es que se conectan a un dispositivo, cadena de reglas, panel de dispositivo, ademas de la importancia que se le puede otorgar aun mensaje para que sea leido y agrupado.
+ 
+ **Paso 1 :** Dirijete a la seccione de paneles, agrega un nuevo panel, coloca el nombre de tu preferencia, una pequeña descripcion y si ya tienes algun cliente registrado coloca ese cliente para que pueda visualizar la informacion de solo ese panel, al final solo dale en agragar y posteriormente despues de que se despliegue la pagina dale en guardar.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-11-03.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-24-49.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+      
+**Paso 2 :** Una vez creado el panel dirijete a perfiles de dispositivo y ahi crea un nuevo perfil, agrega el nombre de tu agrado, posteriormente en el siguiente recuadro agrega la cadena de reglas que creaste con anterioridad, selecional el recuadro del panle y busca el nombre del panel creado, para el recuador de cola, seleciona que tan prioritario es el mensaje para que el perfil lo maneje segun sus 3 opciones, en este caso se utilizo *HighPriority*, por ultimo la cadena de reglas de egde es utilizada para enviar informacion de los paneles a aplicaciones exteriores, esta cadena se deja por defecto en caso de que se tenga que configurar una nueva cadena, se buscara el nombre de la cadena creada y se accionara al recuadro.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-10-06.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-11-47.png"/></td>
+</tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-12-04.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-12-12.png"/></td>
+</tr>
+</table>
+</body>
+</html>
 
-             
-   
+**Paso 3 :** Para los siguentes 3 puntos de configuracion se pueden dejar por defaul, en caso de que se tengan que configurar por el tipo de comunicacion a establecer el punto 2 tiene las opciones de configuracion, segun el tipo de conexion, seleccionar la que se este usando. Si se requiere la configuracion de una alarma con la finalidad de alertar sobre la llegada de telemtria o que algun dato a exedido los limites que se marquen y para el punto 4 la opcion que da este espacio es para la creacion de dispocitivos de aprovisionamiento los cuales tienen la funcion de establecerse con la configuracion de los parametros selecionados en el perfil del dispositivo, solo se solicita crear claves desde el dispositivo o adicionar las claves creadas por defaul en el perfil.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-12-26.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-12-38.png"/></td>
+</tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 11-12-47.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
+# Configuracion del panel del dispositivo.
+Diriguete a dispositivos y seleciona el dispositivo que creaste con anterioridad, estando ahi ve a modo edicion representado por un lapiz o pluma en su defecto, estando en el recuadro, elimina el prefir de dispositivo registardo y seleciona el perfil creado anteriormente, esto con la finalidad de que se complete la conexion de todas las variables necesarias para visualizar la informacion graficamente en thingsboard. Posteriormente a esto sigua los pasos de la configuracion del panel.
+
+**Paso 1 :** Diriguete a la pestaña de paneles y selecciona el panel que creaste con anterioridad, agrega un widget, en este ejemplo se mostrara solamente la configuracion de la temperatura, pero en general es una configuracion similar con los los demas datos, solo en casos especiales como la indormacion de particulas de monocido de carbono y algunas otras particulas en el ambiente se aplicaran algunos otras operaciones.
+
+Para la configuracion de la temperatura solamete se buscara un widget que muestre la temperatura de forma numeriaca y grafica por ejemplo el widget de la seccion de *Indoor Environment*  llamado *Indoor temperature chart card with background* :
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 12-13-55.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 13-04-10.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
+Ahora seleciona el dispositivo que continen los datos a graficar y elimina la temperatura que se muestra por defaul, posteriormente a eso se te desplegara el panel de informacion de los datos que se pueden selecionar para graficar, y tendras que buscar el nombre de temperatura en el panel y seleccionarlo, una vez hecho eso dirigete al recuadro de grafico y posiscionate en decimales, ahi agrega 2, esto para que se muestre el valor real de la temperatura y no se redonde por defecto, por ultimo en el recuadro de valores, al igual coloca 2 en los decimales, esto para que la recta que se dibuje con el historico de la temperatura coresponda a las cifras registradas por el valor numerico de la temperatura.   
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 12-54-18.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 12-54-30.png"/></td>
+</tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 12-54-40.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 12-54-50.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+
+Los paneles finales se visdualizaran de esta manera segun su configuracion y los datos a graficar.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 13-09-24.png"/></td>
+</tr>
+</table>
+</body>
+</html>
