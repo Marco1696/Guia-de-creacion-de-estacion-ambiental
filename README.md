@@ -1,9 +1,9 @@
-# Guia de creacion de estacion ambiental
+## Guia de creacion de estacion ambiental
 Esta guia esta dirijida a toda aquella persona que tenga la necesidad de implementar una estacion de monitoreo ambiental con los siguientes elementos **motor de raspian** de una raspberry pi zero w , **modulo LoRaWan**, ademas de la plataforma de **chirpstack y the thingsboard**. Se establecen enlaces y graficos para su el analisis de datos y un mejor entendimeineto de las condiciones ambientales. 
-   # Configuracion de controlador raspberry pi zero w
+   ## Configuracion de controlador raspberry pi zero w
 Esta guia describe 2 formas de configurar la respberry pi, la cual se explica como se llego desde la descarga de la imagen del software de raspian hasta el desarrollo y puesta en marcha de los programas funcionales de python y la segunda forma explica como agregar y modificar una archivo quemado prevamiente en una micro-usb el cual contiene todos los archivos del paso 1.
    - https://learn.pi-supply.com/make/getting-started-with-the-raspberry-pi-lora-node-phat/
-     # Descargar-e-instalar-imagen-del-sistema-raspian
+     ## Descargar-e-instalar-imagen-del-sistema-raspian
      [Descargar](https://downloads.raspberrypi.com/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-lite.img.xz?_gl=1*sv35ox*_ga*MzQ2MTQ5NjU2LjE3MDc4NDI4Nzg.*_ga_22FD70LWDS*MTcxNTEwNzQ2OC40LjEuMTcxNTEwNzUwMi4wLjAuMA..) la imagen **Raspberry Pi OS (Legacy) Lite ver.6.1** ultilizada como software de la estacion ambiental la cual estara en un formato **.zip**, se recomienda la utilizacion de la 
      aplicacion [WinRAR](https://www.win-rar.com/open-zip-file.html?&L=0) para extraer los datos de la imagen. 
      Tome en cuenta que esta version es la 6.1 y pueden existir actualizaciones, para obtener mas información sobre los sistemas operativos disponibles para Raspberry Pi, visita [El sitio oficial 
@@ -11,7 +11,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      Inserte uan micro-usb de almenos 8 GB de espacio en almacenamiento, para su posterior formateo con la aplicacion [SD Card Formatter](https://www.sdcard.org/downloads/formatter/), como recomendacion. Una vez formateada la tarjeta de memoria y extraida la imagen del software de descargara el **Install Raspberry Pi OS using Raspberry Pi Imager** contenido en [el sitio oficial 
      de Raspberry Pi](https://www.raspberrypi.com/software/). la cual nos serivira para intalar la imagen en la miro-usb.
      
-     # Instalar la biblioteca RAK811 Python
+     ## Instalar la biblioteca RAK811 Python
      **Paso 1 :** En primer lugar, deberás conectar tu Raspberry Pi al Wi-Fi. En la terminal escriba el siguiente comando:
       </body>
              </html>
@@ -143,7 +143,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              
          sudo pip3 install rak811
     
-   # Creacion de credenciales de seguridad y coneccion de ABP.
+   ## Creacion de credenciales de seguridad y coneccion de ABP.
 **Paso 1 :** Escriba el siguiente comando:
 </body>
          </html>
@@ -268,9 +268,9 @@ La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un
     print("EUI de 16 dígitos:", eui16)
     
 Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev_EUI el cual sera el identificador del dispositivo en la red LoRaWAN el cual se conectara el con la plataforma de Chirpstack.
-# Creacion de codigos de sensores utilizados en la estacion de monitoreo.
+## Creacion de codigos de sensores utilizados en la estacion de monitoreo.
 
-   # Sensores Alphasense.
+   ## Sensores Alphasense.
    Escriba en el siguiente comando:
    </body>
          </html>
@@ -345,7 +345,7 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
               
     sudo pip3 install adafruit-circuitpython-ads1x15
     
-   # Sensor BME 280.
+   ## Sensor BME 280.
    Escriba en el siguiente comando:
    </body>
          </html>
@@ -407,7 +407,7 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
               
     sudo pip3 install adafruit-circuitpython-bme280
     
-   # Sensor SCD 40.
+   ## Sensor SCD 40.
    Escriba en el siguiente comando:
    </body>
          </html>
@@ -484,7 +484,7 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
               
     sudo pip3 install adafruit-circuitpython-scd4x
     
-   # Sensor SEN 55.
+   ## Sensor SEN 55.
    Escriba en el siguiente comando:
    </body>
          </html>
@@ -614,7 +614,7 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
               
     sudo pip3 install sensirion-i2c-sen5x
    
-   # Codigo de para mandar datos a Chirpstack.
+   ## Codigo de para mandar datos a Chirpstack.
    La funcion basica del siguiente codigo es enviar datos recabados por los sensores a la plataforma de chirpstack atraves de LoRaWan. Escriba en el siguiente comando:
    </body>
          </html>
@@ -686,7 +686,7 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
         print("Programa interrumpido por el usuario.")
         sys.exit(0)     
 
-   # Crear un servicio de pytho3 en la raspberry pi zero w para que se ejcute automaticamente el codigo pra mandar datos a Chirpstack
+   ## Crear un servicio de pytho3 en la raspberry pi zero w para que se ejcute automaticamente el codigo pra mandar datos a Chirpstack
    Escriba en el siguiente comando:
    </body>
          </html>
@@ -730,7 +730,7 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
     sudo systemctl status mi_script
    Cierra la consola con **CTRL+Z y Enter** 
     
-# Instalar chirpstack y The Thingsboard en docker o cualquier otro sistema operativo.
+## Instalar chirpstack y The Thingsboard en docker o cualquier otro sistema operativo.
 En la pagina oficial de [Chirpstack](https://www.chirpstack.io/docs/getting-started/docker.html) se describen los pasos para instalar el chirpstack en tu servidor segun el software que maneje. Una vez instalado se tiene que abrir una terminal de programacion o coloquialmente conocida como cmd. Para la instalacion es necesario un sistema operativo que soporte el contenerdor de docker y temer conocimiento del puerto IP del equipo en donde se instalara el docker.
 Escriba el siguiente comando para tener la IP del dispositivo linux o en su defecto de windows:
 
@@ -979,7 +979,7 @@ Ejecute el anterior script con este comando en la consola:
     sudo docker-compose up
     
 Una vez ejecutado se podra acceder a la aplicacion web,con la IP que tenga su dispositivo con los puertos que coresponden a cada aplicacion. Para thingsboar el puerto es 9090 y para chirpstack el puerto es 80. Ejemplo **192.000.00.999:9090**
-# Configuracion del gateway Laird Sentrius.
+## Configuracion del gateway Laird Sentrius.
 La configuaracion del gateway Laird Sentrius fue obtenida de la pagina oficial de [ezurio](https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only), en donde se encontrara la documentacion del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30),misma que sirve para configurar el gateway. En caso de que nose pueda configurar el gateway de la siguiente manera consutal la guia del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30).   
 **Paso 1 :** Conectar el gateway a la corriente y a un puerto de internat estable. Consecutivamente obtener la informacion de las direcciones contenidad de que se encuentran en el reverso del gateway o la caja del mismo. (Ejemplo)
 
@@ -1101,7 +1101,7 @@ de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremo
 </body>
 </html>
 
-# Configuracion de la plataforma de Chirpctack.
+## Configuracion de la plataforma de Chirpctack.
 Acceder a la pagina de **Chirpstack** con la direccion [ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L715) de la pc en conjunto con el puerto que se accino a chirpstack en el [scritp](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L885) o el que se haya accinado en tu caso. (Ejemplo) **192.000.00.999:80**
 Una vez en la pagina nos aparecera la siguiente imagen:
 <!DOCTYPE html>
@@ -1420,7 +1420,7 @@ Una vez configurado de clic en Sumit para guardar y cargar los cambios realizado
 </body>
 </html>
 
-# Configuracion de la plataforma de The Thingsboard.
+## Configuracion de la plataforma de The Thingsboard.
 Para acceder a la plataforma de Thingsboard es necesario escribir en tu navegaror la direccion de la ip en donde se instalo la aplicacion mas el puerto, que en este caso fue **9090**. Como es la primera vez en que accedes a la plataforma las credenciales por defaul son:
 - **System Administrator**: sysadmin@thingsboard.org / sysadmin
 - **Tenant Administrator**: tenant@thingsboard.org / tenant
@@ -1520,7 +1520,7 @@ Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der
 </body>
 </html>
 
-# Configuracion del Motor de reglas de ThingsBoard
+## Configuracion del Motor de reglas de ThingsBoard
 Este paso es importante debido a que la telemetria enviada desde chirpstack solo se puede observar en una cadena de datos separada por comas como este ejemplo **Object:{"humidityBME":27.6,"temperatureBME":23.65,"altitude":2182.29,"identifier":"1.2 BME","pressure":777.16}**, esto representa una problematica al momento de querer graficar solamente una cosa. Para que en el The Thingsboard se muestre cada valor por separado es necesario editir la cadena de reglas que esta por defaul, crear una nueva o importar alguna ya hecha que nos pueda servir para esta problematica.
   Si es que se esta terabajndo en el mismo proyecto o un similar se recomienda descargar e importar el archivo de tipo JSON [Separador de telemetria](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/separador_de_telemetria.json) el cual brindara la funcionalidad de separar la telemetria para su graficacion correspondiente.
   En caso de que tengas los mismos problemas pero tus datos son difernetes los siguientes pasos de como configurar la cadena de reglas te serviran para el mejor entendimiento de Thingsboard.
@@ -1648,7 +1648,7 @@ La funcion del codigo anterior es simple, primero extrae los valores del mensaje
      
  Una vez configurada la cadena de reglas se tiene que configurar un nuevo perfil de dispositivo para que la cadena de reglas se pueda aplicar y algunas otras configuraciones se puedan aplicar a los dispositivos a conectar y a crear.
 
- # Configuracion del perfiles de dispositivo.
+ ## Configuracion del perfiles de dispositivo.
  La configuracion y creacion de un perfil de dispositivo simplifica pasos cuando se quieren agregar varios dispositivos con que otorgan informacion similar o que tienen la misma estructura en su configuracion. En este segmento se describira la configuracion de los perfiles y como es que se conectan a un dispositivo, cadena de reglas, panel de dispositivo, ademas de la importancia que se le puede otorgar aun mensaje para que sea leido y agrupado.
  
  **Paso 1 :** Dirijete a la seccione de paneles, agrega un nuevo panel, coloca el nombre de tu preferencia, una pequeña descripcion y si ya tienes algun cliente registrado coloca ese cliente para que pueda visualizar la informacion de solo ese panel, al final solo dale en agragar y posteriormente despues de que se despliegue la pagina dale en guardar.
@@ -1713,7 +1713,7 @@ La funcion del codigo anterior es simple, primero extrae los valores del mensaje
 </body>
 </html>
 
-# Configuracion del panel del dispositivo.
+## Configuracion del panel del dispositivo.
 Diriguete a dispositivos y seleciona el dispositivo que creaste con anterioridad, estando ahi ve a modo edicion representado por un lapiz o pluma en su defecto, estando en el recuadro, elimina el prefir de dispositivo registardo y seleciona el perfil creado anteriormente, esto con la finalidad de que se complete la conexion de todas las variables necesarias para visualizar la informacion graficamente en thingsboard. Posteriormente a esto sigua los pasos de la configuracion del panel.
 
 **Paso 1 :** Diriguete a la pestaña de paneles y selecciona el panel que creaste con anterioridad, agrega un widget, en este ejemplo se mostrara solamente la configuracion de la temperatura, pero en general es una configuracion similar con los los demas datos, solo en casos especiales como la indormacion de particulas de monocido de carbono y algunas otras particulas en el ambiente se aplicaran algunos otras operaciones.
