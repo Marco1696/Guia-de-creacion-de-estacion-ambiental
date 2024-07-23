@@ -1587,7 +1587,168 @@ Por la configuracion de los mensajes y para ser mas practica la identificacion d
 </body>
 </html>
 
-**Paso 4 :** Dirigete a los nodos de tranformacion y agrega el de script, nombralo y activa el modo debug, en la parte de agregar algun codigo en TBEL o Javascript, seleciona javascript y copia y modifica el siuiente codigo segun tus requerimientos. 
+**Paso 4 :** Dirigete a los nodos de tranformacion y agrega el nodo llamado script, dale un nombre y activa el modo debug, agrega algun codigo en TBEL o Javascript en el recuadro ubicado en la parte inferior, seleciona javascript, copia y modifica el codigo segun las necesidades que presentes, a continuacion se muestran los codigos utilizados para el presente proyecto divididos por sensor.
+
+**Codigo de JavaScript para sensor de temperatura y humedad BME280.**
+
+</body>
+            </html>
+
+    // Extraer los valores del mensaje original
+    var temperatureBME = msg.object.temperatureBME;
+    var humidityBME = msg.object.humidityBME;
+    var pressure = msg.object.pressure;
+    
+    // Obtener la fecha y hora actuales
+    var currentDateTime = new Date();
+    
+    // Ajustar la hora a zona Horaria de Mexico
+    currentDateTime.setHours(currentDateTime.getHours() - 6);
+    
+    // Crear un nuevo mensaje con las claves y valores extraídos
+    var newMsg = {
+        processingDateTime: currentDateTime, 
+        temperatureBME_ºC: temperatureBME,
+        humidityBME_porciento: humidityBME,
+        pressure: pressure
+    };
+    
+    // Retornar el nuevo mensaje en el formato correcto
+    return { msg: newMsg, metadata: metadata, msgType: msgType };
+
+El codigo anterior muestra la definicion de valores como temperatura, humedad y presion que serian extraidos de la posttelemetria en el codigo compuestos por  var temperatureBME el cual es el nombre de identificacion del valor el cual es igual a msg.object.temperatureBME; que contiene la informacion de ese valor, esa misma logica se aplica para los siguientes valores con los que se esta trabajando. A continiacion el codigo define la fecha y la hora en que se estan extrayendo los datos y se realiza un ajuste en la hora para que coincida con la hora centro de Mexico, por ultimo se crea una nueva varible que contendra los valores utilizados y los retornara de nuevo a la posttelemetria para que los valoras aparezcan de manera unitaria en la visualizacion de telemetria.
+
+**Codigo de JavaScript para los sensores de gasde Alphasense.**
+
+</body>
+            </html>
+
+    // Extraer los valores del mensaje original
+    var NO2 = msg.object.NO2;
+    var NO2_2 = msg.object.NO2_2;
+    var O3 = msg.object.O3;
+    var O3_2 = msg.object.O3_2;
+    var CO = msg.object.CO;
+    var CO_2 = msg.object.CO_2;
+    var SO2 = msg.object.SO2;
+    var SO2_2 = msg.object.SO2_2;
+    
+    // Definir la calibracion NO2
+    var Sensitivity_NO2 = 0.281;
+    var Gain_NO2 = 0.73;
+    var Electr_Zero_WE_NO2 = 233;
+    var WE_Sensor_NO2 = -385;
+    var WE_zero_NO2 = 228; 
+    var Peso_molecular_NO2 = 46.0055;
+    var Volumen_molar_NO2 = 24.45;
+    
+    // Sustitucion en la formula
+    var Concentracion_gas_NO2 = (((((NO2 + NO2_2) / 2) - WE_zero_NO2 - Electr_Zero_WE_NO2) * Gain_NO2 + WE_Sensor_NO2) / Sensitivity_NO2) / 1000;
+    
+    // Converir de ppm a μg/m3
+    var Valor_real_NO2 = (Concentracion_gas_NO2 * Peso_molecular_NO2) / Volumen_molar_NO2;
+    
+    // Definir la calibracion O3
+    var Sensitivity_O3 = 0.342;
+    var Gain_O3 = 0.73;
+    var Electr_Zero_WE_O3 = 234;
+    var WE_Sensor_O3 = -469;
+    var WE_zero_O3 = 241; 
+    var Peso_molecular_O3 = 48.0;
+    var Volumen_molar_O3 = 24.45;
+    var Sensitivity_NO2_O3 = 0.342;
+    
+    // Sustitucion en la formula
+    var Concentracion_gas_O3 = ((((((O3 + O3_2) / 2) - WE_zero_O3 - Electr_Zero_WE_O3) * Gain_O3 + WE_Sensor_O3) / Sensitivity_O3) / Sensitivity_NO2_O3) / 1000;
+    
+    // Converir de ppm a μg/m3
+    var Valor_real_O3 = (Concentracion_gas_O3 * Peso_molecular_O3) / Volumen_molar_O3;
+    
+    // Definir la calibracion de CO
+    var Sensitivity_CO = 0.412;
+    var Gain_CO = 0.8;
+    var Electr_Zero_WE_CO = 354;
+    var WE_Sensor_CO = 515;
+    var WE_zero_CO = 443; 
+    var Peso_molecular_CO = 28.01;
+    var Volumen_molar_CO = 24.45;
+    
+    // Sustitucion en la formula
+    var Concentracion_gas_CO = (((((CO + CO_2) / 2) - WE_zero_CO - Electr_Zero_WE_CO) * Gain_CO + WE_Sensor_CO) / Sensitivity_CO) / 1000;
+    
+    // Converir de ppm a μg/m3
+    var Valor_real_CO = (Concentracion_gas_CO * Peso_molecular_CO) / Volumen_molar_CO;
+    
+    // Definir la calibracion de SO2
+    var Sensitivity_SO2 = 0.302;
+    var Gain_SO2 = 0.8;
+    var Electr_Zero_WE_SO2 = 361;
+    var WE_Sensor_SO2 = 377;
+    var WE_zero_SO2 = 361; 
+    var Peso_molecular_SO2 = 64.066;
+    var Volumen_molar_SO2 = 24.45;
+    
+    // Sustitucion en la formula
+    var Concentracion_gas_SO2 = (((((SO2 + SO2_2) / 2) - WE_zero_SO2 - Electr_Zero_WE_SO2) * Gain_SO2 + WE_Sensor_SO2) / Sensitivity_SO2) / 1000;
+    
+    // Converir de ppm a μg/m3
+    var Valor_real_SO2 = (Concentracion_gas_SO2 * Peso_molecular_SO2) / Volumen_molar_SO2;
+    
+    // Obtener la fecha y hora actuales
+    var currentDateTime = new Date();
+    
+    // Ajustar la hora a zona Horaria de Mexico
+    currentDateTime.setHours(currentDateTime.getHours() - 6);
+    
+    // Crear un nuevo mensaje con las claves y valores extraídos
+    var newMsg = {
+        processingDateTime: currentDateTime, 
+        NO2_μg_m3: Valor_real_NO2,
+        O3_μg_m3: Valor_real_O3,
+        CO_μg_m3: Valor_real_CO,
+        SO2_μg_m3: Valor_real_SO2
+    };
+    
+    // Retornar el nuevo mensaje en el formato correcto
+    return { msg: newMsg, metadata: metadata, msgType: msgType };
+
+Las modificaciones a los valores de la postelemetria en cuestion de los sensores de gas alphasense se definen por las variables que se extraen de la telemetria y los valores, posteriormente de definen los valores de calibracion segun las graficas de calibracion de los sensores, concecutivamente se establece la ecuacion correspondiente para determinar el valor real de concentracion de gases y las formulas de conversion, ademas de integrar la fecha y su respectiva correccion. Por ultimo solo se define una nueva variable para contener el nuevo valor de los gases y retornarlos a la telemetria para su posterior visualizacion.**NOTA :** El codigo anterior es un conjunto de codigos unidos para el envio de datos mas amigable con la plataforma,  sin embargo sepueden establecer unitariariamente con la finalidad de visualizar con mayor rapidez los eventos que se esten ejecutando.
+
+**Codigo de JavaScript para sensor de partuculas PM Sen55.**
+
+</body>
+            </html>
+
+    // Extraer los valores del mensaje original
+    var PM1_0 = msg.object.PM1_0;
+    var PM2_5 = msg.object.PM2_5;
+    var PM4_0 = msg.object.PM4_0;
+    var PM10_0 = msg.object.PM10_0;
+    var temperatureALPHA = msg.object.temperatureALPHA;
+    var humidityALPHA = msg.object.humidityALPHA;
+    
+    // Obtener la fecha y hora actuales
+    var currentDateTime = new Date();
+    
+    // Ajustar la hora a zona Horaria de Mexico
+    currentDateTime.setHours(currentDateTime.getHours() - 6);
+    
+    // Crear un nuevo mensaje con las claves y valores extraídos
+    var newMsg = {
+        processingDateTime: currentDateTime, 
+        PM1_0_μg_m3: PM1_0,
+        PM2_5_μg_m3: PM2_5,
+        PM4_0_μg_m3: PM4_0,
+        PM10_0_μg_m3: PM10_0,
+        temperatureALPHA_ºC: temperatureALPHA,
+        humidityALPHA_porciento: humidityALPHA
+    };
+   
+    // Retornar el nuevo mensaje en el formato correcto
+    return { msg: newMsg, metadata: metadata, msgType: msgType };
+
+**Codigo de JavaScript para sensor de Dioxido de carbono SCD40.**
+
 </body>
             </html>
 
@@ -1595,20 +1756,26 @@ Por la configuracion de los mensajes y para ser mas practica la identificacion d
     var temperaturePM = msg.object.temperaturePM;
     var humidityPM = msg.object.humidityPM;
     var CO2 = msg.object.CO2;
-    var identifier = msg.object.identifier;
+    
+    // Obtener la fecha y hora actuales
+    var currentDateTime = new Date();
+    
+    // Ajustar la hora a zona Horaria de Mexico
+    currentDateTime.setHours(currentDateTime.getHours() - 6);
     
     // Crear un nuevo mensaje con las claves y valores extraídos
     var newMsg = {
-        temperaturePM: temperaturePM,
-        humidityPM: humidityPM,
-        CO2: CO2,
-        identifier: identifier
+        processingDateTime: currentDateTime, 
+        temperaturePM_ºC: temperaturePM,
+        humidityPM_Porciento: humidityPM,
+        CO2_ppm: CO2
     };
     
     // Retornar el nuevo mensaje en el formato correcto
     return { msg: newMsg, metadata: metadata, msgType: msgType };
 
-La funcion del codigo anterior es simple, primero extrae los valores del mensaje original en este caso de temperatura, humedad, CO2 y el identificador con sus respectivos valores, despues las agrupa en un nuevo mensaje y que se ha creado y por ultimo retorna el nuevo mensaje en un formato legible para thingsboard con los datos requeridos.
+Para los datos del sensor de particulas y el de dioxido de carbono las configuraciones son las mismas que para el sensor BME280, en las cuales solamente se tranforma el dato de una cadena de valores separados por comas y puntos por un datos individual segun el identificador proporcionado por el sensor y haci al momento de retornar a la telemetria,poder visualizar en el panel una lectura unitaria de las variables definidas al final de cada codigo.
+Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquema de visualizacion.
 <!DOCTYPE html>
 <html>
    <head>
@@ -1627,7 +1794,7 @@ La funcion del codigo anterior es simple, primero extrae los valores del mensaje
 </body>
 </html>
 
-**Paso 5 :** Por ultimo agramos un nodo de accion llamado *Save timeseries*, lo nombramos y activamos el modo debug, lo dejamaremos por defaul y agregaremos el nodo, este nodo nos servira para guradar la telemetria en alguna base da datos que se este utilizando.
+**Paso 5 :** Selecciona el nodo de accion llamado *Save timeseries*, coloca el nombre de tu preferencia y activa el modo debug. En la configuracion del mismo dejar en defaul, posteriormente agrega el nodo como se muestra en las imagenes siguientes. Este nodo cumple la funcion de guardar la telemetria en la base da datos que se este utilizando. 
 <!DOCTYPE html>
 <html>
    <head>
@@ -1646,7 +1813,26 @@ La funcion del codigo anterior es simple, primero extrae los valores del mensaje
 </body>
 </html>
      
- Una vez configurada la cadena de reglas se tiene que configurar un nuevo perfil de dispositivo para que la cadena de reglas se pueda aplicar y algunas otras configuraciones se puedan aplicar a los dispositivos a conectar y a crear.
+**Paso 6 :** Agrega el nodo *res api call*, este tiene la principal funcion de obtener los datos procesados de la posttelemetria y enviarlos a un serevidor local con una URL del mismos servidor. Para su configuracion es necesario contra con un servidor locar y una URL para recibir los datos procesados, como primer punto tienen que nombrar al nodo con el nombre de tu prefencia,posteriormente coloca la URL del servido a enviar, en el metodo requerido existen varias opciones para la extracion de datos, en este caso se selecciono la de POST la cual es la que contiene la informacion a utilizar y el cuadro del cliente de HTTP por la cual se recibira la informacion, en casode tener alguno otro formato de salida que no sea JSON modificar el apartado que marca dicho archivo, si no existe alguna otra modificacion a realizar que se observe necesaria agregar el nodo, y conectarlo con el nodo de *Save timeseries* y colocar *success*. Las siguientes imagenes muestran un ejemplo de lo desctrito con anterioridad.
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+           
+   </head>
+   <body>
+        
+<table>
+</thead>
+<tr>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-41-52.png"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-34-35.png"/></td>
+</tr>
+</table>
+</body>
+</html>
+     
+Una vez configurada la cadena de reglas se tiene que configurar un nuevo perfil de dispositivo para que la cadena de reglas se pueda aplicar y algunas otras configuraciones se puedan aplicar a los dispositivos a conectar y a crear.
 
  ## Configuracion del perfiles de dispositivo.
  La configuracion y creacion de un perfil de dispositivo simplifica pasos cuando se quieren agregar varios dispositivos con que otorgan informacion similar o que tienen la misma estructura en su configuracion. En este segmento se describira la configuracion de los perfiles y como es que se conectan a un dispositivo, cadena de reglas, panel de dispositivo, ademas de la importancia que se le puede otorgar aun mensaje para que sea leido y agrupado.
