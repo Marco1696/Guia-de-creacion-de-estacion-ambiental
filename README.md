@@ -1,15 +1,13 @@
-## Guia de creacion de estacion ambiental
-Esta guia esta dirijida a toda aquella persona que tenga la necesidad de implementar una estacion de monitoreo ambiental con los siguientes elementos **motor de raspian** de una raspberry pi zero w , **modulo LoRaWan**, ademas de la plataforma de **chirpstack y the thingsboard**. Se establecen enlaces y graficos para su el analisis de datos y un mejor entendimeineto de las condiciones ambientales. 
-   ## Configuracion de controlador raspberry pi zero w
-Esta guia describe 2 formas de configurar la respberry pi, la cual se explica como se llego desde la descarga de la imagen del software de raspian hasta el desarrollo y puesta en marcha de los programas funcionales de python y la segunda forma explica como agregar y modificar una archivo quemado prevamiente en una micro-usb el cual contiene todos los archivos del paso 1.
+## Guía para la creación de una estación ambiental
+Esta guía esta dirigida a toda aquella persona que tenga la necesidad de implementar una estación de monitoreo ambiental con los siguientes elementos **motor de raspian** de una raspberry pi zero w , **modulo LoRaWan**, además de la plataforma de **chirpstack y the thingsboard**. Se establecen enlaces y gráficos para análisis de datos y un mejorar la comprensión  de las condiciones ambientales. 
+   ## Configuración del controlador raspberry pi zero w
+Se describe con detalle los pasos a seguir para configura el controlador que desarrollara las funciones de otorgar órdenes a los sensores conectados y se enlazara al protocolo de red LoRa WAN para el envió de la información recolectada. Para las configuraciones iniciales se consultó la siguiente página:
    - https://learn.pi-supply.com/make/getting-started-with-the-raspberry-pi-lora-node-phat/
-     ## Descargar-e-instalar-imagen-del-sistema-raspian
-     [Descargar](https://downloads.raspberrypi.com/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-lite.img.xz?_gl=1*sv35ox*_ga*MzQ2MTQ5NjU2LjE3MDc4NDI4Nzg.*_ga_22FD70LWDS*MTcxNTEwNzQ2OC40LjEuMTcxNTEwNzUwMi4wLjAuMA..) la imagen **Raspberry Pi OS (Legacy) Lite ver.6.1** ultilizada como software de la estacion ambiental la cual estara en un formato **.zip**, se recomienda la utilizacion de la 
-     aplicacion [WinRAR](https://www.win-rar.com/open-zip-file.html?&L=0) para extraer los datos de la imagen. 
-     Tome en cuenta que esta version es la 6.1 y pueden existir actualizaciones, para obtener mas información sobre los sistemas operativos disponibles para Raspberry Pi, visita [El sitio oficial 
-     de Raspberry Pi](https://www.raspberrypi.com/software/operating-systems/).
-     Inserte uan micro-usb de almenos 8 GB de espacio en almacenamiento, para su posterior formateo con la aplicacion [SD Card Formatter](https://www.sdcard.org/downloads/formatter/), como recomendacion. Una vez formateada la tarjeta de memoria y extraida la imagen del software de descargara el **Install Raspberry Pi OS using Raspberry Pi Imager** contenido en [el sitio oficial 
-     de Raspberry Pi](https://www.raspberrypi.com/software/). la cual nos serivira para intalar la imagen en la miro-usb.
+
+     ## Descargar e instalar imagen del sistema raspian
+     [Descargar](https://downloads.raspberrypi.com/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-lite.img.xz?_gl=1*sv35ox*_ga*MzQ2MTQ5NjU2LjE3MDc4NDI4Nzg.*_ga_22FD70LWDS*MTcxNTEwNzQ2OC40LjEuMTcxNTEwNzUwMi4wLjAuMA..) la imagen **Raspberry Pi OS (Legacy) Lite ver.6.1** utilizada como software de la estación ambiental, la cual estará en un formato **.zip**, se recomienda la utilización de la aplicación [WinRAR](https://www.win-rar.com/open-zip-file.html?&L=0) para extraer los datos de la imagen. 
+     Tomar en cuenta que esta versión es la 6.1 y pueden existir actualizaciones, para obtener más información sobre los sistemas operativos disponibles para Raspberry Pi, visita [El sitio oficial de Raspberry Pi](https://www.raspberrypi.com/software/operating-systems/).
+     Inserte una micro-usb de al menos 8 GB de espacio en almacenamiento, para su posterior formateo con la aplicación [SD Card Formatter](https://www.sdcard.org/downloads/formatter/), como recomendación. Una vez formateada la tarjeta de memoria y extraída la imagen del software, descarga el **Install Raspberry Pi OS using Raspberry Pi Imager** contenido en [el sitio oficial de Raspberry Pi](https://www.raspberrypi.com/software/). la cual nos servirá para instalar la imagen del sistema operativo raspian en la miro-usb.
      
      ## Instalar la biblioteca RAK811 Python
      **Paso 1 :** En primer lugar, deberás conectar tu Raspberry Pi al Wi-Fi. En la terminal escriba el siguiente comando:
@@ -18,7 +16,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
                       
          sudo raspi-config
     
-     Seleccione la opción **System Options**, luego **Wireless LAN**, luego siga las instrucciones para ingresar sus credenciales de Wi-Fi y conectarse a Wi-Fi para acceder a Internet.
+     Seleccione la opción **System Options**, consecutivamente **Wireless LAN**, posteriormente siga las instrucciones para ingresar las credenciales de la red Wi-Fi comenzando por el usuario y consecutivamente la contraseña para acceder que la raspberry pi zero w se conecte a la red de internet.
   
      <!DOCTYPE html>
      <html>
@@ -40,10 +38,9 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </table>
      </body>
      </html>
-     La imagen muestra el recuadro en donde se escribira el nombre de la red wifi a conectarse, una vez realizado se dezplegara un segundo cuadro en donde se colocara la contraseña de esa red.
+     En las anteriores imágenes se visualizan los pasos a seguir para conseguir la conexión a internet de manera inalámbrica desde las opciones a acceder hasta la conexión exitosa del dispositivo.
      
-     **Paso 2 :** Antes de reiniciar la raspberry pi, debemos habilitar el hardware serial en Raspberry Pi y deshabilitar la consola serial. Entonces puedes volver al inicio de las configuraciones y seleccionar **Interface Options**, 
-     posteriormente seleccionar **Serial Port** y luego seleccionar **No** y luego **Yes** como se muestra en las iguientes imagenes. 
+     **Paso 2 :** Antes de reiniciar la raspberry pi, habilite el hardware serial en Raspberry Pi y deshabilite la consola serial. Vuelva al inicio de las configuraciones y seleccione **Interface Options**, posteriormente **Serial Port** consecutivamente **No** y por ultimo **Yes** como se muestra en las siguientes imágenes. 
      <!DOCTYPE html>
      <html>
         <head>
@@ -63,7 +60,7 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </body>
      </html>
      
-     Una vez hecho esto seleccionar **SSH** y activarlo para poder conectarte inalambricamente, del mismo modo activar el **SPI** y **I2C**.
+     Una vez hecho esto selecciona **SSH** y actívalo, esto con la finalidad de lograr una conexión inalámbrica a la raspberry, del mismo modo activa el **SPI** y **I2C**.
      <!DOCTYPE html>
      <html>
         <head>
@@ -84,9 +81,9 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </body>
              </html>
              
-        sudo nano /boot/config.txt
+         sudo nano /boot/config.txt
      
-     Desplácese hacia abajo del codigo y agregue la siguiente línea:
+     Desplácese hacia abajo del código y agregue la siguiente línea:
       </body>
              </html>
              
@@ -109,9 +106,9 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
      </body>
      </html>
      
-     Guardar y salir con **CTRL+O** y **CTRL+X**. Reinicie su Raspberry Pi para que todos los cambios surtan efecto.
+     Guardar y salir con **CTRL+O** y **CTRL+X**. Reinicie la Raspberry Pi para que todos los cambios surtan efecto.
      
-     **Paso 4 :** Se instalara el programa de Python 3. Escriba el sigiente comando:
+     **Paso 4 :** Instalación el programa de Python 3. Escriba el sigiente comando:
      </body>
              </html>
              
@@ -136,26 +133,25 @@ Esta guia describe 2 formas de configurar la respberry pi, la cual se explica co
              
          sudo pip3 install adafruit-blinka 
 
-     **Paso 5 :** Ahora instalemos la biblioteca Python RAK811. Escriba los siguientes comandos:
+     **Paso 5 :** Instala la biblioteca Python RAK811. Escriba el siguiente comando:
 
      </body>
              </html>
              
          sudo pip3 install rak811
     
-   ## Creacion de credenciales de seguridad y coneccion de ABP.
+   ## Creación de credenciales de seguridad y conexión de ABP.
 **Paso 1 :** Escriba el siguiente comando:
 </body>
          </html>
              
     sudo nano Dev_Addr.py
     
-La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegara una consola, escriba el siguiente código:
 </body>
          </html>
 
     import secrets
-    import binascii
          
     def generate_deveui():
         manufacturer_prefix = "00FF"  # Prefijo del fabricante (ejemplo se puende modificar las 2 ultimas letras)
@@ -167,7 +163,10 @@ La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo u
     deveui = generate_deveui()
     print("DevEUI:", deveui)
     
-Guardar y salir con **CTRL+O** y **CTRL+X**. Este programa de Python se ejecutara para conocer el Device address que se accinara a nuestro dispositivo y sevira para la conexion ABP con el gateway y la aplicacion de Chirpstack.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este programa de Python se ejecutará para conocer el Device address que se asignará a el dispositivo, 
+ ademas de servir para la conexión ABP con el Gateway y la aplicación de Chirpstack. 
+El código consta de *import secrets* el cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía, posteriormente se define la función *generate_deveui():* la cual su mecanismo de acción es devolver el **DevEui**, esta función consta de *manufacturer_prefix = "00FF"* que asigna el prefijo del fabricante que se  puede modificar para la identificación del dispositivo según sean las necesidades del usuario, posteriormente *random_suffix = secrets.token_hex(3)* este genera un numero aleatorio de 6 caracteres hexadecimales contenido en 3 bytes utilizando la función *token_hex* y el módulo *secrets* para  garantizar que la respuesta final sea única y se genere de manera segura, consecutivamente *deveui = manufacturer_prefix + random_suffix*  combina el numero aleatorio creado y el prefijo del fabricante para formar el DevEUI, por ultimo *return deveui.upper()* devuelve el DevEUI en mayúsculas.
+La última parte del código contiene la orden *deveui = generate_deveui()* que llama la función *generate_deveui* y almacena la información en la variable *deveui* para que posteriormente se imprima en la consola con la orden *print("DevEUI:", deveui)*. 
 **Paso 2 :** Escriba el siguiente comando:
 </body>
          </html>
@@ -190,7 +189,8 @@ La parte de **nwkey** se puede modificar por cualquier nombre, esto es solo un e
     network_key = generate_network_key(16)
     print("Network Key:", network_key)
    
-Guardar y salir con **CTRL+O** y **CTRL+X**. Consecutivamente escriba el siguiente comando:
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este código contiene la indicación de *import secrets* la cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía y *import binascii* que importa el módulo *binascii*, el cual contiene funciones para convertir entre binarios y ASCII, posteriormente se define la función *def generate_network_key(length)* que toma el argumento *length* que especifica la longitud de la clave en bytes, además esta función la componen las líneas de código *network_key_bytes = secrets.token_bytes(length)*  la cual genera una cadena de bytes aleatoria especificada por la función *token_bytes* del modulo *secrets*, consecutivamente la línea *return binascii.hexlify(network_key_bytes).decode('utf-8').upper()* convierte la cadena de bytes aleatorios a una hexadecimal con *binascii.hexlify* posteriormente se decodifica la cadena hexadecimal a una cadena de texto con *decode('utf-8')* y la convierte en mayúscula con *upper()*.
+Por último el código contiene la línea *network_key = generate_network_key(16)* la cual llama a la función de *generate_network_key* con un argumento **16** que genera una clave de 16 bytes y posteriormente se imprime el valor obtenido en la consola con el comando *print("Network Key",network_key). Posteriormente a la configuración y guardado del código escriba el siguiente comando. 
 </body>
          </html>
              
@@ -212,7 +212,7 @@ La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un
     application_key = generate_application_key(16)
     print("Application Key:", application_key) 
    
-Guardar y salir con **CTRL+O** y **CTRL+X**. Una vez culminado este ultimo codigo ejecutamos los codigos de Python, procurando copiar los datos que arrojaran estos codigos.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este codigo es particular mete similar al anterior solo con pequeñas diferencias en cuestion de la varible *application_key*. Una vez culminado este ultimo codigo se ejecutan los codigos de Python, procurando copiar los datos que arrojaran estos codigos.
 **Paso 3 :** Escribimos el siguiente comando:
 </body>
          </html>
@@ -243,7 +243,7 @@ La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es sol
     """
     APPS_KEY = 'FFEEDDCCBBAA99887766554433221100'  # Reemplaza con el app_key obtenido
     
-Reemplazo los datos obtenidos en el **paso 2**. Guardar y salir con **CTRL+O** y **CTRL+X**.
+Reemplazo los datos obtenidos en el **paso 2**. Guardar y salir con **CTRL+O** y **CTRL+X**. El codigo anterior contiene las llaves de conexion para el network server y el aplication server, ademas del identificador que se le otrogara al dispositivo a conectar, esto con la finalidad simplificar los codigos de muestreo y envio de datos. 
 **Paso 4 :** Obtener el el Device EUI. Escriba en el siguiente comando:
 </body>
          </html>
@@ -1825,14 +1825,12 @@ Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquem
 <table>
 </thead>
 <tr>
-   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-41-52.png"/></td>
-   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-06-14 10-34-35.png"/></td>
+   <td><img src= "https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/WhatsApp Image 2024-07-23 at 10.55.21 AM (1).jpeg"/></td>
+   <td><img src="https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/raw/main/images/Captura desde 2024-07-16 19-00-39.png"/></td>
 </tr>
 </table>
 </body>
 </html>
-     
-Una vez configurada la cadena de reglas se tiene que configurar un nuevo perfil de dispositivo para que la cadena de reglas se pueda aplicar y algunas otras configuraciones se puedan aplicar a los dispositivos a conectar y a crear.
 
  ## Configuracion del perfiles de dispositivo.
  La configuracion y creacion de un perfil de dispositivo simplifica pasos cuando se quieren agregar varios dispositivos con que otorgan informacion similar o que tienen la misma estructura en su configuracion. En este segmento se describira la configuracion de los perfiles y como es que se conectan a un dispositivo, cadena de reglas, panel de dispositivo, ademas de la importancia que se le puede otorgar aun mensaje para que sea leido y agrupado.
