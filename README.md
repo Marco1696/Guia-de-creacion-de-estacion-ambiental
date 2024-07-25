@@ -212,7 +212,7 @@ La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un
     application_key = generate_application_key(16)
     print("Application Key:", application_key) 
    
-Guardar y salir con **CTRL+O** y **CTRL+X**. Este codigo es particular mete similar al anterior solo con pequeñas diferencias en cuestion de la varible *application_key*. Una vez culminado este ultimo codigo se ejecutan los codigos de Python, procurando copiar los datos que arrojaran estos codigos.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este código es particularmente similar al anterior solo con pequeñas diferencias en cuestión de la variable *application_key*. Una vez culminado este último código se ejecutan los progaramas anteriormente creados de Python, procurando copiar los datos que arrojen estos.
 **Paso 3 :** Escribimos el siguiente comando:
 </body>
          </html>
@@ -243,7 +243,7 @@ La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es sol
     """
     APPS_KEY = 'FFEEDDCCBBAA99887766554433221100'  # Reemplaza con el app_key obtenido
     
-Reemplazo los datos obtenidos en el **paso 2**. Guardar y salir con **CTRL+O** y **CTRL+X**. El codigo anterior contiene las llaves de conexion para el network server y el aplication server, ademas del identificador que se le otrogara al dispositivo a conectar, esto con la finalidad simplificar los codigos de muestreo y envio de datos. 
+Reemplazo los datos obtenidos en el **paso 2**. Guardar y salir con **CTRL+O** y **CTRL+X**. El código anterior contiene las llaves de conexión para el network server y el aplication server, además del identificador que se le otorgará al dispositivo a conectar, esto con la finalidad simplificar los códigos de muestreo y envió de datos. 
 **Paso 4 :** Obtener el el Device EUI. Escriba en el siguiente comando:
 </body>
          </html>
@@ -267,8 +267,9 @@ La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un
     eui16 = generate_random_hex(16)
     print("EUI de 16 dígitos:", eui16)
     
-Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev_EUI el cual sera el identificador del dispositivo en la red LoRaWAN el cual se conectara el con la plataforma de Chirpstack.
-## Creacion de codigos de sensores utilizados en la estacion de monitoreo.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este código contiene la indicación de *import secrets* la cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía y *import binascii* que importa el módulo *binascii*, el cual contiene funciones para convertir entre binarios y ASCII, posteriormente se define la función *def generate_random_hex(length)* la cual contiene el parámetro *length* el cual define la longitud de la cadena hexadecimal deseada, consecutivamente la línea del código *random_bytes = secrets.token_bytes(length // 2)*, genera una cadena de bytes aleatorias con la mitad de longitud que la cadena de *length*, posteriormente la linea *random_hex = binascii.hexlify(random_bytes).decode('utf-8')* convierte la cadena de bytes a una cadena hexadecimal y después decodifica a una cadena de caracteres para que *return random_hex.upper()* devuelva la cadena hexadecimal en mayúsculas.
+Por último el *eui16 = generate_random_hex(16)* hace el llamado a la funcion para generar la cadena hexadecimal de 16 caracteres y finaliza con la impresión del valor en la consola con *print("EUI de 16 dígitos:", eui16)*. Ejecuta el código y guarda el Dev_EUI el cual será el identificador del dispositivo en la red LoRaWAN y se conectara a la plataforma de Chirpstack.
+## Creación de códigos de sensores utilizados en la estación de monitoreo.
 
    ## Sensores Alphasense.
    Escriba en el siguiente comando:
@@ -277,7 +278,7 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
              
     sudo nano loraysensores.py
     
-   La parte de **loraysensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+  En el comando la parte **loraysensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
    </body>
          </html>
 
@@ -339,7 +340,15 @@ Guardar y salir con **CTRL+O** y **CTRL+X**. Ejecuta este codigo y guarda el Dev
     lora.close()
     exit(0)
     
-   Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython ads1x15**. Escriba el siguiente comando:
+   El código anterior se compone de 8 pasos para su funcionamiento: 
+   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, busio, adafruit_ads1x15.ads1115 y AnalogIn*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, conversores ADC y entradas analogicas. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
+   **Paso 2 :** La inicialización del I2C con la instrucción *i2c = busio.I2C(board.SCL, board.SDA)* en la cual se utiliza los pines de la raspberry SCL y SDA.
+   **Paso 3 :** Creación de objetos ADS1115 en donde se crean 2 instancias *ads1 = ADS.ADS1115(i2c, address=0x48) y ads2 = ADS.ADS1115(i2c, address=0x49)*, por la utilización de 2 dispositivos convertidores de señal análoga a digital utilizando el I2C para la conexión con direcciones diferentes.
+   **Paso 4 :** Definición de canales para entrada de datos analógicos de los sensores de gas por lectura principal y de corrección, otorgando un total de 8 lecturas diferentes y por consiguiente 8 definiciones de canales en los pines o, 1, 2 y 3 de los ADS1115.
+   **Paso 5 :** Definición e inicialización del módulo LoRa RAK811, en donde se define que *lora* ocupara el Rak811, con una configuración de operación en modo LoRaWAN en la reguion US915, ademas de configurar las claves de seguridad (dev_addr=DEV_ADDR, apps_key=APPS_KEY, nwks_key=NWKS_KEY) y se realiza la conexion atravez del modo **ABP**, por último de establece la tasa de datos *lora.dr = 2* que es para US915_1.
+   **Paso 6 :** Lectura de entradas analogicas las cuales se identificaran con la orden *ads1_values y ads2_values*, consecutivamente en las lineas de codigo *[ads1_str = " ".join(map(str, ads1_values))] y [ads2_str = " ".join(map(str, ads2_values))]* convierten los valores de entrada en cadenas de texto separadas poe espacios.
+   **Paso 7 :** Envio de datos atraves de LoRa, en donde se encuentra la leyenda de *paquete enviado* cuando se hayan enviado correctamente los datos atravez de lora, ademas de expecificar el formato de envio del mensaje con la linea *lora.send('1.1' + 'ADS1: ' + ads1_str + '| ADS2: ' + ads2_str, confirm=False)*, en la cual se implementa un identificador para que en posteriores procesos del analisis de datos sea mas eficiente identifiacar y procesar la informacion, este identificador va acompañado de los valores de los *ADS1115*, por último se cierra la conexion y finaliza el programa. 
+Para poder ejecutar el codigo anterior es necesario descargar las librerias de **Adafruit circuitpython ads1x15**. Escriba el siguiente comando:
    </body>
          </html>
               
