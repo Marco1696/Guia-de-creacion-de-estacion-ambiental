@@ -341,14 +341,14 @@ Por último el *eui16 = generate_random_hex(16)* hace el llamado a la funcion pa
     exit(0)
     
    El código anterior se compone de 8 pasos para su funcionamiento: 
-   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, busio, adafruit_ads1x15.ads1115 y AnalogIn*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, conversores ADC y entradas analogicas. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
+   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, busio, adafruit_ads1x15.ads1115 y AnalogIn*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, conversores ADC y entradas analógicas. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
    **Paso 2 :** La inicialización del I2C con la instrucción *i2c = busio.I2C(board.SCL, board.SDA)* en la cual se utiliza los pines de la raspberry SCL y SDA.
    **Paso 3 :** Creación de objetos ADS1115 en donde se crean 2 instancias *ads1 = ADS.ADS1115(i2c, address=0x48) y ads2 = ADS.ADS1115(i2c, address=0x49)*, por la utilización de 2 dispositivos convertidores de señal análoga a digital utilizando el I2C para la conexión con direcciones diferentes.
    **Paso 4 :** Definición de canales para entrada de datos analógicos de los sensores de gas por lectura principal y de corrección, otorgando un total de 8 lecturas diferentes y por consiguiente 8 definiciones de canales en los pines o, 1, 2 y 3 de los ADS1115.
-   **Paso 5 :** Definición e inicialización del módulo LoRa RAK811, en donde se define que *lora* ocupara el Rak811, con una configuración de operación en modo LoRaWAN en la reguion US915, ademas de configurar las claves de seguridad (dev_addr=DEV_ADDR, apps_key=APPS_KEY, nwks_key=NWKS_KEY) y se realiza la conexion atravez del modo **ABP**, por último de establece la tasa de datos *lora.dr = 2* que es para US915_1.
-   **Paso 6 :** Lectura de entradas analogicas las cuales se identificaran con la orden *ads1_values y ads2_values*, consecutivamente en las lineas de codigo *[ads1_str = " ".join(map(str, ads1_values))] y [ads2_str = " ".join(map(str, ads2_values))]* convierten los valores de entrada en cadenas de texto separadas poe espacios.
-   **Paso 7 :** Envio de datos atraves de LoRa, en donde se encuentra la leyenda de *paquete enviado* cuando se hayan enviado correctamente los datos atravez de lora, ademas de expecificar el formato de envio del mensaje con la linea *lora.send('1.1' + 'ADS1: ' + ads1_str + '| ADS2: ' + ads2_str, confirm=False)*, en la cual se implementa un identificador para que en posteriores procesos del analisis de datos sea mas eficiente identifiacar y procesar la informacion, este identificador va acompañado de los valores de los *ADS1115*, por último se cierra la conexion y finaliza el programa. 
-Para poder ejecutar el codigo anterior es necesario descargar las librerias de **Adafruit circuitpython ads1x15**. Escriba el siguiente comando:
+   **Paso 5 :** Definición e inicialización del módulo LoRa RAK811, se define que *lora* ocupara el Rak811, con una configuración de operación en modo LoRaWAN en la región US915, ademas de configurar las claves de seguridad (dev_addr=DEV_ADDR, apps_key=APPS_KEY, nwks_key=NWKS_KEY) y se realiza la conexion a través del modo **ABP**, por último se establece la tasa de datos *lora.dr = 2* que es para US915_1.
+   **Paso 6 :** Lectura de entradas analógicas las cuales se identificaran con la orden *ads1_values y ads2_values*, consecutivamente en las líneas de código *[ads1_str = " ".join(map(str, ads1_values))] y [ads2_str = " ".join(map(str, ads2_values))]* convierten los valores de entrada en cadenas de texto separadas por espacios.
+   **Paso 7 :** Envió de datos a través de LoRa, se encuentra la leyenda de *paquete enviado* cuando se hayan enviado correctamente los datos por loRa, además de especificar el formato de envió del mensaje con la línea *lora.send('1.1' + 'ADS1: ' + ads1_str + '| ADS2: ' + ads2_str, confirm=False)*, en la cual se implementa un identificador para que en posteriores procesos de análisis de datos sea más eficiente identificar y procesar la información, este a su vez acompañado de los valores de los *ADS1115*, por último se cierra la conexión y finaliza el programa. 
+Para poder ejecutar el código anterior es necesario descargar las librerías de **Adafruit circuitpython ads1x15**. Escriba el siguiente comando:
    </body>
          </html>
               
@@ -390,8 +390,6 @@ Para poder ejecutar el codigo anterior es necesario descargar las librerias de *
     bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, address=0x76)
     bme280.sea_level_pressure = 1013.25
     
-    
-    
     # Read BME280 sensor data
     identifier = "1.2"
     temperature = "{:.2f}".format(bme280.temperature)
@@ -409,7 +407,13 @@ Para poder ejecutar el codigo anterior es necesario descargar las librerias de *
     
     lora.close()
     exit(0)
-    
+
+   EL codigo otorga las ordenas necesarias para la obtencion de los valores requeridos, acontinuacion se decribe por pasos el contenido del codigo funcional:
+    **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, time y  adafruit_bme280*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, configracion del I2C, operaciones de tiempo y manejo en general del sensor BME280. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
+    **Paso 2 :** Se inicializa el I2C utilizando los pines SCL y SDA con la orden *i2c = board.I2C()*, consecutivamente se inizializa el sensor en la direccion *0x76* y se establece la precion a nivel del mar con la que trabajara el dispositivo, estas establecidas en las líneas de codigo  *bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, address=0x76)* y 
+*bme280.sea_level_pressure = 1013.25*.
+   **Paso 3 :** Lectrura y fromato de datos del sensor, se asigna un identificador al sensor con el proposito de gestionar rapidamente los datos recibidos, ademas de que las lineas de codigo leen los valores de temperatura, humedad, presion y altitud y los formatean con 2 decimales y una cadena separada por comas y se convierten en bytes con la orden *data_bytes = bytes(data_to_send, 'utf-8')* para su posterior envio.
+   **Paso 4 :** 
    Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython bme280**. Escriba el siguiente comando:
    </body>
          </html>
