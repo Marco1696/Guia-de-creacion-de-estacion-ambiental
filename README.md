@@ -637,6 +637,13 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
     finally:
         lora.close()
         i2c_transceiver.close()
+
+   Los modulos que se importan en el codigo como *time* para el manejo de tiempo, *I2cConnection*, *LinuxI2cTransceiver* para el manejo de la comunicacion del I2C y *Sen5xI2cDevice* para interactuar y configurar con el sensor Sen5x. Por ultimo se importan los modulos de conexion *rak811* y *ttn_secrets* para la configuracion del rak y las credenciales de conexion del LoRaWAN.
+   En cuestion de la deficion de las funciones que se encargaran de dar las ordenes, formato de envio y extracion de valores legibles se describen a continuacion:
+   **Paso 1 :** Se define la funcion *def initialize_lora():* en donde se configura el modulo Rak811 de la raspberry, ademas de integrar las variables de conexion de LoRaWAN, se incluye un bucle en donde si hay un fallo se intente en 10 segundos despues y se muestra la leyenda *"Error iniciando LoRaWAN:"* y consecutivamente a eso *"Reintentando..."*.
+   **Paso 2 :** La fincion *def send_data_lorawan(lora, data):* solamente se configura para el envio de datos por el modulo **Rak811**, en donde se define los casos del envio corecto de los datos con la leyenda *Paquete enviado* o en su defecto *Error enviando datos por LoRaWAN:* cuando no se envio el paquete.
+   **Paso 3 :** La funcion *def read_sensor_values(device):* otorga parametros para la lectura de los datos, las mediciones a realizar, los valora que se deben de integrar a las avariables asignadad y el formateo de los datos obtenidos en una cadena *CSV* con los valores promedio, por ultimo se detiene la medicion.
+   **Paso 4 :** Las ultimas ornes del codigo son la inicializacion de lora con el comando *lora = initialize_lora()*, ademas del transeptor I2C con *i2c_transceiver = LinuxI2cTransceiver('/dev/i2c-1')* y la conexion con el sensor con *device = Sen5xI2cDevice(I2cConnection(i2c_transceiver))*, una vez concluidas las acciones, los valores obtenidos del sensor se leen y promedian para su posterior envio atravez de LoRaWAN. Finalmente termina la conexion con LoRaWAN y el I2C.
    Para poder ejecutar el codigo es necesario descargar las librerias de **Sensirion i2c driver y Sensirion i2c sen5x**. Escriba el siguiente comando:
    </body>
       </html>
