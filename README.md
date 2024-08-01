@@ -506,6 +506,11 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         scd4x.stop_periodic_measurement()
         lora.close()
 
+   El codigo anterior importa los modulos de python y raspbrryi pi para el manejo del tiempo componentes del sistema, configuracion de la conexion, ademas de importar el modulo **adafruit_scd4x** con la finalidad de interactuar con el sensor de Dioxido de carbono. Para la configuracion del del Rak811 sera la misma que de los sensores anteriores implementando la inicializacion del I2C (*i2c = board.I2C()*) y la del sensor con el comando **SCD4X**, realizado lo anterior se define a funcion con la que trabajara el sensor para obtener la informacion:
+   
+   **Paso 1 :** Definir la funcion *def enviar_datos_lorawan(identifier, co2, temperatura, humedad):* la cual contine las variables, el formato de acomodo para su envio que esta fedinido por *datos_csv = "{},{},{},{}".format(identifier, co2, temperatura, humedad)* y la imprecion del mensaje *"Datos enviados exitosamente por LoRaWAN:"* y los datos que se enviaron en formato **CSV** por LoRaWAN.
+   **Paso 2 :** Lectura de datos y envio atravez de lora, el codigo ejecuta un bucle con una unica medicion, este se compone de las variables de muestreo y genera mensajes de estos con las unidades de medida correspondientes, por ultimo se envian los datos por loRaWAN despues de haber realizado 2 muestras y termina el bucle.
+   **Paso 3 :** Manejo de interrupciones y cierre del programa, el codigo tiene la capacidad de interrumpir el codigo con el comando **Ctrl+C** mostrando el mensaje *Interrupción de teclado, finalizando...*, como ultimo paso se finaliza la medicion del sensor y se cierra la conexion con el modulo.
    Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython scd4x**. Escriba el siguiente comando:
    </body>
          </html>
