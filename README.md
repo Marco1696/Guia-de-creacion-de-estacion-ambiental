@@ -427,7 +427,8 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
    
    **Paso 3 :** Lectrura y fromato de datos del sensor, se asigna un identificador al sensor con el proposito de gestionar rapidamente los datos recibidos, ademas de que las lineas de codigo leen los valores de temperatura, humedad, presion y altitud y los formatean con 2 decimales y una cadena separada por comas y se convierten en bytes con la orden *data_bytes = bytes(data_to_send, 'utf-8')* para su posterior envio.
    
-   **Paso 4 :** 
+   **Paso 4 :** Envio de datos y finalizacion de programa, una vez enviados los datos, se otorga la indicacion de imprimir el mensaje *Paquete enviado:* con los datos que se han enviado apartir del comando print('Paquete enviado:', data_to_send), ademas de enviar los datos sin esperar una confirmacion y concecutivamente se cierra lora y sale del programa con el comando *lora.close()* y *exit(0)*.
+   
    Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython bme280**. Escriba el siguiente comando:
    </body>
          </html>
