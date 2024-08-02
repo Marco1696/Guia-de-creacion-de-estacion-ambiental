@@ -734,7 +734,8 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
 
    El codigo anterior importa los modulos de python *subprocess* para ejecutar otros scrips o comandos en la terminal desde el programa, el cual sera utilizado para ejecutar los codigos de los sensores, *time* para el manejo de las operaiones en cuestion del tiempo y el modulo *sys* el cual proporciona acceso en algunas variables y funciones del sistema.
    Para el declarar los codigos a ejecutar y la forma en que se realizara se utiliza un bucle con el comando **while True:** con la finalidad de ejecutar de manera continua los scripts, iniciando con la leyenda *Iniciando nuevo ciclo de mediciones*, consecutivamente llemando al script de los sensores de Alphasense, despues al sensor BME280, posteriormente el SCD40 y por ultimo el Sensirium Sen55.
-   Por ultimo el codigo imprime la leyenda *Error durante la ejecución del script:* en caso de existir un error en cualquier codigo, y agrega el comando para la interrucion por usuario del codigo
+   Por ultimo el codigo imprime la leyenda *Error durante la ejecución del script:* en caso de existir un error en cualquier codigo, y agrega el comando para la interrucion por usuario del codigo y despliega la leyenda *Programa interrumpido por el usuario.*, finalmente el codigo culmina la ejecucion con *sys.exit(0)*.
+   
    ## Crear un servicio de pytho3 en la raspberry pi zero w para que se ejcute automaticamente el codigo pra mandar datos a Chirpstack
    Escriba en el siguiente comando:
    </body>
