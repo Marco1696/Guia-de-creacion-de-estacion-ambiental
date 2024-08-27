@@ -1,7 +1,7 @@
 ## Guía para la creación de una estación ambiental
-Esta guía esta dirigida a toda aquella persona que tenga la necesidad de implementar una estación de monitoreo ambiental con los siguientes elementos **motor de raspian** de una raspberry pi zero w , **modulo LoRaWan**, además de la plataforma de **chirpstack y the thingsboard**. Se establecen enlaces y gráficos para análisis de datos y un mejorar la comprensión  de las condiciones ambientales. 
+La guía está dirigida a toda aquella persona que tenga la necesidad de implementar una estación de monitoreo ambiental con los siguientes elementos **motor de raspian** de una raspberry pi zero w, **modulo LoRaWan**, además de la plataforma de **chirpstack y the thingsboard**. Se establecen enlaces y gráficos para análisis de datos y un mejorar la comprensión de las condiciones ambientales. 
    ## Configuración del controlador raspberry pi zero w
-Se describe con detalle los pasos a seguir para configura el controlador que desarrollara las funciones de otorgar órdenes a los sensores conectados y se enlazara al protocolo de red LoRa WAN para el envió de la información recolectada. Para las configuraciones iniciales se consultó la siguiente página:
+Se describe con detalle los pasos a seguir para configura el controlador que desarrollara las funciones de otorgar órdenes a los sensores conectados y se enlazara al protocolo de red LoRa WAN para él envió de la información recolectada. Para las configuraciones iniciales se consultó la siguiente página:
    - https://learn.pi-supply.com/make/getting-started-with-the-raspberry-pi-lora-node-phat/
 
      ## Descargar e instalar imagen del sistema raspian
@@ -40,7 +40,7 @@ Se describe con detalle los pasos a seguir para configura el controlador que des
      </html>
      En las anteriores imágenes se visualizan los pasos a seguir para conseguir la conexión a internet de manera inalámbrica desde las opciones a acceder hasta la conexión exitosa del dispositivo.
      
-     **Paso 2 :** Antes de reiniciar la raspberry pi, habilite el hardware serial en Raspberry Pi y deshabilite la consola serial. Vuelva al inicio de las configuraciones y seleccione **Interface Options**, posteriormente **Serial Port** consecutivamente **No** y por ultimo **Yes** como se muestra en las siguientes imágenes. 
+     **Paso 2 :** Antes de reiniciar la raspberry pi, habilite el hardware serial en Raspberry Pi y deshabilite la consola serial. Vuelva al inicio de las configuraciones y seleccione **Interface Options**, posteriormente **Serial Port** consecutivamente **No** y por último **Yes** como se muestra en las siguientes imágenes. 
      <!DOCTYPE html>
      <html>
         <head>
@@ -147,14 +147,14 @@ Se describe con detalle los pasos a seguir para configura el controlador que des
              
     sudo nano Dev_Addr.py
     
-La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegara una consola, escriba el siguiente código:
+La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola, escriba el siguiente código:
 </body>
          </html>
 
     import secrets
          
     def generate_deveui():
-        manufacturer_prefix = "00FF"  # Prefijo del fabricante (ejemplo se puende modificar las 2 ultimas letras)
+        manufacturer_prefix = "00FF"  # Prefijo del fabricante (ejemplo se pueden modificar las 2 ultimas letras)
         random_suffix = secrets.token_hex(3) 
         deveui = manufacturer_prefix + random_suffix
         return deveui.upper()
@@ -163,8 +163,7 @@ La parte de **Dev_Addr** se puede modificar por cualquier nombre, esto es solo u
     deveui = generate_deveui()
     print("DevEUI:", deveui)
     
-Guardar y salir con **CTRL+O** y **CTRL+X**. Este programa de Python se ejecutará para conocer el Device address que se asignará a el dispositivo, 
- ademas de servir para la conexión ABP con el Gateway y la aplicación de Chirpstack. 
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este programa de Python se ejecutará para conocer el Device address que se asignará a el dispositivo, además de servir para la conexión ABP con el Gateway y la aplicación de Chirpstack. 
 El código consta de *import secrets* el cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía, posteriormente se define la función *generate_deveui():* la cual su mecanismo de acción es devolver el **DevEui**, esta función consta de *manufacturer_prefix = "00FF"* que asigna el prefijo del fabricante que se  puede modificar para la identificación del dispositivo según sean las necesidades del usuario, posteriormente *random_suffix = secrets.token_hex(3)* este genera un numero aleatorio de 6 caracteres hexadecimales contenido en 3 bytes utilizando la función *token_hex* y el módulo *secrets* para  garantizar que la respuesta final sea única y se genere de manera segura, consecutivamente *deveui = manufacturer_prefix + random_suffix*  combina el numero aleatorio creado y el prefijo del fabricante para formar el DevEUI, por ultimo *return deveui.upper()* devuelve el DevEUI en mayúsculas.
 La última parte del código contiene la orden *deveui = generate_deveui()* que llama la función *generate_deveui* y almacena la información en la variable *deveui* para que posteriormente se imprima en la consola con la orden *print("DevEUI:", deveui)*. 
 
@@ -174,7 +173,7 @@ La última parte del código contiene la orden *deveui = generate_deveui()* que 
              
     sudo nano nwkey.py
    
-La parte de **nwkey** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+La parte de **nwkey** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegará una consola y deberá escribir el siguiente código:
 </body>
          </html>
              
@@ -190,14 +189,14 @@ La parte de **nwkey** se puede modificar por cualquier nombre, esto es solo un e
     network_key = generate_network_key(16)
     print("Network Key:", network_key)
    
-Guardar y salir con **CTRL+O** y **CTRL+X**. Este código contiene la indicación de *import secrets* la cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía y *import binascii* que importa el módulo *binascii*, el cual contiene funciones para convertir entre binarios y ASCII, posteriormente se define la función *def generate_network_key(length)* que toma el argumento *length* que especifica la longitud de la clave en bytes, además esta función la componen las líneas de código *network_key_bytes = secrets.token_bytes(length)*  la cual genera una cadena de bytes aleatoria especificada por la función *token_bytes* del modulo *secrets*, consecutivamente la línea *return binascii.hexlify(network_key_bytes).decode('utf-8').upper()* convierte la cadena de bytes aleatorios a una hexadecimal con *binascii.hexlify* posteriormente se decodifica la cadena hexadecimal a una cadena de texto con *decode('utf-8')* y la convierte en mayúscula con *upper()*.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este código contiene la indicación de *import secrets* la cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía y *import binascii* que importa el módulo *binascii*, el cual contiene funciones para convertir entre binarios y ASCII, posteriormente se define la función *def generate_network_key(length)* que toma el argumento *length* que especifica la longitud de la clave en bytes, además esta función la componen las líneas de código *network_key_bytes = secrets.token_bytes(length)*  la cual genera una cadena de bytes aleatoria especificada por la función *token_bytes* del módulo *secrets*, consecutivamente la línea *return binascii.hexlify(network_key_bytes).decode('utf-8').upper()* convierte la cadena de bytes aleatorios a una hexadecimal con *binascii.hexlify* posteriormente se decodifica la cadena hexadecimal a una cadena de texto con *decode('utf-8')* y la convierte en mayúscula con *upper()*.
 Por último el código contiene la línea *network_key = generate_network_key(16)* la cual llama a la función de *generate_network_key* con un argumento **16** que genera una clave de 16 bytes y posteriormente se imprime el valor obtenido en la consola con el comando *print("Network Key",network_key). Posteriormente a la configuración y guardado del código escriba el siguiente comando. 
 </body>
          </html>
              
     sudo nano applkey.py
     
-La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegara una consola, escriba el siguiente código:
 </body>
          </html>
              
@@ -213,15 +212,15 @@ La parte de **applkey** se puede modificar por cualquier nombre, esto es solo un
     application_key = generate_application_key(16)
     print("Application Key:", application_key) 
    
-Guardar y salir con **CTRL+O** y **CTRL+X**. Este código es particularmente similar al anterior solo con pequeñas diferencias en cuestión de la variable *application_key*. Una vez culminado este último código se ejecutan los progaramas anteriormente creados de Python, procurando copiar los datos que arrojen estos.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este código es particularmente similar al anterior solo con pequeñas diferencias en cuestión de la variable *application_key*. Una vez culminado este último código se ejecutan los programas anteriormente creados de Python, procurando copiar los datos que arrojen estos.
 
-**Paso 3 :** Escribimos el siguiente comando:
+**Paso 3 :** Escriba el siguiente comando:
 </body>
          </html>
              
     sudo nano ttn_secrets.py 
    
-La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+La parte de **ttn_secrets** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola, escriba el siguiente código:
 </body>
          </html>
          
@@ -253,7 +252,7 @@ Reemplazo los datos obtenidos en el **paso 2**. Guardar y salir con **CTRL+O** y
              
     sudo nano Dev_EUI.py
    
-La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola, escriba el siguiente código:
 </body>
          </html>
 
@@ -270,8 +269,8 @@ La parte de **Dev_EUI** se puede modificar por cualquier nombre, esto es solo un
     eui16 = generate_random_hex(16)
     print("EUI de 16 dígitos:", eui16)
     
-Guardar y salir con **CTRL+O** y **CTRL+X**. Este código contiene la indicación de *import secrets* la cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía y *import binascii* que importa el módulo *binascii*, el cual contiene funciones para convertir entre binarios y ASCII, posteriormente se define la función *def generate_random_hex(length)* la cual contiene el parámetro *length* el cual define la longitud de la cadena hexadecimal deseada, consecutivamente la línea del código *random_bytes = secrets.token_bytes(length // 2)*, genera una cadena de bytes aleatorias con la mitad de longitud que la cadena de *length*, posteriormente la linea *random_hex = binascii.hexlify(random_bytes).decode('utf-8')* convierte la cadena de bytes a una cadena hexadecimal y después decodifica a una cadena de caracteres para que *return random_hex.upper()* devuelva la cadena hexadecimal en mayúsculas.
-Por último el *eui16 = generate_random_hex(16)* hace el llamado a la funcion para generar la cadena hexadecimal de 16 caracteres y finaliza con la impresión del valor en la consola con *print("EUI de 16 dígitos:", eui16)*. Ejecuta el código y guarda el Dev_EUI el cual será el identificador del dispositivo en la red LoRaWAN y se conectara a la plataforma de Chirpstack.
+Guardar y salir con **CTRL+O** y **CTRL+X**. Este código contiene la indicación de *import secrets* la cual importa el módulo *secrets*, que proporciona formas de generar números aleatorios de manera segura para criptografía y *import binascii* que importa el módulo *binascii*, el cual contiene funciones para convertir entre binarios y ASCII, posteriormente se define la función *def generate_random_hex(length)* la cual contiene el parámetro *length* el cual define la longitud de la cadena hexadecimal deseada, consecutivamente la línea del código *random_bytes = secrets.token_bytes(length // 2)*, genera una cadena de bytes aleatorias con la mitad de longitud que la cadena de *length*, posteriormente la línea *random_hex = binascii.hexlify(random_bytes).decode('utf-8')* convierte la cadena de bytes a una cadena hexadecimal y después decodifica a una cadena de caracteres para que *return random_hex.upper()* devuelva la cadena hexadecimal en mayúsculas.
+Por último el *eui16 = generate_random_hex(16)* hace el llamado a la función para generar la cadena hexadecimal de 16 caracteres y finaliza con la impresión del valor en la consola con *print("EUI de 16 dígitos:", eui16)*. Ejecuta el código y guarda el Dev_EUI el cual será el identificador del dispositivo en la red LoRaWAN y se conectará a la plataforma de Chirpstack.
 ## Creación de códigos de sensores utilizados en la estación de monitoreo.
 
    ## Sensores Alphasense.
@@ -281,7 +280,7 @@ Por último el *eui16 = generate_random_hex(16)* hace el llamado a la funcion pa
              
     sudo nano loraysensores.py
     
-  En el comando la parte **loraysensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+  En el comando la parte **loraysensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola, escriba el siguiente código:
    </body>
          </html>
 
@@ -345,7 +344,7 @@ Por último el *eui16 = generate_random_hex(16)* hace el llamado a la funcion pa
     
    El código anterior se compone de 8 pasos para su funcionamiento:
    
-   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, busio, adafruit_ads1x15.ads1115 y AnalogIn*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, conversores ADC y entradas analógicas. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
+   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, busio, adafruit_ads1x15.ads1115 y AnalogIn*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, conversores ADC y entradas analógicas. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último, el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
    
    **Paso 2 :** La inicialización del I2C con la instrucción *i2c = busio.I2C(board.SCL, board.SDA)* en la cual se utiliza los pines de la raspberry SCL y SDA.
   
@@ -353,7 +352,7 @@ Por último el *eui16 = generate_random_hex(16)* hace el llamado a la funcion pa
   
    **Paso 4 :** Definición de canales para entrada de datos analógicos de los sensores de gas por lectura principal y de corrección, otorgando un total de 8 lecturas diferentes y por consiguiente 8 definiciones de canales en los pines o, 1, 2 y 3 de los ADS1115.
    
-   **Paso 5 :** Definición e inicialización del módulo LoRa RAK811, se define que *lora* ocupara el Rak811, con una configuración de operación en modo LoRaWAN en la región US915, ademas de configurar las claves de seguridad (dev_addr=DEV_ADDR, apps_key=APPS_KEY, nwks_key=NWKS_KEY) y se realiza la conexion a través del modo **ABP**, por último se establece la tasa de datos *lora.dr = 2* que es para US915_1.
+   **Paso 5 :** Definición e inicialización del módulo LoRa RAK811, se define que *lora* ocupara el Rak811, con una configuración de operación en modo LoRaWAN en la región US915, además de configurar las claves de seguridad (dev_addr=DEV_ADDR, apps_key=APPS_KEY, nwks_key=NWKS_KEY) y se realiza la conexión a través del modo **ABP**, por último se establece la tasa de datos *lora.dr = 2* que es para US915_1.
    
    **Paso 6 :** Lectura de entradas analógicas las cuales se identificaran con la orden *ads1_values y ads2_values*, consecutivamente en las líneas de código *[ads1_str = " ".join(map(str, ads1_values))] y [ads2_str = " ".join(map(str, ads2_values))]* convierten los valores de entrada en cadenas de texto separadas por espacios.
   
@@ -371,7 +370,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
              
     sudo nano lorabme.py
     
-   La parte de **lorabme** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+   La parte de **lorabme** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola, escriba el siguiente código:
    </body>
          </html>
     import board
@@ -420,16 +419,16 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
 
    EL codigo otorga las ordenas necesarias para la obtencion de los valores requeridos, acontinuacion se decribe por pasos el contenido del codigo funcional:
     
-   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, time y  adafruit_bme280*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, configracion del I2C, operaciones de tiempo y manejo en general del sensor BME280. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
+   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, time y  adafruit_bme280*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, configracion del I2C, operaciones de tiempo y manejo en general del sensor BME280. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último, el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
    
-   **Paso 2 :** Se inicializa el I2C utilizando los pines SCL y SDA con la orden *i2c = board.I2C()*, consecutivamente se inizializa el sensor en la direccion *0x76* y se establece la precion a nivel del mar con la que trabajara el dispositivo, estas establecidas en las líneas de codigo  *bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, address=0x76)* y 
+   **Paso 2 :** Se inicializa el I2C utilizando los pines SCL y SDA con la orden *i2c = board.I2C()*, consecutivamente se inicializa el sensor en la direccion *0x76* y se establece la presion a nivel del mar con la que trabajara el dispositivo, estas establecidas en las líneas de código  *bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, address=0x76)* y 
 *bme280.sea_level_pressure = 1013.25*.
    
-   **Paso 3 :** Lectrura y fromato de datos del sensor, se asigna un identificador al sensor con el proposito de gestionar rapidamente los datos recibidos, ademas de que las lineas de codigo leen los valores de temperatura, humedad, presion y altitud y los formatean con 2 decimales y una cadena separada por comas y se convierten en bytes con la orden *data_bytes = bytes(data_to_send, 'utf-8')* para su posterior envio.
+   **Paso 3 :** Lectura y formato de datos del sensor, se asigna un identificador al sensor con el propósito de gestionar rápidamente los datos recibidos, además de que las líneas de código leen los valores de temperatura, humedad, presión y altitud y los formatean con 2 decimales y una cadena separada por comas y se convierten en bytes con la orden *data_bytes = bytes(data_to_send, 'utf-8')* para su posterior envió.
    
-   **Paso 4 :** Envio de datos y finalizacion de programa, una vez enviados los datos, se otorga la indicacion de imprimir el mensaje *Paquete enviado:* con los datos que se han enviado apartir del comando print('Paquete enviado:', data_to_send), ademas de enviar los datos sin esperar una confirmacion y concecutivamente se cierra lora y sale del programa con el comando *lora.close()* y *exit(0)*.
+   **Paso 4 :** Envió de datos y finalización de programa, una vez enviados los datos, se otorga la indicación de imprimir el mensaje *Paquete enviado:* con los datos que se han enviado a partir del comando print('Paquete enviado:', data_to_send), además de enviar los datos sin esperar una confirmación y consecutivamente se cierra lora y sale del programa con el comando *lora.close()* y *exit(0)*.
    
-   Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython bme280**. Escriba el siguiente comando:
+   Para poder ejecutar el codigó es necesario descargar las librerías de **Adafruit circuitpython bme280**. Escriba el siguiente comando:
    </body>
          </html>
               
@@ -442,7 +441,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
              
     sudo nano lorascd40.py
     
-   La parte de **lorascd40** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+   La parte de **lorascd40** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y deberá escribir el siguiente codigó:
    </body>
          </html>
          
@@ -506,14 +505,14 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         scd4x.stop_periodic_measurement()
         lora.close()
 
-   El codigo anterior importa los modulos de python y raspbrryi pi para el manejo del tiempo componentes del sistema, configuracion de la conexion, ademas de importar el modulo **adafruit_scd4x** con la finalidad de interactuar con el sensor de Dioxido de carbono. Para la configuracion del del Rak811 sera la misma que de los sensores anteriores implementando la inicializacion del I2C (*i2c = board.I2C()*) y la del sensor con el comando **SCD4X**, realizado lo anterior se define a funcion con la que trabajara el sensor para obtener la informacion:
+   El codigó anterior importa los módulos de python y raspbrryi pi para el manejo del tiempo componentes del sistema, configuracin de la conexión, además de importar el módulo **adafruit_scd4x** con la finalidad de interactuar con el sensor de Dióxido de carbono. Para la configuración del Rak811 será la misma que de los sensores anteriores implementando la inicialización del I2C (*i2c = board.I2C()*) y la del sensor con el comando **SCD4X**, realizado lo anterior se define a función con la que trabajara el sensor para obtener la información:
    
-   **Paso 1 :** Definir la funcion *def enviar_datos_lorawan(identifier, co2, temperatura, humedad):* la cual contine las variables, el formato de acomodo para su envio que esta fedinido por *datos_csv = "{},{},{},{}".format(identifier, co2, temperatura, humedad)* y la imprecion del mensaje *"Datos enviados exitosamente por LoRaWAN:"* y los datos que se enviaron en formato **CSV** por LoRaWAN.
+   **Paso 1 :** Definir la función *def enviar_datos_lorawan(identifier, co2, temperatura, humedad):* la cual contine las variables, el formato de acomodo para su envió que esta definido por *datos_csv = "{},{},{},{}".format(identifier, co2, temperatura, humedad)* y la impresión del mensaje *"Datos enviados exitosamente por LoRaWAN:"* y los datos que se enviaron en formato **CSV** por LoRaWAN.
    
-   **Paso 2 :** Lectura de datos y envio atravez de lora, el codigo ejecuta un bucle con una unica medicion, este se compone de las variables de muestreo y genera mensajes de estos con las unidades de medida correspondientes, por ultimo se envian los datos por loRaWAN despues de haber realizado 2 muestras y termina el bucle.
+   **Paso 2 :** Lectura de datos y envió a través de lora, el codigó ejecuta un bucle con una única medición, este se compone de las variables de muestreo y genera mensajes de estos con las unidades de medida correspondientes, por último se envían los datos por LoRaWAN después de haber realizado 2 muestras y termina el bucle.
   
-   **Paso 3 :** Manejo de interrupciones y cierre del programa, el codigo tiene la capacidad de interrumpir el codigo con el comando **Ctrl+C** mostrando el mensaje *Interrupción de teclado, finalizando...*, como ultimo paso se finaliza la medicion del sensor y se cierra la conexion con el modulo.
-   Para poder ejecutar el codigo es necesario descargar las librerias de **Adafruit circuitpython scd4x**. Escriba el siguiente comando:
+   **Paso 3 :** Manejo de interrupciones y cierre del programa, el codigó tiene la capacidad de interrumpir la ejecución del programa con el comando **Ctrl+C** mostrando el mensaje *Interrupción de teclado, finalizando...*, como último paso se finaliza la medición del sensor y se cierra la conexión con el módulo.
+   Para poder ejecutar el codigó es necesario descargar las librerías de **Adafruit circuitpython scd4x**. Escriba el siguiente comando:
    </body>
          </html>
               
@@ -526,7 +525,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
              
     sudo nano lorasen55.py
     
-   La parte de **lorasen55** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo:
+   La parte de **lorasen55** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola y deberá escribir el siguiente codigó:
    </body>
          </html>
 
@@ -640,10 +639,10 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         lora.close()
         i2c_transceiver.close()
 
-   Los modulos que se importan en el codigo como *time* para el manejo de tiempo, *I2cConnection*, *LinuxI2cTransceiver* para el manejo de la comunicacion del I2C y *Sen5xI2cDevice* para interactuar y configurar con el sensor Sen5x. Por ultimo se importan los modulos de conexion *rak811* y *ttn_secrets* para la configuracion del rak y las credenciales de conexion del LoRaWAN.
-   En cuestion de la deficion de las funciones que se encargaran de dar las ordenes, formato de envio y extracion de valores legibles se describen a continuacion:
+   Los módulos que se importan en el código como *time* para el manejo de tiempo, *I2cConnection*, *LinuxI2cTransceiver* para el manejo de la comunicacin del I2C y *Sen5xI2cDevice* para interactuar y configurar con el sensor Sen5x. Por último se importan los módulos de conexión *rak811* y *ttn_secrets* para la configuración del Rak y las credenciales de conexión del LoRaWAN.
+   En cuestión de la definición de las funciones que se encargaran de dar las ordenes, formato de envió y extración de valores legibles se describen a continuación:
   
-   **Paso 1 :** Se define la funcion *def initialize_lora():* en donde se configura el modulo Rak811 de la raspberry, ademas de integrar las variables de conexion de LoRaWAN, se incluye un bucle en donde si hay un fallo se intente en 10 segundos despues y se muestra la leyenda *"Error iniciando LoRaWAN:"* y consecutivamente a eso *"Reintentando..."*.
+   **Paso 1 :** Se define la función *def initialize_lora():* en donde se configura el modulo Rak811 de la raspberry, ademas de integrar las variables de conexion de LoRaWAN, se incluye un bucle en donde si hay un fallo se intente en 10 segundos despues y se muestra la leyenda *"Error iniciando LoRaWAN:"* y consecutivamente a eso *"Reintentando..."*.
    
    **Paso 2 :** La fincion *def send_data_lorawan(lora, data):* solamente se configura para el envio de datos por el modulo **Rak811**, en donde se define los casos del envio corecto de los datos con la leyenda *Paquete enviado* o en su defecto *Error enviando datos por LoRaWAN:* cuando no se envio el paquete.
    
