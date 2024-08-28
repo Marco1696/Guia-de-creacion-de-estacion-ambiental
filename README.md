@@ -417,11 +417,12 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
     lora.close()
     exit(0)
 
-   EL código otorga las ordenas necesarias para la obtencion de los valores requeridos, acontinuacion se decribe por pasos el contenido del código funcional:
+
+   EL código otorga las ordenas necesarias para la obtención de los valores requeridos, a continuación, se describe por pasos el contenido del código funcional:
     
-   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, time y  adafruit_bme280*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, configracion del I2C, operaciones de tiempo y manejo en general del sensor BME280. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último, el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
+   **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, time y  adafruit_bme280*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, configuración del I2C, operaciones de tiempo y manejo en general del sensor BME280. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último, el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
    
-   **Paso 2 :** Se inicializa el I2C utilizando los pines SCL y SDA con la orden *i2c = board.I2C()*, consecutivamente se inicializa el sensor en la direccion *0x76* y se establece la presion a nivel del mar con la que trabajara el dispositivo, estas establecidas en las líneas de código  *bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, address=0x76)* y 
+   **Paso 2 :** Se inicializa el I2C utilizando los pines SCL y SDA con la orden *i2c = board.I2C()*, consecutivamente se inicializa el sensor en la dirección *0x76* y se establece la presión a nivel del mar con la que trabajara el dispositivo, estas establecidas en las líneas de código  *bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, address=0x76)* y 
 *bme280.sea_level_pressure = 1013.25*.
    
    **Paso 3 :** Lectura y formato de datos del sensor, se asigna un identificador al sensor con el propósito de gestionar rápidamente los datos recibidos, además de que las líneas de código leen los valores de temperatura, humedad, presión y altitud y los formatean con 2 decimales y una cadena separada por comas y se convierten en bytes con la orden *data_bytes = bytes(data_to_send, 'utf-8')* para su posterior envió.
