@@ -731,17 +731,17 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         print("Programa interrumpido por el usuario.")
         sys.exit(0)     
 
-   El código anterior importa los módulos de python *subprocess* para ejecutar otros scripts o comandos en la terminal desde el programa, el cual será utilizado para ejecutar los códigos de los sensores, *time* para el manejo de las operaiones en cuestion del tiempo y el modulo *sys* el cual proporciona acceso en algunas variables y funciones del sistema.
-   Para el declarar los códigos a ejecutar y la forma en que se realizara se utiliza un bucle con el comando **while True:** con la finalidad de ejecutar de manera continua los scripts, iniciando con la leyenda *Iniciando nuevo ciclo de mediciones*, consecutivamente llemando al script de los sensores de Alphasense, despues al sensor BME280, posteriormente el SCD40 y por ultimo el Sensirium Sen55.
-   Por ultimo el codigo imprime la leyenda *Error durante la ejecución del script:* en caso de existir un error en cualquier codigo, y agrega el comando para la interrucion por usuario del codigo y despliega la leyenda *Programa interrumpido por el usuario.*, finalmente el codigo culmina la ejecucion con *sys.exit(0)*.
-   
-   ## Crear un servicio de pytho3 en la raspberry pi zero w para que se ejcute automaticamente el codigo pra mandar datos a Chirpstack
+   El código anterior importa los módulos de python *subprocess* para ejecutar otros scripts o comandos en la terminal desde el programa, el cual será utilizado para ejecutar los códigos de los sensores, *time* para el manejo de las operaciones en cuestión del tiempo y el módulo **sys** el cual proporciona acceso en algunas variables y funciones del sistema.
+   Para el declarar los códigos a ejecutar y la forma en que se realizara se utiliza un bucle con el comando **while True:** con la finalidad de ejecutar de manera continua los scripts, iniciando con la leyenda *Iniciando nuevo ciclo de mediciones*, consecutivamente llamando al script de los sensores de Alphasense, después al sensor BME280, posteriormente el SCD40 y por último el Sensirium Sen55.
+   Por último el código imprime la leyenda *Error durante la ejecución del script:* en caso de existir un error en la ejecución del programa, además de agregar el comando para la interrupción por usuario del código y despliega la leyenda *Programa interrumpido por el usuario.*, finalmente el código culmina con *sys.exit(0)*.
+
+   ## Crear un servicio de pytho3 en la raspberry pi zero w para que se ejecute automáticamente el código para mandar datos a Chirpstack
    Escriba en el siguiente comando:
    </body>
          </html>
              
     sudo nano /etc/systemd/system/mi_script.service
-   La parte de **Conjuto_de_sensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo: 
+   La parte de **Conjuto_de_sensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola y deberá escribir el siguiente código: 
    </body>
          </html>
     [Unit]
@@ -759,8 +759,8 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
     [Install]
     WantedBy=multi-user.target
     
-   El codigo se compone de una descricion del servicio donde se modificara el nombre segun sus requerimientos y gustos, *After=network.target*  sirve para que el servicio se inicie despues de la comprovacion de conectividad de la red, esto por que los datos se comparten por internet, posteriormente *ExecStart=python3* expecifica el codigo o programa a iniciar en el servicio, ademas modifcica **/home/modulolorapizerow/Conjuto_de_sensores.py** por la ubicacion del codigo que envia los datos de los sensores, en **WorkingDirectory** modifica **/modulolorapizerow/** por la ubicacion del usuario de raspberry pi zero w que se haya colocado.
-   *StandardOutput=inherit* es para el registro de las salidas estandar del servicio registrado en el archivo Logs que es parte del sistema, haci como *StandardError=inherit* que registran los errores del inicio del sistema, *Restart=always* es una orden que se configura en caso de que el servicio falle se pueda reiniciar automaticamente, esto asegura que el servicio siempre este en ejecucion, concecutivamente modifica **User** con el usuario que se coloco en la configuracion inicial del la Raspberry pi zero, por ultimo *WantedBy=multi-user.target* esta orden define que el servicio se debe de iniciar  en nivel de ejecucion de multi-user.tarjet para que los servicios que se necesitan el en porceso de la optencion y envio de datos se encuentra siempre activos. Guarda y cierra la consola con **CTRL+O** y **CTRL+X**.
+   El código se compone de una descripción del servicio donde se modificara el nombre según sus requerimientos y gustos, *After=network.target*  sirve para que el servicio se inicie después de la comprobación de conectividad de la red, esto porque los datos se comparten por internet, posteriormente *ExecStart=python3* específica el código o programa a iniciar en el servicio, además modifica **/home/modulolorapizerow/Conjuto_de_sensores.py** por la ubicación del código que envía los datos de los sensores, en **WorkingDirectory** modifica **/modulolorapizerow/** por la dirección del usuario de raspberry pi zero w que se haya colocado.
+   *StandardOutput=inherit* es para el registro de las salidas estándar del servicio registrado en el archivo Logs que es parte del sistema, así como *StandardError=inherit* que registran los errores del inicio del sistema, *Restart=always* es una orden que se configura en caso de que el servicio falle se pueda reiniciar automáticamente, esto asegura que el servicio siempre este en ejecución, consecutivamente modifica **User** con el usuario que se colocó en la configuración inicial de la Raspberry pi zero, por ultimo *WantedBy=multi-user.target* esta orden define que el servicio se debe de iniciar  en nivel de ejecución de multi-user.tarjet para que los servicios que se necesitan el en proceso de la obtencion y envió de datos se encuentra siempre activos. Guarda y cierra la consola con **CTRL+O** y **CTRL+X**.
    Para que el servicio pueda ejecutarse es necesario escribir los siguientes comandos:
    </body>
          </html>
@@ -778,10 +778,12 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
          </html>
              
     sudo systemctl status mi_script
-   Cierra la consola con **CTRL+Z y Enter** 
+   
+   
+Cierra la consola con **CTRL+Z y Enter** 
     
 ## Instalar chirpstack y The Thingsboard en docker o cualquier otro sistema operativo.
-En la pagina oficial de [Chirpstack](https://www.chirpstack.io/docs/getting-started/docker.html) se describen los pasos para instalar el chirpstack en tu servidor segun el software que maneje. Una vez instalado se tiene que abrir una terminal de programacion o coloquialmente conocida como cmd. Para la instalacion es necesario un sistema operativo que soporte el contenerdor de docker y temer conocimiento del puerto IP del equipo en donde se instalara el docker.
+En la página oficial de [Chirpstack](https://www.chirpstack.io/docs/getting-started/docker.html) se describen los pasos para instalar el chirpstack en tu servidor según el software que maneje. Una vez instalado se tiene que abrir una terminal de programación o coloquialmente conocida como cmd. Para la instalación es necesario un sistema operativo que soporte el contenedor de docker y temer conocimiento del puerto IP del equipo en donde se instalara el docker.
 Escriba el siguiente comando para tener la IP del dispositivo linux o en su defecto de windows:
 
 **Linux :**
@@ -789,14 +791,14 @@ Escriba el siguiente comando para tener la IP del dispositivo linux o en su defe
          </html>
          
     ifconfig
-Se deplegara informacion sobre las ip registradas, la direccion que se tiene que buscar es **eno1: inet *192.000.00.999***.
+Se desplegara información sobre las ip registradas, la dirección que se tiene que buscar es **eno1: inet *192.000.00.999***.
 
 **Windows :**
 </body>
          </html>
          
     ipconfig
-Se deplegara informacion sobre las ip registradas, la direccion que se tiene que buscar es **Direccion IPv4 *192.000.00.999***.
+Se desplegara información sobre las ip registradas, la dirección que se tiene que buscar es **Dirección IPv4 *192.000.00.999***.
 
 **Instalar la libreria de chirpstack docker en linux**
 Escriba el siguiente comando en la consola de linux:
@@ -805,7 +807,7 @@ Escriba el siguiente comando en la consola de linux:
          
     git clone https://github.com/chirpstack/chirpstack-docker.git
     
-Una vez instalada la libreria en la consola escriba el siguiente comando:    
+Una vez instalada la librería en la consola escriba el siguiente comando:    
 </body>
          </html>
              
@@ -817,7 +819,7 @@ Posteriormente escriba en siguiente comando:
              
     sudo nano docker-compose.yml
       
-Se desplegara un scritp que se tiene que modificar para su mejor funcionalidad. Ejemplo del scrip modificado. 
+Se desplegará un script que se tiene que modificar para su mejor funcionalidad. Ejemplo del script modificado. 
 **Script de docker original**
 </body>
          </html>
@@ -906,7 +908,7 @@ Se desplegara un scritp que se tiene que modificar para su mejor funcionalidad. 
     redisdata:
 
     
-**Paso 1 :** Modifica el codigo segun los siguientes parrafos. Escribe el siguiente parrafo debajo de **ports: - 8080:8080**.
+**Paso 1 :** Modifica el código según los siguientes párrafos. Escribe el siguiente párrafo debajo de **ports: - 8080:8080**.
 </body>
          </html>
          
@@ -916,16 +918,16 @@ Se desplegara un scritp que se tiene que modificar para su mejor funcionalidad. 
       - thingsboarddata:/data
     ports:
       - 9090:9090
-Este parrafo instalara the thingsboard en el docker y otrogara un puerto de acceso a la pagina principal de la aplicacion.
+Este párrafo instalara the thingsboard en el docker y otorgara un puerto de acceso a la página principal de la aplicación.
 
-**Paso 2 :** Identifica a **chirpstack-gateway-bridge:** en el cual en su estructura contiene a * environment:*, modifica los 3 parrafos que incluyen **eu868** por las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
+**Paso 2 :** Identifica a **chirpstack-gateway-bridge:** en el cual en su estructura contiene a * environment:*, modifica los 3 párrafos que incluyen **eu868** por las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
 
-**Paso 3 :** En el script identidica la siguiente linea **c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml**, modificar **eu868** or las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915_1**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
+**Paso 3 :** En el script identidica la siguiente linea **c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml**, modificar **eu868** or las siglas de la región en la que se este trabajando, en esté caso se trabajó con **us915_1**. Esto servirá para identificar la región en la que estás trabajando y poder conectar el Gateway según la región de trabajo.
 
-**Paso 4 :** Desplazate al finale del script y abajo de **redisdata:** escribe **thingsboarddata:**, esto con la dinalidad de crear una carpata de guardado de datos y configuraciones que realizen el la aplicacion de the thingsboard.
+**Paso 4 :** Desplázate al final del script y abajo de **redisdata:** escribe **thingsboarddata:**, esto con la finalidad de crear una carpeta de guardado de datos y configuraciones que realicen en la aplicación de the thingsboard.
 
-**Paso 5 :** Identifica el los **ports:** en el sript, en el primer **ports: - 8080:8080**, modifica el primer *8080* por **80** debera de quedar haci **ports: - 80:8080**. Para el segundo **ports: - 1700:1700/udp** modifica *1700* por **1699** debera visualizarse de la siguiente manera **ports: - 1699:1700/udp**. Como tercer **ports: - 1883:1883** modifica el primer *1883* por **1884** debera visualizarse de la siguiente manera **ports: - 1884:1883**. Tenga en cuenta los puertos dispibles a utilizar en su dispositivo, en caso de lo contrario que no esten disponibles modifique los puertos segun su criterio.
-Concluidas las modificaciones guarde y salga con **CTRL+O** y **CTRL+X**. Ejemplo del script modificado y ajustado a la region us915.
+**Paso 5 :** Identifica el los **ports:** en el sript, en el primer **ports: - 8080:8080**, modifica el primer *8080* por **80** deberá de quedar así **ports: - 80:8080**. Para el segundo **ports: - 1700:1700/udp** modifica *1700* por **1699** la visualización será de la siguiente manera **ports: - 1699:1700/udp**. Como tercer **ports: - 1883:1883** modifica el primer *1883* por **1884** deberá visualizarse de la siguiente manera **ports: - 1884:1883**. Tenga en cuenta los puertos disponibles a utilizar en su dispositivo, en caso de lo contrario que no estén disponibles modifique los puertos según su criterio.
+Concluidas las modificaciones guarde y salga con **CTRL+O** y **CTRL+X**. Ejemplo del script modificado y ajustado a la región us915.
 
 **Version modificada**
 </body>
@@ -1029,9 +1031,9 @@ Ejecute el anterior script con este comando en la consola:
     sudo docker-compose up
     
 Una vez ejecutado se podra acceder a la aplicacion web,con la IP que tenga su dispositivo con los puertos que coresponden a cada aplicacion. Para thingsboar el puerto es 9090 y para chirpstack el puerto es 80. Ejemplo **192.000.00.999:9090**
-## Configuracion del gateway Laird Sentrius.
-La configuaracion del gateway Laird Sentrius fue obtenida de la pagina oficial de [ezurio](https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only), en donde se encontrara la documentacion del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30),misma que sirve para configurar el gateway. En caso de que nose pueda configurar el gateway de la siguiente manera consutal la guia del gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30).   
-**Paso 1 :** Conectar el gateway a la corriente y a un puerto de internat estable. Consecutivamente obtener la informacion de las direcciones contenidad de que se encuentran en el reverso del gateway o la caja del mismo. (Ejemplo)
+## Configuración del gateway Laird Sentrius.
+La configuración del gateway Laird Sentrius fue obtenida de la página oficial de [ezurio](https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only), en donde se encontrara la documentación del Gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30),misma que sirve para configurar el Gateway. En caso de que no se pueda configurar el Gateway de la siguiente manera consulta la guía del Gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30).   
+**Paso 1 :** Conectar el Gateway a la corriente y a un puerto de internet estable. Consecutivamente obtener la información de las direcciones contenidas que se encuentran en el reverso del Gateway o la caja de este. (Ejemplo)
 
 <!DOCTYPE html>
 <html>
@@ -1050,7 +1052,7 @@ La configuaracion del gateway Laird Sentrius fue obtenida de la pagina oficial d
 </body>
 </html>
 
-**Paso 2 :** Resetear el gataway de fabrica, presionanod primero el biton marcado como numero 2 en la imagen y consequitivamente el boton 3 durante 5 segundo una vez hecho esto se encenderan todas las luces del gateway y se ressteara. 
+**Paso 2 :** Resetear el Gateway de fábrica, presionando primero el botón marcado como número 2 en la imagen y consecuitivamente el botón 3 durante 5 segundo una vez hecho esto se encenderán todas las luces del Gateway y se reseteará. 
 <!DOCTYPE html>
 <html>
    <head>
