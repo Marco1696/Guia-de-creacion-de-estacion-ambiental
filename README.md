@@ -1,7 +1,7 @@
 ## Guía para la creación de una estación ambiental
 La guía está dirigida a toda aquella persona que tenga la necesidad de implementar una estación de monitoreo ambiental con los siguientes elementos **motor de raspian** de una raspberry pi zero w, **modulo LoRaWan**, además de la plataforma de **chirpstack y the thingsboard**. Se establecen enlaces y gráficos para análisis de datos y un mejorar la comprensión de las condiciones ambientales. 
    ## Configuración del controlador raspberry pi zero w
-Se describe con detalle los pasos a seguir para configura el controlador que desarrollara las funciones de otorgar órdenes a los sensores conectados y se enlazara al protocolo de red LoRa WAN para él envió de la información recolectada. Para las configuraciones iniciales se consultó la siguiente página:
+Se describe con detalle los pasos a seguir para configurar el controlador que desarrolla las funciones de otorgar órdenes a los sensores conectados y se enlazara al protocolo de red LoRa WAN para él envió de la información recolectada. Para las configuraciones iniciales se consultó la siguiente página:
    - https://learn.pi-supply.com/make/getting-started-with-the-raspberry-pi-lora-node-phat/
 
      ## Descargar e instalar imagen del sistema raspian
@@ -793,7 +793,7 @@ Escriba el siguiente comando para tener la IP del dispositivo linux o en su defe
          </html>
          
     ifconfig
-Se desplegara información sobre las ip registradas, la dirección que se tiene que buscar es **eno1: inet *192.000.00.999***.
+Se desplegará información sobre las ip registradas, la dirección que se tiene que buscar es **eno1: inet *192.000.00.999***.
 
 **Windows :**
 </body>
@@ -802,7 +802,7 @@ Se desplegara información sobre las ip registradas, la dirección que se tiene 
     ipconfig
 Se desplegará información sobre las ip registradas, la dirección que se tiene que buscar es **Dirección IPv4 *192.000.00.999***.
 
-**Instalar la libreria de chirpstack docker en linux**
+**Instalar la librería de chirpstack docker en linux**
 Escriba el siguiente comando en la consola de linux:
 </body>
          </html>
@@ -922,9 +922,9 @@ Se desplegará un script que se tiene que modificar para su mejor funcionalidad.
       - 9090:9090
 Este párrafo instalara the thingsboard en el docker y otorgara un puerto de acceso a la página principal de la aplicación.
 
-**Paso 2 :** Identifica a **chirpstack-gateway-bridge:** en el cual en su estructura contiene a * environment:*, modifica los 3 párrafos que incluyen **eu868** por las siglas de la region en la que se este trabajando, en este caso se trabajo con **us915**. Esto servira para identificar la reguin en la que estas trabajando y poder conectar el gateway segun la reguion de trabajo.
+**Paso 2 :** Identifica a **chirpstack-gateway-bridge:** en el cual en su estructura contiene a * environment:*, modifica los 3 párrafos que incluyen **eu868** por las siglas de la región en la que se este trabajando, en este caso se trabajó con **us915**. Esto servirá para identificar la región en la que estás trabajando y poder conectar el gateway según la región de trabajo.
 
-**Paso 3 :** En el script identidica la siguiente linea **c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml**, modificar **eu868** or las siglas de la región en la que se este trabajando, en esté caso se trabajó con **us915_1**. Esto servirá para identificar la región en la que estás trabajando y poder conectar el Gateway según la región de trabajo.
+**Paso 3 :** En el script identifica la siguiente línea **c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml**, modificar **eu868** por las siglas de la región en la que se este trabajando, en esté caso se trabajó con **us915_1**. Esto servirá para identificar la región en la que estás trabajando y poder conectar el Gateway según la región de trabajo.
 
 **Paso 4 :** Desplázate al final del script y abajo de **redisdata:** escribe **thingsboarddata:**, esto con la finalidad de crear una carpeta de guardado de datos y configuraciones que realicen en la aplicación de the thingsboard.
 
@@ -1031,9 +1031,12 @@ Ejecute el anterior script con este comando en la consola:
          </html>
              
     sudo docker-compose up
+
     
-Una vez ejecutado se podra acceder a la aplicacion web,con la IP que tenga su dispositivo con los puertos que coresponden a cada aplicacion. Para thingsboar el puerto es 9090 y para chirpstack el puerto es 80. Ejemplo **192.000.00.999:9090**
+Una vez ejecutado se podrá acceder a la aplicación web, con la IP que tenga su dispositivo con los puertos que corresponden a cada aplicación. Para thingsboar el puerto es 9090 y para chirpstack el puerto es 80. Ejemplo **192.000.00.999:9090**
+
 ## Configuración del gateway Laird Sentrius.
+
 La configuración del gateway Laird Sentrius fue obtenida de la página oficial de [ezurio](https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only), en donde se encontrara la documentación del Gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30),misma que sirve para configurar el Gateway. En caso de que no se pueda configurar el Gateway de la siguiente manera consulta la guía del Gateway [laird sentrius](https://www.ezurio.com/documentation/quick-start-guide-sentrius-rg1xx-v30).   
 **Paso 1 :** Conectar el Gateway a la corriente y a un puerto de internet estable. Consecutivamente obtener la información de las direcciones contenidas que se encuentran en el reverso del Gateway o la caja de este. (Ejemplo)
 
@@ -1054,7 +1057,7 @@ La configuración del gateway Laird Sentrius fue obtenida de la página oficial 
 </body>
 </html>
 
-**Paso 2 :** Resetear el Gateway de fábrica, presionando primero el botón marcado como número 2 en la imagen y consecuitivamente el botón 3 durante 5 segundo una vez hecho esto se encenderán todas las luces del Gateway y se reseteará. 
+**Paso 2 :** Resetear el Gateway de fábrica, presionando primero el botón marcado como número 2 en la imagen y consecutivamente el botón 3 durante 5 segundo una vez hecho esto se encenderán todas las luces del Gateway y se reseteará. 
 <!DOCTYPE html>
 <html>
    <head>
@@ -1074,7 +1077,7 @@ La configuración del gateway Laird Sentrius fue obtenida de la página oficial 
 
 **Paso 3 :** Acceder al Gateway por wifi o conexión física de cable ethernet.
    
-   **Opción 1 :** Acceder por wifi: Dejar presionado el boton de **User botton** en Gateway durante 7 segundos, posteriormente conectarse desde su pc a la red WiFi: rg1xx2945D0. Para poder acceder a la página principal de Gateway es necesario verificar los últimos 6 dígitos del Ethernet MAC ID, modifica el URL https://rg1xx**2945D0**.local. Modificado el URL copia y pega en el buscador de tu preferencia. Para acceder 
+   **Opción 1 :** Acceder por wifi: Dejar presionado el botón de **User botton** en Gateway durante 7 segundos, posteriormente conectarse desde su pc a la red WiFi: rg1xx2945D0. Para poder acceder a la página principal de Gateway es necesario verificar los últimos 6 dígitos del Ethernet MAC ID, modifica el URL https://rg1xx**2945D0**.local. Modificado el URL copia y pega en el buscador de tu preferencia. Para acceder 
    El usuario es:
    </body>
             </html>
