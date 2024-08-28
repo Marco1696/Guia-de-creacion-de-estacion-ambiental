@@ -442,7 +442,8 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
              
     sudo nano lorascd40.py
     
-   La parte de **lorascd40** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y deberá escribir el siguiente código:
+   La parte de **lorascd40** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola y deberá escribir el siguiente código:
+   
    </body>
          </html>
          
@@ -506,13 +507,13 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         scd4x.stop_periodic_measurement()
         lora.close()
 
-   El código anterior importa los módulos de python y raspbrryi pi para el manejo del tiempo componentes del sistema, configuracin de la conexión, además de importar el módulo **adafruit_scd4x** con la finalidad de interactuar con el sensor de Dióxido de carbono. Para la configuración del Rak811 será la misma que de los sensores anteriores implementando la inicialización del I2C (*i2c = board.I2C()*) y la del sensor con el comando **SCD4X**, realizado lo anterior se define a función con la que trabajara el sensor para obtener la información:
+   El código anterior importa los módulos de python y raspbrryi pi para el manejo del tiempo componentes del sistema, configuración de la conexión, además de importar el módulo **adafruit_scd4x** con la finalidad de interactuar con el sensor de Dióxido de carbono. Para la configuración del Rak811 será la misma que de los sensores anteriores implementando la inicialización del I2C (*i2c = board.I2C()*) y la del sensor con el comando **SCD4X**, realizado lo anterior se define a función con la que trabajara el sensor para obtener la información:
    
-   **Paso 1 :** Definir la función *def enviar_datos_lorawan(identifier, co2, temperatura, humedad):* la cual contine las variables, el formato de acomodo para su envió que esta definido por *datos_csv = "{},{},{},{}".format(identifier, co2, temperatura, humedad)* y la impresión del mensaje *"Datos enviados exitosamente por LoRaWAN:"* y los datos que se enviaron en formato **CSV** por LoRaWAN.
+   **Paso 1 :** Definir la función *def enviar_datos_lorawan(identifier, co2, temperatura, humedad):* la cual contine las variables, el formato de acomodo para su envió que está definido por *datos_csv = "{},{},{},{}".format(identifier, co2, temperatura, humedad)* y la impresión del mensaje *"Datos enviados exitosamente por LoRaWAN:"* y los datos que se enviaron en formato **CSV** por LoRaWAN.
    
    **Paso 2 :** Lectura de datos y envió a través de lora, el código ejecuta un bucle con una única medición, este se compone de las variables de muestreo y genera mensajes de estos con las unidades de medida correspondientes, por último se envían los datos por LoRaWAN después de haber realizado 2 muestras y termina el bucle.
   
-   **Paso 3 :** Manejo de interrupciones y cierre del programa, el codigó tiene la capacidad de interrumpir la ejecución del programa con el comando **Ctrl+C** mostrando el mensaje *Interrupción de teclado, finalizando...*, como último paso se finaliza la medición del sensor y se cierra la conexión con el módulo.
+   **Paso 3 :** Manejo de interrupciones y cierre del programa, el código tiene la capacidad de interrumpir la ejecución del programa con el comando **Ctrl+C** mostrando el mensaje *Interrupción de teclado, finalizando...*, como último paso se finaliza la medición del sensor y se cierra la conexión con el módulo.
    Para poder ejecutar el código es necesario descargar las librerías de **Adafruit circuitpython scd4x**. Escriba el siguiente comando:
    </body>
          </html>
@@ -640,16 +641,16 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         lora.close()
         i2c_transceiver.close()
 
-   Los módulos que se importan en el código como *time* para el manejo de tiempo, *I2cConnection*, *LinuxI2cTransceiver* para el manejo de la comunicación del I2C y *Sen5xI2cDevice* para interactuar y configurar con el sensor Sen5x. Por último se importan los módulos de conexión *rak811* y *ttn_secrets* para la configuración del Rak y las credenciales de conexión del LoRaWAN.
-   En cuestión de la definición de las funciones que se encargaran de dar las ordenes, formato de envió y extración de valores legibles se describen a continuación:
+   Los módulos que se importan en el código como *time* para el manejo de tiempo, *I2cConnection*, *LinuxI2cTransceiver* para el manejo de la comunicación del I2C y *Sen5xI2cDevice* para interactuar y configurar con el sensor Sen5x. Por último, se importan los módulos de conexión *rak811* y *ttn_secrets* para la configuración del Rak y las credenciales de conexión del LoRaWAN.
+   En cuestión de la definición de las funciones que se encargaran de dar las ordenes, formato de envió y extracción de valores legibles se describen a continuación:
   
    **Paso 1 :** Se define la función *def initialize_lora():* en donde se configura el módulo Rak811 de la raspberry, además de integrar las variables de conexión de LoRaWAN, se incluye un bucle en donde si existe un fallo se vuelva a intentar en 10 segundos después, se muestra la leyenda *"Error iniciando LoRaWAN:"* y consecutivamente a eso *"Reintentando..."*.
    
    **Paso 2 :** La función *def send_data_lorawan(lora, data):* solamente se configura para el envió de datos por el módulo **Rak811**, además se define los casos del envió correcto de los datos con la leyenda *Paquete enviado* o en su defecto *Error enviando datos por LoRaWAN:* cuando no se envió el paquete.
    
-   **Paso 3 :** La función *def read_sensor_values(device):* otorga parámetros para la lectura de los datos, las mediciones a realizar, los valora que se deben de integrar a las variables asignadas y el formateo de los datos obtenidos en una cadena *CSV* con los valores promedio, por ultimo se detiene la medición.
+   **Paso 3 :** La función *def read_sensor_values(device):* otorga parámetros para la lectura de los datos, las mediciones a realizar, los valora que se deben de integrar a las variables asignadas y el formateo de los datos obtenidos en una cadena *CSV* con los valores promedio, por último se detiene la medición.
    
-   **Paso 4 :** Las ultimas órdenes del código son la inicialización de lora con el comando *lora = initialize_lora()*, además del transceptor I2C con *i2c_transceiver = LinuxI2cTransceiver('/dev/i2c-1')* y la conexión con el sensor con *device = Sen5xI2cDevice(I2cConnection(i2c_transceiver))*, una vez concluidas las acciones, los valores obtenidos del sensor se leen y promedian para su posterior envió atraves de LoRaWAN. Finalmente termina la conexión con LoRaWAN y el I2C.
+   **Paso 4 :** Las ultimas órdenes del código son la inicialización de lora con el comando *lora = initialize_lora()*, además del transceptor I2C con *i2c_transceiver = LinuxI2cTransceiver('/dev/i2c-1')* y la conexión con el sensor con *device = Sen5xI2cDevice(I2cConnection(i2c_transceiver))*, una vez concluidas las acciones, los valores obtenidos del sensor se leen y promedian para su posterior envió a través de LoRaWAN. Finalmente termina la conexión con LoRaWAN y el I2C.
    Para poder ejecutar el código es necesario descargar las librerías de **Sensirion i2c driver y Sensirion i2c sen5x**. Escriba el siguiente comando:
    </body>
       </html>
@@ -761,7 +762,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
     WantedBy=multi-user.target
     
    El código se compone de una descripción del servicio donde se modificara el nombre según sus requerimientos y gustos, *After=network.target*  sirve para que el servicio se inicie después de la comprobación de conectividad de la red, esto porque los datos se comparten por internet, posteriormente *ExecStart=python3* específica el código o programa a iniciar en el servicio, además modifica **/home/modulolorapizerow/Conjuto_de_sensores.py** por la ubicación del código que envía los datos de los sensores, en **WorkingDirectory** modifica **/modulolorapizerow/** por la dirección del usuario de raspberry pi zero w que se haya colocado.
-   *StandardOutput=inherit* es para el registro de las salidas estándar del servicio registrado en el archivo Logs que es parte del sistema, así como *StandardError=inherit* que registran los errores del inicio del sistema, *Restart=always* es una orden que se configura en caso de que el servicio falle se pueda reiniciar automáticamente, esto asegura que el servicio siempre este en ejecución, consecutivamente modifica **User** con el usuario que se colocó en la configuración inicial de la Raspberry pi zero, por ultimo *WantedBy=multi-user.target* esta orden define que el servicio se debe de iniciar  en nivel de ejecución de multi-user.tarjet para que los servicios que se necesitan el en proceso de la obtencion y envió de datos se encuentra siempre activos. Guarda y cierra la consola con **CTRL+O** y **CTRL+X**.
+   *StandardOutput=inherit* es para el registro de las salidas estándar del servicio registrado en el archivo Logs que es parte del sistema, así como *StandardError=inherit* que registran los errores del inicio del sistema, *Restart=always* es una orden que se configura en caso de que el servicio falle se pueda reiniciar automáticamente, esto asegura que el servicio siempre este en ejecución, consecutivamente modifica **User** con el usuario que se colocó en la configuración inicial de la Raspberry pi zero, por ultimo *WantedBy=multi-user.target* esta orden define que el servicio se debe de iniciar  en nivel de ejecución de multi-user.tarjet para que los servicios que se necesitan el en proceso de la obtención y envió de datos se encuentra siempre activos. Guarda y cierra la consola con **CTRL+O** y **CTRL+X**.
    Para que el servicio pueda ejecutarse es necesario escribir los siguientes comandos:
    </body>
          </html>
@@ -799,7 +800,7 @@ Se desplegara información sobre las ip registradas, la dirección que se tiene 
          </html>
          
     ipconfig
-Se desplegara información sobre las ip registradas, la dirección que se tiene que buscar es **Dirección IPv4 *192.000.00.999***.
+Se desplegará información sobre las ip registradas, la dirección que se tiene que buscar es **Dirección IPv4 *192.000.00.999***.
 
 **Instalar la libreria de chirpstack docker en linux**
 Escriba el siguiente comando en la consola de linux:
