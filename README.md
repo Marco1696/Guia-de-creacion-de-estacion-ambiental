@@ -1070,10 +1070,10 @@ La configuración del gateway Laird Sentrius fue obtenida de la página oficial 
 </body>
 </html>
 
-**Paso 3 :** Acceder al gateway por wifi o conexion fisica de cable ethernet.
+**Paso 3 :** Acceder al Gateway por wifi o conexión física de cable ethernet.
    
-   **Opcion 1 :** Acceder por wifi: Dejar presionado el boton de **User botton** en gateway durante 7 segundos, posteriormente conectarse desde su pc a la red WiFi: rg1xx2945D0. Para poder acceder a la pagina principar de gateway es necesario verificar los ultimos 6 digitos del Ethernet MAC ID los cuales tendras que modificar en el URL https://rg1xx**2945D0**.local. Modificado el URL copialo y pegalo en el buscador de tu preferencia. Para acceder 
-   El usiario es :
+   **Opción 1 :** Acceder por wifi: Dejar presionado el boton de **User botton** en Gateway durante 7 segundos, posteriormente conectarse desde su pc a la red WiFi: rg1xx2945D0. Para poder acceder a la página principal de Gateway es necesario verificar los últimos 6 dígitos del Ethernet MAC ID, modifica el URL https://rg1xx**2945D0**.local. Modificado el URL copia y pega en el buscador de tu preferencia. Para acceder 
+   El usuario es:
    </body>
             </html>
 
@@ -1085,8 +1085,9 @@ La configuración del gateway Laird Sentrius fue obtenida de la página oficial 
    
     RG1xx   
 
-   **Opcion 2 :** Acceder por conexion fisica de cable ethernet:  conectar un cable ethernet al gateway en el espacio 5 **Ethernet conector**, posteriormente conectarlo aun router a que tambien estara concetada la pc mediante conexon fisica. Para poder acceder a la pagina principar de gateway es necesario verificar los ultimos 6 digitos del Ethernet MAC ID los cuales tendras que modificar en el URL https://rg1xx**2945D0**.local. Modificado el URL copialo y pegalo en el buscador de tu preferencia. Para acceder 
-   El usiario es :
+   **Opción 2 :** Acceder por conexión física de cable ethernet:  conectar un cable ethernet al Gateway en el espacio 5 **Ethernet conector**, posteriormente conectarlo aun router a que también estará conectada la pc mediante conexión física. Para poder acceder a la página principal de Gateway es necesario verificar los últimos 6 dígitos del Ethernet MAC ID los cuales se modifican en el URL https://rg1xx**2945D0**.local. Modificado el URL copia y pega en el buscador de tu preferencia. Para acceder 
+   El usuario es:
+
    </body>
             </html>
 
@@ -1097,7 +1098,8 @@ La configuración del gateway Laird Sentrius fue obtenida de la página oficial 
             </html>
    
     RG1xx   
-**Paso 3 :** Una vez dentro del gateway configura la conexion wifi a la red de tu preferencia, no olvides que tendras que conectar tu pc a esa red para acceder al gateway con la misma URL. (Ejemplo) 
+**Paso 3 :** Una vez dentro del Gateway configura la conexión wifi a la red de tu preferencia, no olvides que tendrás que conectar tu pc a esa red para acceder al Gateway con la misma URL. (Ejemplo) 
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1116,8 +1118,9 @@ La configuración del gateway Laird Sentrius fue obtenida de la página oficial 
 </body>
 </html>
 
-**Paso 4 :** Configura la red loRAWAN, en donde nos ubicaremos en la parte de **lora**, en esa seccion nos dirigiremos a **Forwarder** y ahi seleccionaremos el modo **semtech UDP Forwarder**, dentro del de este modo modificaremos el **Network server address** con la [direccion ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Instalar-chirpstack-y-The-Thingsboard-en-docker-o-cualquier-otro-sistema-operativo)
-de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremos los **Port Up** y **Port Down** con los puertos que se registraron en esta la [linea 898](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md?plain=1#898), en la parte de port Up el primer numero que aparece y en la parte de port down el segundo numero. (Ejemplo)
+**Paso 4 :** Configura la red LoRAWAN, en donde nos ubicaremos en la parte de **lora**, en esa sección nos dirigiremos a **Forwarder** y ahí seleccionaremos el modo **semtech UDP Forwarder**, dentro del de este modo modificaremos el **Network server address** con la [dirección ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Instalar-chirpstack-y-The-Thingsboard-en-docker-o-cualquier-otro-sistema-operativo)
+del pc en que instalamos el docker, chirptack y the thingsboard y modificaremos los **Port Up** y **Port Down** con los puertos que se registraron en esta la [línea 898](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md?plain=1#898), en la parte de port Up el primer número que aparece y en la parte de port Down el segundo número. (Ejemplo)
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1135,7 +1138,8 @@ de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremo
 </body>
 </html>
 
-**Paso 5 :** Plotear la red lora para comprovar su funcionalidad: Dirigirse a al apartado **Traffic** y presionar el recuadro **Poll Traffic**, se debera de empezar a visualizar informacion sobre mensajes que recibe el gateway sin que esten registrados en el mismo. (Ejemplo)
+**Paso 5 :** Plotear la red lora para comprobar su funcionalidad: Dirigirse a al apartado **Traffic** y presionar el recuadro **Poll Traffic**, se deberá de empezar a visualizar información sobre mensajes que recibe el Gateway sin que estén registrados en el mismo. (Ejemplo)
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1153,9 +1157,10 @@ de la pc en que instalamos el docker, chirptack y the thingsboard y modificaremo
 </body>
 </html>
 
-## Configuracion de la plataforma de Chirpctack.
-Acceder a la pagina de **Chirpstack** con la direccion [ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L715) de la pc en conjunto con el puerto que se accino a chirpstack en el [scritp](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L885) o el que se haya accinado en tu caso. (Ejemplo) **192.000.00.999:80**
-Una vez en la pagina nos aparecera la siguiente imagen:
+## Configuración de la plataforma de Chirpctack.
+Acceder a la página de **Chirpstack** con la dirección [ip](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L715) del pc en conjunto con el puerto que se asignó a chirpstack en [scritp](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#L885) o el que se haya asignado en tu caso. (Ejemplo) **192.000.00.999:80**
+Una vez en la página nos aparecerá la siguiente imagen:
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1174,7 +1179,7 @@ Una vez en la pagina nos aparecera la siguiente imagen:
 </html>
 
 El usuario y la contraseña por defaul el **admin**.
-Una vez dentro de la plataforma aparecesala siguiente imagen 
+Una vez dentro de la plataforma aparece la siguiente imagen: 
 <!DOCTYPE html>
 <html>
    <head>
@@ -1192,8 +1197,9 @@ Una vez dentro de la plataforma aparecesala siguiente imagen
 </body>
 </html>
 
-Para configurar la platafroma se seguiran los siguientes pasos:
-**Paso 1 :** Crear un Tenanst o cliente del Network server. Dirijete a la parte de Tenants, consecutivamente da clic en Add Tenant. Dentro del recuadro que aparece podras colocara el nombre de cliente de tu preferecia, ademas de poner una breve descripcion y configurar el perfil del gateway, ya sea publico, privado o aceptar muchos gateways. (Ejemplo).
+Para configurar la plataforma se seguirán los siguientes pasos:
+**Paso 1 :** Crear un Tenanst o cliente del Network server. Dirígete a la parte de Tenants, consecutivamente da clic en Add Tenant. Dentro del recuadro que aparece podrás colocar el nombre de cliente de tu preferencia, además de poner una breve descripción y configurar el perfil del Gateway, ya sea público, privado o aceptar muchos Gateways. (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1211,8 +1217,9 @@ Para configurar la platafroma se seguiran los siguientes pasos:
 </body>
 </html>
 
-Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
-**Paso 2 :** Crear un **Device Profiles**, para eso tenemos que ubicarnos en la pestaña del mismo nombre, una vez ahi nos dirijiramos a add device profile. La configuracion dependera de la reguion, el nombre que se le quiera otorgar al device profile, la cadena de reglas, version de mac y algoritmos a utilizar. (Ejemplo).
+Una vez configurado de clic en Sumit para guardar y cargar los cambios realizados.
+**Paso 2 :** Crear un **Device Profiles**, para eso tenemos que ubicarnos en la pestaña del mismo nombre, una vez ahí dirígete a add device profile. La configuración dependerá de la región, el nombre que se le quiera otorgar al device profile, la cadena de reglas, versión de Mac y algoritmos a utilizar. (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1230,9 +1237,10 @@ Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizado
 </body>
 </html>
 
-Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configuracion existen 2 formas de conectra con la aplicacion los dispocitivos, ya sea por OTA o por ABP. 
+Hecho lo anterior dirígete a la pestaña de Join (OTA/ABP), para esta configuración existen 2 formas de conectar con la aplicación y los dispositivos, ya sea por OTA o por ABP. 
 
-*Conexion por OTA :* solo se dejara encendido sin hacer ningun cambio a la configuracion. (Ejemplo).
+*Conexión por OTA :* solo se dejara encendido sin hacer ningún cambio a la configuración. (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1250,7 +1258,8 @@ Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configu
 </body>
 </html>
 
-*Configuracion ABP :* Dependiendo de la reguion en que se encuentre, la configuracion de los radios variara, consulte la cartpeta de [Chirstack](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/tree/main/chirpstack), donde se pueden visualizar las reguiones por abreviatura y obtener esta configuraciones. (Ejemplo).
+*Configuración ABP :* Dependiendo de la región en que se encuentre, la configuración de los radios variara, consulte la carpeta de [Chirstack](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/tree/main/chirpstack), donde se pueden visualizar las regiones por abreviatura y obtener esta configuraciones. (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1269,7 +1278,8 @@ Hecho lo anterior dirigete a la pestaña de de Join (OTA/ABP), para esta configu
 </body>
 </html>
 
-Consecutivamente despues de culminado esta configuracion, pasamos a la pestaña de Class-B, deja por defaul esa pestaña y dirigete a Class-C, enciende esta clase y en el recuadro de **Class-C confirmed downlink timeout (seconds)** colocamos 5 para que cada 5 segundos de descarge los datos del dispositivo. (Ejemplo) 
+Consecutivamente después de culminado esta configuración, pasamos a la pestaña de Class-B, deja por defaul esa pestaña y dirígete a Class-C, enciende esta clase y en el recuadro de **Class-C confirmed downlink timeout (seconds)** colocamos 5 para que cada 5 segundos de descarguen los datos del dispositivo. (Ejemplo) 
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1288,7 +1298,8 @@ Consecutivamente despues de culminado esta configuracion, pasamos a la pestaña 
 </body>
 </html>
 
-Ahora dirigete a la pestaña de Codec, aqui es importante conocer el cifrado de mensaje que se etsa manejando, ademas de los bytes por mensaje que llegan y muy importante que estos datos no varen en cifras numerias, en palabras mas sencillas si el tipo de digito que maneja todo el mensaje es 29.98, asegurate que no la configuracion del cofigo este configurada solamente para eso y no no vare en numeros de 3 cifras, te presento un ejemplo del codigo urilizado en lenguaje de javaScript para descifrar los mensajes enviados por los sensores utilizados.
+Ahora dirígete a la pestaña de Codec, aqui es importante conocer el cifrado de mensaje que se está manejando, además de los bytes por mensaje que llegan y muy importante que estos datos no varen en cifras numéricas, en palabras más sencillas si el tipo de digito que maneja todo el mensaje es 29.98, asegúrate que no la configuración del código este configurada solamente para eso y no vare en números de 3 cifras, te presento un ejemplo del código utilizado en lenguaje de javaScript para descifrar los mensajes enviados por los sensores utilizados.
+
 </body>
          </html>
          
@@ -1395,7 +1406,8 @@ Ahora dirigete a la pestaña de Codec, aqui es importante conocer el cifrado de 
     };
     }
 
-Este codigo solo es una manera de decifrar los datos del mensaje lora que mando un dispositivo atravez de una red lora y que fue recibido por esa plataforma. El codigo comprende la utilizacion de un identificador con la orden *const identifier* la cual extrae los bytes del 0 a 2, estos contienen el identificador en numero con el objetivo de realizar un decifrado en especifico segun el tipo de sensor y el payload, ademas de definir las siguientes variables *let decodedData* que contienen los datos de los sensores decodificados y *let dataSource* que contiene el nombre del sensor decodificado*. En el proseso de descifrado empiza con el analisis del identificador antes descifrado  con la orden *else if (identifier === "1.1")* una vez que el identificador coincida se asignara una constanten segun el orden en que se haya enviado los datos del sensor, en conjunto con *parseFloat(String.fromCharCode* que convierte los bytes en una cadena de texto y los decifra con punto decimal, posteriormente se utiliza la variable *decodedData* la cual se almacena y se nombran a los datos decifrados, ademas de la utilizacion de  *dataSource* para establecer el nombre del sensor, por ultimo se agrega un apartado extra para identificadores desconocidos por ultimo dirigete a la pestraña de Mesurements en la cual de daran de alta los identificadores para cada valor a analizar, esta parte tiene distintos distintivos para analizar y graficar, en el siguiente ejemplo se tomo a concideracion el Gauge debido que sirve para graficar elementos como temperatura y unidades de ese estilo.
+Este código solo es una manera de descifrar los datos del mensaje lora que mando un dispositivo a través de una red lora y que fue recibido por esa plataforma. El código comprende la utilización de un identificador con la orden *const identifier* la cual extrae los bytes del 0 a 2, estos contienen el identificador en número con el objetivo de realizar un descifrado en específico según el tipo de sensor y el payload, además de definir las siguientes variables *let decodedData* que contienen los datos de los sensores decodificados y *let dataSource* que contiene el nombre del sensor decodificado*. En el proceso de descifrado empieza con el análisis del identificador antes descifrado  con la orden *else if (identifier === "1.1")* una vez que el identificador coincida se asignara una constante según el orden en que se haya enviado los datos del sensor, en conjunto con *parseFloat(String.fromCharCode* que convierte los bytes en una cadena de texto y los descifra con punto decimal, posteriormente se utiliza la variable *decodedData* la cual se almacena y se nombran a los datos descifrados, además de la utilización de  *dataSource* para establecer el nombre del sensor, por último se agrega un apartado extra para identificadores desconocidos por ultimo dirígete a la pestaña de Mesurements en la cual se darán de alta los identificadores para cada valor a analizar, esta parte tiene distintos distintivos para analizar y graficar, en el siguiente ejemplo se tomó a consideración el Gauge debido que sirve para graficar elementos como temperatura y unidades de ese estilo.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1413,9 +1425,10 @@ Este codigo solo es una manera de decifrar los datos del mensaje lora que mando 
 </body>
 </html>
 
-Delas demas pestañas que aparecen se dejan por defaul, almenos que se tenga que interactuar con esas opciones, se solicitaria rebizar la documentacion ofical de [Chirpstack](https://www.chirpstack.io/docs/).
-Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizados.
-**Paso 3 :** Dirigete a la pestaña de gateways y presiona **Add Gateway**, coloca el nombre de tu preferencia al gateway y una pequeña descripcion, ademas de escribir el Dev EUI del gateway que se encuenntra en [En la informacion de gateway](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#configuracion-del-gateway-laird-sentrius). (Ejemplo).
+De las demás pestañas que aparecen se dejan por defaul, al menos que se tenga que interactuar con esas opciones, se solicitaría revisar la documentación oficial de [Chirpstack](https://www.chirpstack.io/docs/).
+Una vez configurado de clic en Sumit para guardar y cargar los cambios realizados.
+**Paso 3 :** Dirígete a la pestaña de Gateways y presiona **Add Gateway**, coloca el nombre de tu preferencia al Gateway y una pequeña descripción, además de escribir el Dev EUI del Gateway que se encuentra en [En la información de gateway](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#configuracion-del-gateway-laird-sentrius). (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1434,7 +1447,8 @@ Una vez configurado de clic en Sumit para gusrdar y cargar los cambios realizado
 </html>
 
 Una vez configurado de clic en Sumit para guardar y cargar los cambios realizados.
-**Paso 4 :** Dirigete a la pestaña de applications y presiona **Add Application**, configura con el nombre de tu preferecia y añade una descripcion, da clic en **Sumit** para guardar y cargar los cambios, se deplegara otra pagina, presiona **Add Device**, configura con el nombre de tu preferecia, añade una descripcion, escribe tu Device EUI (EUI64) del [dispositivo a conectar](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Creacion-de-credenciales-de-seguridad-y-coneccion-de-ABP.) al igual que tu Join EUI (EUI64) si cuentas con el, en caso de no tenerlo deja en blanco el espacio. Seleciona el *Device profile* que creaste con anterioridad y activa el *Disable frame-counter validation* esto con la finalidad de poder recibir mensajes de diferentes sensores a la vez. (Ejemplo).
+**Paso 4 :** Dirígete a la pestaña de applications y presiona **Add Application**, configura con el nombre de tu preferencia y añade una descripción, da clic en **Sumit** para guardar y cargar los cambios, se desplegara otra página, presiona **Add Device**, configura con el nombre de tu preferencia, añade una descripción, escribe tu Device EUI (EUI64) del [dispositivo a conectar](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Creacion-de-credenciales-de-seguridad-y-coneccion-de-ABP.) al igual que tu Join EUI (EUI64) si cuentas con él, en caso de no tenerlo deja en blanco el espacio. Selecciona el *Device profile* que creaste con anterioridad y activa el *Disable frame-counter validation* esto con la finalidad de poder recibir mensajes de diferentes sensores a la vez. (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1453,7 +1467,8 @@ Una vez configurado de clic en Sumit para guardar y cargar los cambios realizado
 </body>
 </html>
 
-**Paso 5 :** Dentro de **Devices** dirigete a la pestaña de **Activation** ahi agraga el **Device address**, **Network session key** y **Application session key** que obtuviste de tu [raspberry](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Creacion-de-credenciales-de-seguridad-y-coneccion-de-ABP.), ademas agrega un 1 en **Uplink frame-counter** esto para que al momento de reactivar el device descarge solo una lectura de la informacion del dispositivo, por ultimo preciona **(Re)active Device** para guardar y cargar las configuraciones. Si fue correcta la activacion en la parate de event te aparecera el payload del sensor conectado. (Ejemplo).
+**Paso 5 :** Dentro de **Devices** dirígete a la pestaña de **Activation** ahí agrega el **Device address**, **Network session key** y **Application session key** que obtuviste de tu [raspberry](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/README.md#Creacion-de-credenciales-de-seguridad-y-coneccion-de-ABP.), además agrega un 1 en **Uplink frame-counter** esto para que al momento de reactivar el device descargue solo una lectura de la información del dispositivo, por ultimo presiona **(Re)active Device** para guardar y cargar las configuraciones. Si fue correcta la activación en la parte de event te aparecerá el payload del sensor conectado. (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1472,12 +1487,13 @@ Una vez configurado de clic en Sumit para guardar y cargar los cambios realizado
 </body>
 </html>
 
-## Configuracion de la plataforma de The Thingsboard.
-Para acceder a la plataforma de Thingsboard es necesario escribir en tu navegaror la direccion de la ip en donde se instalo la aplicacion mas el puerto, que en este caso fue **9090**. Como es la primera vez en que accedes a la plataforma las credenciales por defaul son:
-- **System Administrator**: sysadmin@thingsboard.org / sysadmin
-- **Tenant Administrator**: tenant@thingsboard.org / tenant
-- **Customer User**: customer@thingsboard.org / customer
-Cualquier de esas te otorga acceso a la pagina principal de la aplicacion. (Ejemplo)
+## Configuración de la plataforma de The Thingsboard.
+Para acceder a la plataforma de Thingsboard es necesario escribir en tu navegador la dirección de la ip en donde se instaló la aplicación más el puerto, que en este caso fue **9090**. Como es la primera vez en que accedes a la plataforma las credenciales por defaul son:
+- **System Administrator**: sysadmin@thingsboard.org / sysadmin
+- **Tenant Administrator**: tenant@thingsboard.org / tenant
+- **Customer User**: customer@thingsboard.org / customer
+Cualquier de esas te otorga acceso a la página principal de la aplicación. (Ejemplo).
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1513,9 +1529,10 @@ Una vez dentro de la aplicacion sigue los paso que se te decriben ahi
 </body>
 </html>
 
-No olvides tambien configurar en el apartado de configuraciones el **Device connectivity**. Activa la opcion de HTTP, coloca la direccion de la ip de tu pc, junto con el puesto de thingsboard **9090**. Guarda los cambios y sigue los paso para activar tu administrador de propietarios.
+No olvides también configurar en el apartado de configuraciones el **Device connectivity**. Activa la opción de HTTP, coloca la dirección de la ip de tu pc, junto con el puesto de thingsboard **9090**. Guarda los cambios y sigue los pasos para activar tu administrador de propietarios.
 
-**Configuracion del administrador de propietarios :** Inicia tu secion de propietario segun los pasos del primer contacto con the thingsboard y suigue las indicaciones que te maraca este recuadro en la aplicacion 
+**Configuración del administrador de propietarios:** Inicia tu sección de propietario según los pasos del primer contacto con the thingsboard y sigue las indicaciones que te maraca este recuadro en la aplicación. 
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1533,7 +1550,8 @@ No olvides tambien configurar en el apartado de configuraciones el **Device conn
 </body>
 </html>
 
-En el primer punto se abarcara la creacion y la conexcion del dispositivo con la integracion de chirpstack. Inicia la creacion del **Dispositivo** segun el cuadro antes mencionado, cuando llegues a la Prueba de conectividad del dispositivo, copia solo la direccion URL en este caso como ejemplo **http://192.000.00.9999:9090/api/v1/d3v6z0vE3OIHOSz4dN6g/telemetry** en vez de todo el comando que se muesta ahi. Ahora pegue este url en la parte de Chipstack de applications, pestaña de integrations y recuadro de HTTP como se muestra en al imagen.
+En el primer punto se abarcará la creación y la conexión del dispositivo con la integración de chirpstack. Inicia la creación del **Dispositivo** según el cuadro antes mencionado, cuando llegues a la Prueba de conectividad del dispositivo, copia solo la dirección URL en este caso como ejemplo **http://192.000.00.9999:9090/api/v1/d3v6z0vE3OIHOSz4dN6g/telemetry** en vez de todo el comando que se muestra ahí. Ahora pegue este URL en la parte de Chipstack de applications, pestaña de integrations y recuadro de HTTP como se muestra en la imagen.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1553,7 +1571,8 @@ En el primer punto se abarcara la creacion y la conexcion del dispositivo con la
 </html>
 
 Una vez configurado de clic en Sumit para guardar y cargar los cambios realizados.
-Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der estado del dispositivos de inactivo a encendido, presionar doble clic en el dispositivo e ubicarse en la pestaña de telemetry, si se realizo bien el proceso de integracion se podra visualizar datos de lso sensores como la direccion eui, un object adonde se contendra nuestros datos y una data que estara incriptada.
+Ahora actualiza la página de the thingsboard y se debe de observar el cambio de estado del dispositivo de inactivo a encendido, presionar doble clic en el dispositivo e ubicarse en la pestaña de telemetry, si se realizó bien el proceso de integración se podrá visualizar datos de los sensores como la dirección EUI, un object adonde se contendrán nuestros datos y una data que estará encriptada.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1572,12 +1591,13 @@ Ahora actualiza la pagina de the thingsboard y se debe de observar el cambio der
 </body>
 </html>
 
-## Configuracion del Motor de reglas de ThingsBoard
-Este paso es importante debido a que la telemetria enviada desde chirpstack solo se puede observar en una cadena de datos separada por comas como este ejemplo **Object:{"humidityBME":27.6,"temperatureBME":23.65,"altitude":2182.29,"identifier":"1.2 BME","pressure":777.16}**, esto representa una problematica al momento de querer graficar solamente una cosa. Para que en el The Thingsboard se muestre cada valor por separado es necesario editir la cadena de reglas que esta por defaul, crear una nueva o importar alguna ya hecha que nos pueda servir para esta problematica.
-  Si es que se esta terabajndo en el mismo proyecto o un similar se recomienda descargar e importar el archivo de tipo JSON [Separador de telemetria](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/separador_de_telemetria.json) el cual brindara la funcionalidad de separar la telemetria para su graficacion correspondiente.
-  En caso de que tengas los mismos problemas pero tus datos son difernetes los siguientes pasos de como configurar la cadena de reglas te serviran para el mejor entendimiento de Thingsboard.
+## Configuración del Motor de reglas de ThingsBoard
+Este paso es importante debido a que la telemetría enviada desde chirpstack solo se puede observar en una cadena de datos separada por comas como este ejemplo **Object:{"humidityBME":27.6,"temperatureBME":23.65,"altitude":2182.29,"identifier":"1.2 BME","pressure":777.16}**, esto representa una problemática al momento de querer graficar solamente una cosa. Para que en el The Thingsboard se muestre cada valor por separado es necesario editar la cadena de reglas que esta por defaul, crear una nueva o importar alguna ya hecha que nos pueda servir para esta problemática.
+  Si es que se está trabajando en el mismo proyecto o un similar se recomienda descargar e importar el archivo de tipo JSON [Separador de telemetria](https://github.com/Marco1696/Guia-de-creacion-de-estacion-ambiental/blob/main/separador_de_telemetria.json) el cual brindara la funcionalidad de separar la telemetría obtener las gráficas correspondientes.
+  En caso de que tengas los mismos problemas, pero tus datos son diferentes los siguientes pasos de como configurar la cadena de reglas te servirán para el mejor entendimiento de Thingsboard.
 
-**Paso 1 :** Crear una nueva cadena de reglas, otorgarle nombre y enceder el debug, lo ultimo te servira para ver la actividad y la informacion que va ingresando a la cadena de reglas.
+**Paso 1 :** Crear una nueva cadena de reglas, otorgarle nombre y encender el debug, lo último te servirá para ver la actividad y la información que va ingresando a la cadena de reglas.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1595,7 +1615,8 @@ Este paso es importante debido a que la telemetria enviada desde chirpstack solo
 </body>
 </html>
 
-**Paso 2 :** Ingresa a la cadena de reglas que creaste y seleciona el filtro de message type filter, agregale un nombre, en la parte de *Select message types* solo deja a **Post Telemetry**, enciende el modo debug, una vez hecho esto da clic en agregar y arrastra el mouse desde el ultimo punto de input hasta el primer punto del filtro para unirlos. Estes filtro ademas de ver la actividad de los mensajes que llegas a la aplicacion puede solo visualizar los mansajes de la telemetria ya interpretada por the Thingsboard.    
+**Paso 2 :** Ingresa a la cadena de reglas que creaste y selecciona el filtro de message type filter, agrégale un nombre, en la parte de *Select message types* solo deja a **Post Telemetry**, enciende el modo debug, una vez hecho esto da clic en agregar y arrastra el mouse desde el último punto de input hasta el primer punto del filtro para unirlos. Este filtro además de ver la actividad de los mensajes que llegan a la aplicación puede solo visualizar los mensajes de la telemetría ya interpretada por the Thingsboard.  
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1614,13 +1635,16 @@ Este paso es importante debido a que la telemetria enviada desde chirpstack solo
 </body>
 </html>
 
-**Paso 3 :** Agrega al esquema el filto de script, agregale nobre y activa la funcion de debug, en la parte de agregar algun codigo en TBEL o Javascript, seleciona javascript y copia y modifica el siuiente codigo segun tus requerimientos 
+**Paso 3 :** Agrega al esquema el filtro de script,  asigna un nombre a el recuadro y activa la función de debug, en la parte de agregar algún código en TBEL o Javascript, seleccionar javascript, copia y modifica el siguiente código según tus requerimientos. 
+
  </body>
             </html>
 
     return msg.object && msg.object.identifier && msg.object.identifier === '1.3 SCD40';
 
-Por la configuracion de los mensajes y para ser mas practica la identificacion de los sensores y sus respectivos datos que arrojan los identificadores son fundamentales desde el codigo del sensor, haci en este momento el codigo hace refenrencia a tomar el msg.object del mensaje original, analizar solo el msg.object.identifier y buscar coincidencias para encontrar el msg.object.identifier === '1.3 SCD40', ahora si utilizas los identificadores o sensores con distinta informacion te recomiendo que utilices este filtro, en caso de que solamente se un sensor descarta este filtro de tu esquema final.
+
+Por la configuración de los mensajes y para ser más practica la identificación de los sensores y sus respectivos datos que arrojan los identificadores son fundamentales desde el código del sensor, así en este momento el código hace referencia a tomar el msg.object del mensaje original, analizar solo el msg.object.identifier y buscar coincidencias para encontrar el msg.object.identifier === '1.3 SCD40', ahora si utilizas los identificadores o sensores con distinta información te recomiendo que utilices este filtro, en caso de que solamente se un sensor descarta este filtro de tu esquema final.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1639,9 +1663,10 @@ Por la configuracion de los mensajes y para ser mas practica la identificacion d
 </body>
 </html>
 
-**Paso 4 :** Dirigete a los nodos de tranformacion y agrega el nodo llamado script, dale un nombre y activa el modo debug, agrega algun codigo en TBEL o Javascript en el recuadro ubicado en la parte inferior, seleciona javascript, copia y modifica el codigo segun las necesidades que presentes, a continuacion se muestran los codigos utilizados para el presente proyecto divididos por sensor.
+**Paso 4 :** Dirígete a los nodos de transformación y agrega el nodo llamado script, asigna un nombre y activa el modo debug, agrega algún código en TBEL o Javascript en el recuadro ubicado en la parte inferior, selecciona javascript, copia y modifica el código según las necesidades que presentes, a continuación se muestran los códigos utilizados para el presente proyecto divididos por sensor.
 
-**Codigo de JavaScript para sensor de temperatura y humedad BME280.**
+**Código de JavaScript para sensor de temperatura y humedad BME280.**
+
 
 </body>
             </html>
@@ -1668,9 +1693,11 @@ Por la configuracion de los mensajes y para ser mas practica la identificacion d
     // Retornar el nuevo mensaje en el formato correcto
     return { msg: newMsg, metadata: metadata, msgType: msgType };
 
-El codigo anterior muestra la definicion de valores como temperatura, humedad y presion que serian extraidos de la posttelemetria en el codigo compuestos por  var temperatureBME el cual es el nombre de identificacion del valor el cual es igual a msg.object.temperatureBME; que contiene la informacion de ese valor, esa misma logica se aplica para los siguientes valores con los que se esta trabajando. A continiacion el codigo define la fecha y la hora en que se estan extrayendo los datos y se realiza un ajuste en la hora para que coincida con la hora centro de Mexico, por ultimo se crea una nueva varible que contendra los valores utilizados y los retornara de nuevo a la posttelemetria para que los valoras aparezcan de manera unitaria en la visualizacion de telemetria.
 
-**Codigo de JavaScript para los sensores de gasde Alphasense.**
+El código anterior muestra la definición de valores como temperatura, humedad y presión que serían extraídos de la posttelemetria en el código compuestos por  **var temperatureBME** el cual es el nombre de identificación del valor el cual es igual a msg.object.temperatureBME; que contiene la información de ese valor, esa misma lógica se aplica para los siguientes valores con los que se está trabajando. A continuación, el código define la fecha y la hora en que se están extrayendo los datos y se realiza un ajuste en la hora para que coincida con la hora centro de México, por último se crea una nueva variable que contendrá los valores utilizados y los retornara de nuevo a la posttelemetria para que los valoras aparezcan de manera unitaria en la visualización de telemetría.
+
+**Código de JavaScript para los sensores de gas de Alphasense.**
+
 
 </body>
             </html>
@@ -1764,9 +1791,11 @@ El codigo anterior muestra la definicion de valores como temperatura, humedad y 
     // Retornar el nuevo mensaje en el formato correcto
     return { msg: newMsg, metadata: metadata, msgType: msgType };
 
-Las modificaciones a los valores de la postelemetria en cuestion de los sensores de gas alphasense se definen por las variables que se extraen de la telemetria y los valores, posteriormente de definen los valores de calibracion segun las graficas de calibracion de los sensores, concecutivamente se establece la ecuacion correspondiente para determinar el valor real de concentracion de gases y las formulas de conversion, ademas de integrar la fecha y su respectiva correccion. Por ultimo solo se define una nueva variable para contener el nuevo valor de los gases y retornarlos a la telemetria para su posterior visualizacion.**NOTA :** El codigo anterior es un conjunto de codigos unidos para el envio de datos mas amigable con la plataforma,  sin embargo sepueden establecer unitariariamente con la finalidad de visualizar con mayor rapidez los eventos que se esten ejecutando.
 
-**Codigo de JavaScript para sensor de partuculas PM Sen55.**
+Las modificaciones a los valores de la posttelemetria en cuestión de los sensores de gas alphasense se definen por las variables que se extraen de la telemetría y los valores, posteriormente de definen los valores de calibración según las gráficas de calibración de los sensores, consecutivamente se establece la ecuación correspondiente para determinar el valor real de concentración de gases y las fórmulas de conversión, además de integrar la fecha y su respectiva corrección. Por último, solo se define una nueva variable para contener el nuevo valor de los gases y retornarlos a la telemetría para su posterior visualización. **NOTA :** El código anterior es un conjunto de códigos unidos para él envió de datos más amigable con la plataforma,  sin embargo se pueden establecer unitariamente con la finalidad de visualizar con mayor rapidez los eventos que se estén ejecutando.
+
+**Código de JavaScript para sensor de partículas PM Sen55.**
+
 
 </body>
             </html>
@@ -1799,7 +1828,7 @@ Las modificaciones a los valores de la postelemetria en cuestion de los sensores
     // Retornar el nuevo mensaje en el formato correcto
     return { msg: newMsg, metadata: metadata, msgType: msgType };
 
-**Codigo de JavaScript para sensor de Dioxido de carbono SCD40.**
+**Código de JavaScript para sensor de Dióxido de carbono SCD40.**
 
 </body>
             </html>
@@ -1826,8 +1855,10 @@ Las modificaciones a los valores de la postelemetria en cuestion de los sensores
     // Retornar el nuevo mensaje en el formato correcto
     return { msg: newMsg, metadata: metadata, msgType: msgType };
 
-Para los datos del sensor de particulas y el de dioxido de carbono las configuraciones son las mismas que para el sensor BME280, en las cuales solamente se tranforma el dato de una cadena de valores separados por comas y puntos por un datos individual segun el identificador proporcionado por el sensor y haci al momento de retornar a la telemetria,poder visualizar en el panel una lectura unitaria de las variables definidas al final de cada codigo.
-Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquema de visualizacion.
+
+Para los datos del sensor de partículas y el de dióxido de carbono las configuraciones son las mismas que para el sensor BME280, en las cuales solamente se transforma el dato de una cadena de valores separados por comas y puntos por un dato individual según el identificador proporcionado por el sensor y así al momento de retornar a la telemetría, poder visualizar en el panel una lectura unitaria de las variables definidas al final de cada código.
+A continuación, se muestran imágenes de ejemplo de los nodos a agregar y el esquema de visualización.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1846,7 +1877,8 @@ Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquem
 </body>
 </html>
 
-**Paso 5 :** Selecciona el nodo de accion llamado *Save timeseries*, coloca el nombre de tu preferencia y activa el modo debug. En la configuracion del mismo dejar en defaul, posteriormente agrega el nodo como se muestra en las imagenes siguientes. Este nodo cumple la funcion de guardar la telemetria en la base da datos que se este utilizando. 
+**Paso 5 :** Selecciona el nodo de acción llamado *Save timeseries*, coloca el nombre de tu preferencia y activa el modo debug. En la configuración de este, dejar en defaul, posteriormente agrega el nodo como se muestra en las imágenes siguientes. Este nodo cumple la función de guardar la telemetría en la base de datos que se esté utilizando.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1865,7 +1897,8 @@ Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquem
 </body>
 </html>
      
-**Paso 6 :** Agrega el nodo *res api call*, este tiene la principal funcion de obtener los datos procesados de la posttelemetria y enviarlos a un serevidor local con una URL del mismos servidor. Para su configuracion es necesario contra con un servidor locar y una URL para recibir los datos procesados, como primer punto tienen que nombrar al nodo con el nombre de tu prefencia,posteriormente coloca la URL del servido a enviar, en el metodo requerido existen varias opciones para la extracion de datos, en este caso se selecciono la de POST la cual es la que contiene la informacion a utilizar y el cuadro del cliente de HTTP por la cual se recibira la informacion, en casode tener alguno otro formato de salida que no sea JSON modificar el apartado que marca dicho archivo, si no existe alguna otra modificacion a realizar que se observe necesaria agregar el nodo, y conectarlo con el nodo de *Save timeseries* y colocar *success*. Las siguientes imagenes muestran un ejemplo de lo desctrito con anterioridad.
+**Paso 6 :** Agrega el nodo *res api call*, este tiene la principal función de obtener los datos procesados de la posttelemetria y enviarlos a un servidor local con una URL del mismos servidor. Para su configuración es necesario contar con un servidor local y una URL para recibir los datos procesados, como primer punto tienen que nombrar al nodo con el nombre de tu preferencia, posteriormente coloca la URL del servido a enviar, en el método requerido existen varias opciones para la extracción de datos, en este caso se seleccionó la de POST la cual es la que contiene la información a utilizar y el cuadro del cliente de HTTP por la cual se recibirá la información, en caso de tener alguno otro formato de salida que no sea JSON modificar el apartado que marca dicho archivo, si no existe alguna otra modificación a realizar que se observe necesaria agregar el nodo, y conectarlo con el nodo de *Save timeseries* y colocar *success*. Las siguientes imágenes muestran un ejemplo de lo descrito con anterioridad.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1884,10 +1917,11 @@ Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquem
 </body>
 </html>
 
- ## Configuracion del perfiles de dispositivo.
- La configuracion y creacion de un perfil de dispositivo simplifica pasos cuando se quieren agregar varios dispositivos con que otorgan informacion similar o que tienen la misma estructura en su configuracion. En este segmento se describira la configuracion de los perfiles y como es que se conectan a un dispositivo, cadena de reglas, panel de dispositivo, ademas de la importancia que se le puede otorgar aun mensaje para que sea leido y agrupado.
+ ## Configuración de perfiles de dispositivo.
+ La configuración y creación de un perfil de dispositivo simplifica pasos cuando se quieren agregar varios dispositivos con que otorgan información similar o que tienen la misma estructura en su configuración. En este segmento se describirá la configuración de los perfiles y como es que se conectan a un dispositivo, cadena de reglas, panel de dispositivo, además de la importancia que se le puede otorgar aun mensaje para que sea leído y agrupado.
  
- **Paso 1 :** Dirijete a la seccione de paneles, agrega un nuevo panel, coloca el nombre de tu preferencia, una pequeña descripcion y si ya tienes algun cliente registrado coloca ese cliente para que pueda visualizar la informacion de solo ese panel, al final solo dale en agragar y posteriormente despues de que se despliegue la pagina dale en guardar.
+ **Paso 1 :** Dirígete a la seccione de paneles, agrega un nuevo panel, coloca el nombre de tu preferencia, una pequeña descripción y si ya tienes algún cliente registrado coloca ese cliente para que pueda visualizar la información de solo ese panel, al final solo dale en agregar y posteriormente después de que se despliegue la página dale en guardar.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1906,7 +1940,8 @@ Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquem
 </body>
 </html>
       
-**Paso 2 :** Una vez creado el panel dirijete a perfiles de dispositivo y ahi crea un nuevo perfil, agrega el nombre de tu agrado, posteriormente en el siguiente recuadro agrega la cadena de reglas que creaste con anterioridad, selecional el recuadro del panle y busca el nombre del panel creado, para el recuador de cola, seleciona que tan prioritario es el mensaje para que el perfil lo maneje segun sus 3 opciones, en este caso se utilizo *HighPriority*, por ultimo la cadena de reglas de egde es utilizada para enviar informacion de los paneles a aplicaciones exteriores, esta cadena se deja por defecto en caso de que se tenga que configurar una nueva cadena, se buscara el nombre de la cadena creada y se accionara al recuadro.
+**Paso 2 :** Una vez creado el panel dirígete a perfiles de dispositivo y ahí crea un nuevo perfil, agrega el nombre de tu agrado, posteriormente en el siguiente recuadro agrega la cadena de reglas que creaste con anterioridad, seleccionar el recuadro del panel y busca el nombre del panel creado, para el recuadro de cola, seleccionar que tan prioritario es el mensaje para que el perfil lo maneje según sus 3 opciones, en este caso se utilizó *HighPriority*, por último la cadena de reglas de egde es utilizada para enviar información de los paneles a aplicaciones exteriores, esta cadena se deja por defecto en caso de que se tenga que configurar una nueva cadena, se buscara el nombre de la cadena creada y se accionara al recuadro.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1928,7 +1963,8 @@ Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquem
 </body>
 </html>
 
-**Paso 3 :** Para los siguentes 3 puntos de configuracion se pueden dejar por defaul, en caso de que se tengan que configurar por el tipo de comunicacion a establecer el punto 2 tiene las opciones de configuracion, segun el tipo de conexion, seleccionar la que se este usando. Si se requiere la configuracion de una alarma con la finalidad de alertar sobre la llegada de telemtria o que algun dato a exedido los limites que se marquen y para el punto 4 la opcion que da este espacio es para la creacion de dispocitivos de aprovisionamiento los cuales tienen la funcion de establecerse con la configuracion de los parametros selecionados en el perfil del dispositivo, solo se solicita crear claves desde el dispositivo o adicionar las claves creadas por defaul en el perfil.
+**Paso 3 :** Para los siguientes 3 puntos de configuración se pueden dejar por default, en caso de que se tengan que configurar por el tipo de comunicación a establecer el punto 2 tiene las opciones de configuración, según el tipo de conexión, seleccionar la que se esté usando. Si se requiere la configuración de una alarma con la finalidad de alertar sobre la llegada de telemetría o que algún dato a excedido los límites que se marquen y para el punto 4 la opción que da este espacio es para la creación de dispositivos de aprovisionamiento los cuales tienen la función de establecerse con la configuración de los parámetros seleccionados en el perfil del dispositivo, solo se solicita crear claves desde el dispositivo o adicionar las claves creadas por default en el perfil.
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1949,12 +1985,13 @@ Acontinuacion se muestran imagenes de ejemplo de los nodos a agragar y el esquem
 </body>
 </html>
 
-## Configuracion del panel del dispositivo.
-Diriguete a dispositivos y seleciona el dispositivo que creaste con anterioridad, estando ahi ve a modo edicion representado por un lapiz o pluma en su defecto, estando en el recuadro, elimina el prefir de dispositivo registardo y seleciona el perfil creado anteriormente, esto con la finalidad de que se complete la conexion de todas las variables necesarias para visualizar la informacion graficamente en thingsboard. Posteriormente a esto sigua los pasos de la configuracion del panel.
+## Configuración del panel del dispositivo.
+Dirígete a dispositivos y selecciona el dispositivo que creaste con anterioridad, estando ahí ve a modo edición representado por un lápiz o pluma en su defecto, estando en el recuadro, elimina el perfil de dispositivo registrado y selecciona el perfil creado anteriormente, esto con la finalidad de que se complete la conexión de todas las variables necesarias para visualizar la información gráficamente en thingsboard. Posteriormente a esto siga los pasos de la configuración del panel.
 
-**Paso 1 :** Diriguete a la pestaña de paneles y selecciona el panel que creaste con anterioridad, agrega un widget, en este ejemplo se mostrara solamente la configuracion de la temperatura, pero en general es una configuracion similar con los los demas datos, solo en casos especiales como la indormacion de particulas de monocido de carbono y algunas otras particulas en el ambiente se aplicaran algunos otras operaciones.
+**Paso 1 :** Dirígete a la pestaña de paneles y selecciona el panel que creaste con anterioridad, agrega un widget, en este ejemplo se mostrara solamente la configuración de la temperatura, pero en general es una configuración similar con los demás datos, solo en casos especiales como la información de partículas de monóxido de carbono y algunas otras partículas en el ambiente se aplicaran algunos otras operaciones.
 
-Para la configuracion de la temperatura solamete se buscara un widget que muestre la temperatura de forma numeriaca y grafica por ejemplo el widget de la seccion de *Indoor Environment*  llamado *Indoor temperature chart card with background* :
+Para la configuración de la temperatura solamente se buscara un widget que muestre la temperatura de forma numérica y grafica por ejemplo el widget de la sección de *Indoor Environment* llamado *Indoor temperature chart card with background* :
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -1972,8 +2009,9 @@ Para la configuracion de la temperatura solamete se buscara un widget que muestr
 </table>
 </body>
 </html>
+ 
+Ahora selecciona el dispositivo que contienen los datos a graficar y elimina la temperatura que se muestra por default, posteriormente a eso se te desplegara el panel de información de los datos que se pueden seleccionar para graficar, y tendrás que buscar el nombre de temperatura en el panel y seleccionarlo, una vez hecho eso dirígete al recuadro de gráfico y posicionarte en decimales, ahí agrega 2, esto para que se muestre el valor real de la temperatura y no se redonde por defecto, por último en el recuadro de valores, al igual coloca 2 en los decimales, esto para que la recta que se dibuje con el histórico de la temperatura corresponda a las cifras registradas por el valor numérico de la temperatura.   
 
-Ahora seleciona el dispositivo que continen los datos a graficar y elimina la temperatura que se muestra por defaul, posteriormente a eso se te desplegara el panel de informacion de los datos que se pueden selecionar para graficar, y tendras que buscar el nombre de temperatura en el panel y seleccionarlo, una vez hecho eso dirigete al recuadro de grafico y posiscionate en decimales, ahi agrega 2, esto para que se muestre el valor real de la temperatura y no se redonde por defecto, por ultimo en el recuadro de valores, al igual coloca 2 en los decimales, esto para que la recta que se dibuje con el historico de la temperatura coresponda a las cifras registradas por el valor numerico de la temperatura.   
 <!DOCTYPE html>
 <html>
    <head>
@@ -1995,7 +2033,8 @@ Ahora seleciona el dispositivo que continen los datos a graficar y elimina la te
 </body>
 </html>
 
-Los paneles finales se visdualizaran de esta manera segun su configuracion y los datos a graficar.
+Los paneles finales se visualizarán de esta manera según su configuración y los datos a graficar.
+
 <!DOCTYPE html>
 <html>
    <head>
