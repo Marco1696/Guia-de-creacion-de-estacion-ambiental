@@ -417,7 +417,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
     lora.close()
     exit(0)
 
-   EL codigo otorga las ordenas necesarias para la obtencion de los valores requeridos, acontinuacion se decribe por pasos el contenido del codigo funcional:
+   EL código otorga las ordenas necesarias para la obtencion de los valores requeridos, acontinuacion se decribe por pasos el contenido del código funcional:
     
    **Paso 1 :** Se importan los módulos y archivos a utilizar dentro del código en este caso *random, sys y time*, son módulos de Python para el control del sistema y control del tiempo, por otra parte *board, time y  adafruit_bme280*  son módulos de las librerías de Adafruit para manejar interfaces de hardware, configracion del I2C, operaciones de tiempo y manejo en general del sensor BME280. Para la conexión de LoRaWAN se establece *rak811.rak811* el cual es el módulo para controlar *LoRa RAK811*, por último, el archivo *ttn_secrets* o el nombre del archivo que contenga las credenciales de conexión a LoRaWAN como la Aplication Key, Network key y el Device address, esto con la finalidad de una conexión cifrada entre sensor, red LoRa y el servidor de red.
    
@@ -428,7 +428,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
    
    **Paso 4 :** Envió de datos y finalización de programa, una vez enviados los datos, se otorga la indicación de imprimir el mensaje *Paquete enviado:* con los datos que se han enviado a partir del comando print('Paquete enviado:', data_to_send), además de enviar los datos sin esperar una confirmación y consecutivamente se cierra lora y sale del programa con el comando *lora.close()* y *exit(0)*.
    
-   Para poder ejecutar el codigó es necesario descargar las librerías de **Adafruit circuitpython bme280**. Escriba el siguiente comando:
+   Para poder ejecutar el código es necesario descargar las librerías de **Adafruit circuitpython bme280**. Escriba el siguiente comando:
    </body>
          </html>
               
@@ -441,7 +441,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
              
     sudo nano lorascd40.py
     
-   La parte de **lorascd40** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y deberá escribir el siguiente codigó:
+   La parte de **lorascd40** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y deberá escribir el siguiente código:
    </body>
          </html>
          
@@ -505,14 +505,14 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         scd4x.stop_periodic_measurement()
         lora.close()
 
-   El codigó anterior importa los módulos de python y raspbrryi pi para el manejo del tiempo componentes del sistema, configuracin de la conexión, además de importar el módulo **adafruit_scd4x** con la finalidad de interactuar con el sensor de Dióxido de carbono. Para la configuración del Rak811 será la misma que de los sensores anteriores implementando la inicialización del I2C (*i2c = board.I2C()*) y la del sensor con el comando **SCD4X**, realizado lo anterior se define a función con la que trabajara el sensor para obtener la información:
+   El código anterior importa los módulos de python y raspbrryi pi para el manejo del tiempo componentes del sistema, configuracin de la conexión, además de importar el módulo **adafruit_scd4x** con la finalidad de interactuar con el sensor de Dióxido de carbono. Para la configuración del Rak811 será la misma que de los sensores anteriores implementando la inicialización del I2C (*i2c = board.I2C()*) y la del sensor con el comando **SCD4X**, realizado lo anterior se define a función con la que trabajara el sensor para obtener la información:
    
    **Paso 1 :** Definir la función *def enviar_datos_lorawan(identifier, co2, temperatura, humedad):* la cual contine las variables, el formato de acomodo para su envió que esta definido por *datos_csv = "{},{},{},{}".format(identifier, co2, temperatura, humedad)* y la impresión del mensaje *"Datos enviados exitosamente por LoRaWAN:"* y los datos que se enviaron en formato **CSV** por LoRaWAN.
    
-   **Paso 2 :** Lectura de datos y envió a través de lora, el codigó ejecuta un bucle con una única medición, este se compone de las variables de muestreo y genera mensajes de estos con las unidades de medida correspondientes, por último se envían los datos por LoRaWAN después de haber realizado 2 muestras y termina el bucle.
+   **Paso 2 :** Lectura de datos y envió a través de lora, el código ejecuta un bucle con una única medición, este se compone de las variables de muestreo y genera mensajes de estos con las unidades de medida correspondientes, por último se envían los datos por LoRaWAN después de haber realizado 2 muestras y termina el bucle.
   
    **Paso 3 :** Manejo de interrupciones y cierre del programa, el codigó tiene la capacidad de interrumpir la ejecución del programa con el comando **Ctrl+C** mostrando el mensaje *Interrupción de teclado, finalizando...*, como último paso se finaliza la medición del sensor y se cierra la conexión con el módulo.
-   Para poder ejecutar el codigó es necesario descargar las librerías de **Adafruit circuitpython scd4x**. Escriba el siguiente comando:
+   Para poder ejecutar el código es necesario descargar las librerías de **Adafruit circuitpython scd4x**. Escriba el siguiente comando:
    </body>
          </html>
               
@@ -525,7 +525,7 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
              
     sudo nano lorasen55.py
     
-   La parte de **lorasen55** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola y deberá escribir el siguiente codigó:
+   La parte de **lorasen55** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola y deberá escribir el siguiente código:
    </body>
          </html>
 
@@ -639,17 +639,17 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         lora.close()
         i2c_transceiver.close()
 
-   Los módulos que se importan en el código como *time* para el manejo de tiempo, *I2cConnection*, *LinuxI2cTransceiver* para el manejo de la comunicacin del I2C y *Sen5xI2cDevice* para interactuar y configurar con el sensor Sen5x. Por último se importan los módulos de conexión *rak811* y *ttn_secrets* para la configuración del Rak y las credenciales de conexión del LoRaWAN.
+   Los módulos que se importan en el código como *time* para el manejo de tiempo, *I2cConnection*, *LinuxI2cTransceiver* para el manejo de la comunicación del I2C y *Sen5xI2cDevice* para interactuar y configurar con el sensor Sen5x. Por último se importan los módulos de conexión *rak811* y *ttn_secrets* para la configuración del Rak y las credenciales de conexión del LoRaWAN.
    En cuestión de la definición de las funciones que se encargaran de dar las ordenes, formato de envió y extración de valores legibles se describen a continuación:
   
-   **Paso 1 :** Se define la función *def initialize_lora():* en donde se configura el modulo Rak811 de la raspberry, ademas de integrar las variables de conexion de LoRaWAN, se incluye un bucle en donde si hay un fallo se intente en 10 segundos despues y se muestra la leyenda *"Error iniciando LoRaWAN:"* y consecutivamente a eso *"Reintentando..."*.
+   **Paso 1 :** Se define la función *def initialize_lora():* en donde se configura el módulo Rak811 de la raspberry, además de integrar las variables de conexión de LoRaWAN, se incluye un bucle en donde si existe un fallo se vuelva a intentar en 10 segundos después, se muestra la leyenda *"Error iniciando LoRaWAN:"* y consecutivamente a eso *"Reintentando..."*.
    
-   **Paso 2 :** La fincion *def send_data_lorawan(lora, data):* solamente se configura para el envio de datos por el modulo **Rak811**, en donde se define los casos del envio corecto de los datos con la leyenda *Paquete enviado* o en su defecto *Error enviando datos por LoRaWAN:* cuando no se envio el paquete.
+   **Paso 2 :** La función *def send_data_lorawan(lora, data):* solamente se configura para el envió de datos por el módulo **Rak811**, además se define los casos del envió correcto de los datos con la leyenda *Paquete enviado* o en su defecto *Error enviando datos por LoRaWAN:* cuando no se envió el paquete.
    
-   **Paso 3 :** La funcion *def read_sensor_values(device):* otorga parametros para la lectura de los datos, las mediciones a realizar, los valora que se deben de integrar a las avariables asignadad y el formateo de los datos obtenidos en una cadena *CSV* con los valores promedio, por ultimo se detiene la medicion.
+   **Paso 3 :** La función *def read_sensor_values(device):* otorga parámetros para la lectura de los datos, las mediciones a realizar, los valora que se deben de integrar a las variables asignadas y el formateo de los datos obtenidos en una cadena *CSV* con los valores promedio, por ultimo se detiene la medición.
    
-   **Paso 4 :** Las ultimas ornes del codigo son la inicializacion de lora con el comando *lora = initialize_lora()*, ademas del transeptor I2C con *i2c_transceiver = LinuxI2cTransceiver('/dev/i2c-1')* y la conexion con el sensor con *device = Sen5xI2cDevice(I2cConnection(i2c_transceiver))*, una vez concluidas las acciones, los valores obtenidos del sensor se leen y promedian para su posterior envio atravez de LoRaWAN. Finalmente termina la conexion con LoRaWAN y el I2C.
-   Para poder ejecutar el codigo es necesario descargar las librerias de **Sensirion i2c driver y Sensirion i2c sen5x**. Escriba el siguiente comando:
+   **Paso 4 :** Las ultimas órdenes del código son la inicialización de lora con el comando *lora = initialize_lora()*, además del transceptor I2C con *i2c_transceiver = LinuxI2cTransceiver('/dev/i2c-1')* y la conexión con el sensor con *device = Sen5xI2cDevice(I2cConnection(i2c_transceiver))*, una vez concluidas las acciones, los valores obtenidos del sensor se leen y promedian para su posterior envió atraves de LoRaWAN. Finalmente termina la conexión con LoRaWAN y el I2C.
+   Para poder ejecutar el código es necesario descargar las librerías de **Sensirion i2c driver y Sensirion i2c sen5x**. Escriba el siguiente comando:
    </body>
       </html>
               
@@ -659,14 +659,14 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
               
     sudo pip3 install sensirion-i2c-sen5x
    
-   ## Codigo de para mandar datos a Chirpstack.
-   La funcion basica del siguiente codigo es enviar datos recabados por los sensores a la plataforma de chirpstack atraves de LoRaWan. Escriba en el siguiente comando:
+   ## Código de para mandar datos a Chirpstack.
+   La función básica del siguiente código es enviar datos recabados por los sensores a la plataforma de chirpstack a través de LoRaWan. Escriba en el siguiente comando:
    </body>
          </html>
              
     sudo nano Conjuto_de_sensores.py
     
-   La parte de **Conjuto_de_sensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahi se desplegara una consola y debera escribir el siguiente codigo: 
+   La parte de **Conjuto_de_sensores** se puede modificar por cualquier nombre, esto es solo un ejemplo. Una vez ahí se desplegará una consola y deberá escribir el siguiente código: 
    </body>
          </html>
     import subprocess
@@ -731,8 +731,8 @@ Para poder ejecutar el código anterior es necesario descargar las librerías de
         print("Programa interrumpido por el usuario.")
         sys.exit(0)     
 
-   El codigo anterior importa los modulos de python *subprocess* para ejecutar otros scrips o comandos en la terminal desde el programa, el cual sera utilizado para ejecutar los codigos de los sensores, *time* para el manejo de las operaiones en cuestion del tiempo y el modulo *sys* el cual proporciona acceso en algunas variables y funciones del sistema.
-   Para el declarar los codigos a ejecutar y la forma en que se realizara se utiliza un bucle con el comando **while True:** con la finalidad de ejecutar de manera continua los scripts, iniciando con la leyenda *Iniciando nuevo ciclo de mediciones*, consecutivamente llemando al script de los sensores de Alphasense, despues al sensor BME280, posteriormente el SCD40 y por ultimo el Sensirium Sen55.
+   El código anterior importa los módulos de python *subprocess* para ejecutar otros scripts o comandos en la terminal desde el programa, el cual será utilizado para ejecutar los códigos de los sensores, *time* para el manejo de las operaiones en cuestion del tiempo y el modulo *sys* el cual proporciona acceso en algunas variables y funciones del sistema.
+   Para el declarar los códigos a ejecutar y la forma en que se realizara se utiliza un bucle con el comando **while True:** con la finalidad de ejecutar de manera continua los scripts, iniciando con la leyenda *Iniciando nuevo ciclo de mediciones*, consecutivamente llemando al script de los sensores de Alphasense, despues al sensor BME280, posteriormente el SCD40 y por ultimo el Sensirium Sen55.
    Por ultimo el codigo imprime la leyenda *Error durante la ejecución del script:* en caso de existir un error en cualquier codigo, y agrega el comando para la interrucion por usuario del codigo y despliega la leyenda *Programa interrumpido por el usuario.*, finalmente el codigo culmina la ejecucion con *sys.exit(0)*.
    
    ## Crear un servicio de pytho3 en la raspberry pi zero w para que se ejcute automaticamente el codigo pra mandar datos a Chirpstack
